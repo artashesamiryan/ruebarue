@@ -1,0 +1,1567 @@
+[
+    {
+        "id": 5487674173816832,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJ7Y-cK4l3WYgRVwNpnybDgCY",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "restaurants",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.519646",
+        "lng": "-82.962166",
+        "name": "Shoney's",
+        "address": "",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 19600320,
+        "fs_id": "5dd09cda163a650008d0f7da",
+        "ta_tags": [
+            ""
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "tags": [],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJ7Y-cK4l3WYgRVwNpnybDgCY",
+            "name": "Shoney's",
+            "rating": 3.8,
+            "user_ratings_total": 436,
+            "price_level": 1,
+            "formatted_address": "3334 Asheville Rd, Waynesville, NC 28786, USA",
+            "formatted_phone_number": "(828) 246-0335",
+            "website": "https://www.shoneys.com/locations",
+            "url": "https://maps.google.com/?cid=2774431941110858583",
+            "geometry": {
+                "location": {
+                    "lat": 35.5195083,
+                    "lng": -82.9618835
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 1,
+                    "author_name": "Larry Harwood",
+                    "text": "Attention don’t take silverware off table when somebody gone to bathroom and clean the table especially when I’ve not put my napkin in plate with the silverware drink was gone does that’s happen with everybody that comes in and decides to use the bathroom and come back to clean table it just takes look of the eyes to observe and decide are they gone or are they in bathroom but then again by look at food on the bar I understand fully why they was in bathroom in first place food was not best they could do  breakfast is worth going for but lunch on other hand needs improve especially doing the trying times cause that’s  when restaurants need to shine not disappoint the most important people the customer",
+                    "time": 1613495214
+                },
+                {
+                    "rating": 3,
+                    "author_name": "Lisa Trull",
+                    "text": "It was pretty good but it just don't have the atmosphere the old Shoney's had. Also it doesn't matter where you go anymore, everybody that owns a restaurant thinks they have to have a bar. I wouldn't be surprised if McDonald's eventually has one. Yes I need a chicken mcnugget happy meal and a Coors for my drink.",
+                    "time": 1617992189
+                },
+                {
+                    "rating": 2,
+                    "author_name": "Kimberly Ponder",
+                    "text": "To long to get food 😩 my bake 🥔 was cold 🥶 the brought fries 🍟 they were cold 🥶 hamburger 🍔 was good service was a little slow 🐌 don't think ill be back",
+                    "time": 1599520301
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Ray Pollock",
+                    "text": "New, clean",
+                    "time": 1600620833
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Kent Estes",
+                    "text": "Shoneys was great! Clean! The Food was good! The Buffet had plastic gloves to protect our hands from spreading bacteria. Reasonably priced!",
+                    "time": 1614692246
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 0,
+                            "time": "0800"
+                        },
+                        "close": {
+                            "day": 0,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 1,
+                            "time": "0800"
+                        },
+                        "close": {
+                            "day": 1,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "0800"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "0800"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "0800"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "0800"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "time": "0800"
+                        },
+                        "close": {
+                            "day": 6,
+                            "time": "2000"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: 8:00 AM – 8:00 PM",
+                    "Tuesday: 8:00 AM – 8:00 PM",
+                    "Wednesday: 8:00 AM – 8:00 PM",
+                    "Thursday: 8:00 AM – 8:00 PM",
+                    "Friday: 8:00 AM – 8:00 PM",
+                    "Saturday: 8:00 AM – 8:00 PM",
+                    "Sunday: 8:00 AM – 8:00 PM"
+                ]
+            },
+            "types": [
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "3334 Asheville Road, Waynesville",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:09.978201Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5488030354112512,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJzwyEe9Z2WYgRncpLceREWBc",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "attractions",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.49285",
+        "lng": "-82.98834",
+        "name": "Twigs \u0026 Leaves Gallery",
+        "address": "",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 2639465,
+        "ta_tags": [
+            "Art Galleries",
+            "Shopping",
+            "Museums"
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "tags": [
+            "Museum"
+        ],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJzwyEe9Z2WYgRncpLceREWBc",
+            "name": "Twigs \u0026 Leaves Gallery",
+            "rating": 4.8,
+            "user_ratings_total": 34,
+            "formatted_address": "98 N Main St, Waynesville, NC 28786, USA",
+            "formatted_phone_number": "(828) 456-1940",
+            "website": "http://www.twigsandleaves.com/",
+            "url": "https://maps.google.com/?cid=1682170208766904989",
+            "geometry": {
+                "location": {
+                    "lat": 35.490999,
+                    "lng": -82.98734139999999
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 5,
+                    "author_name": "Eric Rickel",
+                    "text": "This is a phenomenal gallery with many very talented artists represented.  Beautiful pottery, glass, wood, and many other gift ideas.  A must see if you are in the area.",
+                    "time": 1600911416
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Miriam Howard",
+                    "text": "One of my most favorite shops anywhere! I visit anytime I'm in Waynesville. The shop carries a fascinating mix of paintings, pottery, jewelry, crafted wooden pieces, textile art, and more. It's a special place.",
+                    "time": 1570134075
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Scott Underdown",
+                    "text": "Very helpful and knowledgeable about the jewelry in the store from local artists/jewelers.",
+                    "time": 1581379274
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Kenneth Todtenhagen",
+                    "text": "Love this place, awesome hard to find items. Thanks",
+                    "time": 1583158630
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Bill Davis",
+                    "text": "We love this place.   It is full of hand crafted goods. They have  pottery,  furniture, paintings,  jewelry and more.   If you are  in the area and like hand crafted art,  do yourself a favor and stop by.",
+                    "time": 1535412604
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 1,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 1,
+                            "time": "1730"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "1730"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "1730"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "1730"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "1730"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 6,
+                            "time": "1730"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: 10:00 AM – 5:30 PM",
+                    "Tuesday: 10:00 AM – 5:30 PM",
+                    "Wednesday: 10:00 AM – 5:30 PM",
+                    "Thursday: 10:00 AM – 5:30 PM",
+                    "Friday: 10:00 AM – 5:30 PM",
+                    "Saturday: 10:00 AM – 5:30 PM",
+                    "Sunday: Closed"
+                ]
+            },
+            "types": [
+                "art_gallery",
+                "jewelry_store",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ],
+            "vicinity": "98 North Main Street, Waynesville",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:10.087762Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5628767842467840,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJ9ZIUx9V2WYgRU2AWWPQvdNE",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "attractions",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.49241",
+        "lng": "-82.98913",
+        "name": "Therapeutic Massage \u0026 Wellness Spa llc",
+        "address": "",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 8865774,
+        "ta_tags": [
+            ""
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "tags": [],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJ9ZIUx9V2WYgRU2AWWPQvdNE",
+            "name": "Therapeutic Massage \u0026 Wellness Spa llc",
+            "rating": 4.9,
+            "user_ratings_total": 85,
+            "formatted_address": "288 N Haywood St, Waynesville, NC 28786, USA",
+            "formatted_phone_number": "(828) 456-3585",
+            "website": "http://www.massagewaynesville.com/",
+            "url": "https://maps.google.com/?cid=15092740977721761875",
+            "geometry": {
+                "location": {
+                    "lat": 35.4925647,
+                    "lng": -82.98955579999999
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 5,
+                    "author_name": "davidmills005",
+                    "text": "The experience was amazing. We arrived 10 minutes early for a couples massage and they took us right back. Everything was very clean and professional. Layla did an incredible job of communicating and guiding me through the whole experience. Layla’s work on a deep tissue massage was amazing. I left feeling invigorated and refreshed. I definitely will be going back.",
+                    "time": 1618239083
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Bryan Giudici",
+                    "text": "My wife and I had a couples pregnancy massage, they were kind and gentle with my wife and left her feeling relaxed and beautiful. I too had a great experience with a deep tissue massage. Highly recommend.",
+                    "time": 1615080165
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Mary Walker Baus",
+                    "text": "Really well-managed, clean and lovely spa experience. The staff - especially Rhonda and Dana - were kind, professional and accommodating. This location offers a ton of different spa and wellness services and the prices are amazing. Highly recommend.",
+                    "time": 1610047977
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Paul Radziewicz",
+                    "text": "On my very first visit Rhonda helped me out by giving me a deep therapeutic massage. She really worked the knots out in my back and gave a lot of pressure that I needed to be able to get those spots taken care of. Thank you so much Rhonda! I look forward to visiting again real soon. So glad to have them here in Waynesville!",
+                    "time": 1611237746
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Brittany P Kinney",
+                    "text": "I would absolutely recommend! Rhonda was amazing! So professional and thorough. Helped my back pain tremendously!",
+                    "time": 1614796104
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 1,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 1,
+                            "time": "1900"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "1900"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "1900"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 6,
+                            "time": "1900"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: 9:00 AM – 7:00 PM",
+                    "Tuesday: 9:00 AM – 7:00 PM",
+                    "Wednesday: 9:00 AM – 7:00 PM",
+                    "Thursday: 9:00 AM – 8:00 PM",
+                    "Friday: 9:00 AM – 8:00 PM",
+                    "Saturday: 9:00 AM – 7:00 PM",
+                    "Sunday: Closed"
+                ]
+            },
+            "types": [
+                "spa",
+                "health",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "288 North Haywood Street, Waynesville",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:10.188254Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5630417109909504,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJOYONWVx3WYgR5dk-YgH9LIk",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "attractions",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.52896",
+        "lng": "-82.97472",
+        "name": "World Methodist Museum",
+        "address": "",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 8094984,
+        "ta_tags": [
+            ""
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "tags": [],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJOYONWVx3WYgR5dk-YgH9LIk",
+            "name": "World Methodist Museum",
+            "rating": 4.7,
+            "user_ratings_total": 44,
+            "formatted_address": "575 N Lakeshore Dr, Lake Junaluska, NC 28745, USA",
+            "formatted_phone_number": "(828) 456-7242",
+            "url": "https://maps.google.com/?cid=9884553464556476901",
+            "geometry": {
+                "location": {
+                    "lat": 35.52860279999999,
+                    "lng": -82.9751778
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 4,
+                    "author_name": "Stephen",
+                    "text": "Very nice museum with some interesting exhibit items. Most of it is Methodist centered with a few Holy Land items. The ladies who host the museum are precious and very accommodating. I only took off a star because it is a small museum and very targeted in it's displays.",
+                    "time": 1552763713
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Ruth Anne Brown",
+                    "text": "Sat outside on a bench enjoying the lake.",
+                    "time": 1593210315
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Hannah Cromley",
+                    "text": "Very informative! There is a short video at the beginning about what you will see, but otherwise the tour is self guided.",
+                    "time": 1564197348
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Dave Twigg",
+                    "text": "A treasure trove of information about the Methodist Church and it's earliest days in the United States.",
+                    "time": 1566064759
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Chris Powers",
+                    "text": "Wonderful informative museum.  Our Docent guide Ashley was so nice and informative. Great exhibits on Methodist beginnings along with many unique surprises!",
+                    "time": 1540249547
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "1600"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "1600"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "1600"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "1600"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 6,
+                            "time": "1600"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: Closed",
+                    "Tuesday: 9:00 AM – 4:00 PM",
+                    "Wednesday: 9:00 AM – 4:00 PM",
+                    "Thursday: 9:00 AM – 4:00 PM",
+                    "Friday: 9:00 AM – 4:00 PM",
+                    "Saturday: 9:00 AM – 4:00 PM",
+                    "Sunday: Closed"
+                ]
+            },
+            "types": [
+                "museum",
+                "tourist_attraction",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "575 North Lakeshore Drive, Lake Junaluska",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:10.338068Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5769149150527488,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJNQe_u3l3WYgR0gGjlTHzNSg",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "restaurants",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.526447",
+        "lng": "-82.955246",
+        "name": "Blue Rooster",
+        "address": "207 Paragon Pkwy, Clyde, NC 28721, USA",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 2256579,
+        "fs_id": "4d41fe2c48cea35d31d22cf7",
+        "yelp_id": "blue-rooster-southern-grill-clyde",
+        "ta_tags": [
+            "American",
+            "International"
+        ],
+        "yelp_tags": [
+            "American (Traditional)"
+        ],
+        "tags": [
+            "American (Traditional)"
+        ],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJNQe_u3l3WYgR0gGjlTHzNSg",
+            "name": "Blue Rooster Southern Grill",
+            "rating": 4.7,
+            "user_ratings_total": 728,
+            "price_level": 2,
+            "formatted_address": "207 Paragon Pkwy, Clyde, NC 28721, USA",
+            "formatted_phone_number": "(828) 456-1997",
+            "website": "https://www.blueroostersoutherngrill.com/",
+            "url": "https://maps.google.com/?cid=2897489329572217298",
+            "geometry": {
+                "location": {
+                    "lat": 35.526675,
+                    "lng": -82.9553528
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 5,
+                    "author_name": "Anita Riley",
+                    "text": "We stopped in on Thursday traveling south this past week and were pleasantly surprised how good the food was! Our only disappointment is that they were not open on Sunday so we could visit again!   Everything was so good!  The service, the sweet tea, the rolls, tomato bisque soup (I almost ordered a to go serving, it was so good!), taco salad, chicken salad, Caroline burger and OH My Goodness the coconut cake was heavenly!!!  Top of our list of places to stop!!",
+                    "time": 1615830336
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Dan Mason",
+                    "text": "The food is fabulous. Huge portions, and a great value. Service is friendly and fast.  If I'm ever in Waynesville I'll be sure to carve out a time to visit again.",
+                    "time": 1618160422
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Ady",
+                    "text": "The service and the food are ⭐️⭐️⭐️⭐️⭐️. Very cozy and clean restaurant. I 100% recommend this place. Chelsey S. was our waitress. She is amazing, sweet and helpful. The grilled chicken was delicious. Even the rolls tasted freshly made. If we ever come back to North Caroline we will try to stop by again.",
+                    "time": 1610744751
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Dan Mason",
+                    "text": "The food is divine. The service is fantastic.  It's a good thing I don't live in Waynesville because I'd have to eat here every day.",
+                    "time": 1618248913
+                },
+                {
+                    "rating": 4,
+                    "author_name": "Barbara Seay",
+                    "text": "Good food, friendly staff. Very attentive server. Prices are on the high side.  $12 for a burger and fries.  I've lived here for over 30 years, it's just too high for the area.",
+                    "time": 1610570382
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 1,
+                            "time": "1100"
+                        },
+                        "close": {
+                            "day": 1,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "1100"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "1100"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "1100"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "2000"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "1100"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "2030"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: 11:00 AM – 8:00 PM",
+                    "Tuesday: 11:00 AM – 8:00 PM",
+                    "Wednesday: 11:00 AM – 8:00 PM",
+                    "Thursday: 11:00 AM – 8:00 PM",
+                    "Friday: 11:00 AM – 8:30 PM",
+                    "Saturday: Closed",
+                    "Sunday: Closed"
+                ]
+            },
+            "types": [
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "207 Paragon Parkway, Clyde",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:10.493502Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5909886638882816,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJp6M9G9R2WYgRB6bbL0agGVY",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "restaurants",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.52724",
+        "lng": "-82.95393",
+        "name": "Subway",
+        "address": "",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 4540775,
+        "fs_id": "4c2b4ecfae6820a1f3901743",
+        "ta_tags": [
+            ""
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "tags": [],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJp6M9G9R2WYgRB6bbL0agGVY",
+            "name": "Subway",
+            "rating": 4.1,
+            "user_ratings_total": 105,
+            "price_level": 1,
+            "formatted_address": "65 S Main St, Waynesville, NC 28786, USA",
+            "formatted_phone_number": "(828) 452-1873",
+            "website": "https://order.subway.com/en-us/restaurant/18582-0/menu/?utm_source=yxt-goog\u0026utm_medium=local\u0026utm_term=acq\u0026utm_content=18582\u0026utm_campaign=evergreen-2020\u0026y_source=1_MTQ4OTcxMzctNzE1LWxvY2F0aW9uLmdvb2dsZV93ZWJzaXRlX292ZXJyaWRl",
+            "url": "https://maps.google.com/?cid=6204166184990647815",
+            "geometry": {
+                "location": {
+                    "lat": 35.4888953,
+                    "lng": -82.9881139
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 5,
+                    "author_name": "melissa messer",
+                    "text": "There was only one guy working but didn't have to wait long. He had a very good attitude and very friendly.",
+                    "time": 1611620988
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Katrina Rogers",
+                    "text": "Very friendly staff .   Great food",
+                    "time": 1615917876
+                },
+                {
+                    "rating": 1,
+                    "author_name": "Alex Dillon",
+                    "text": "Dirty and poor quality. What else do you expect from a Sub shop inside a gas station? They used stale crusty bread for my sub, and were out of many things. (Cheese, meats, bread and toppings.) Very disappointed. :(",
+                    "time": 1607701388
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Paulette Camp",
+                    "text": "It was delicious. Our veggie delite was excellent. My great nephew had chips, sweet tea and a vanilla ice cream cone! He ate all of it. My great niece had her usual, BLT with black olives and provolone cheese! Teresa and the other workers were very good, efficient and friendly.",
+                    "time": 1580253969
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Ambrosia McAtee",
+                    "text": "Really good food for a really good price. Very very clean. Amazing service",
+                    "time": 1592529216
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 0,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 0,
+                            "time": "2100"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 1,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 1,
+                            "time": "2100"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "2100"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "2100"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "2100"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "2100"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "time": "1000"
+                        },
+                        "close": {
+                            "day": 6,
+                            "time": "2100"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: 9:00 AM – 9:00 PM",
+                    "Tuesday: 9:00 AM – 9:00 PM",
+                    "Wednesday: 9:00 AM – 9:00 PM",
+                    "Thursday: 9:00 AM – 9:00 PM",
+                    "Friday: 9:00 AM – 9:00 PM",
+                    "Saturday: 10:00 AM – 9:00 PM",
+                    "Sunday: 10:00 AM – 9:00 PM"
+                ]
+            },
+            "types": [
+                "meal_takeaway",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "65 South Main Street, Waynesville",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:10.634397Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5910242819178496,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJh4gxzdV2WYgRMmbWkgpDmJg",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "attractions",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.51531",
+        "lng": "-82.96884",
+        "name": "Sunburst Market",
+        "address": "",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 7127570,
+        "ta_tags": [
+            ""
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "tags": [],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJh4gxzdV2WYgRMmbWkgpDmJg",
+            "name": "Sunburst Market",
+            "rating": 4.7,
+            "user_ratings_total": 38,
+            "formatted_address": "314 Industrial Park Dr, Waynesville, NC 28786, USA",
+            "formatted_phone_number": "(828) 452-3848",
+            "website": "http://www.sunburstmarket.com/",
+            "url": "https://maps.google.com/?cid=10995612202917324338",
+            "geometry": {
+                "location": {
+                    "lat": 35.5152951,
+                    "lng": -82.96893659999999
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 5,
+                    "author_name": "Jeff Stewart",
+                    "text": "Definitely check out for delicious local foods and great fresh fish!",
+                    "time": 1600473977
+                },
+                {
+                    "rating": 5,
+                    "author_name": "David Korosec",
+                    "text": "Fresh trout! Filet and smoked dip was great.",
+                    "time": 1600808875
+                },
+                {
+                    "rating": 5,
+                    "author_name": "N. Astrid Hoffman",
+                    "text": "Excellent healthy market with great prepared food options.  Their take-and-bake pizza was amazing!  They also have $2 pints ... can't beat that!",
+                    "time": 1542132414
+                },
+                {
+                    "rating": 4,
+                    "author_name": "Bob Recker",
+                    "text": "Great selection of Gourmet - style  items",
+                    "time": 1573786781
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Denise Pent",
+                    "text": "Great market. Knowledgeable people. Nice and clean. Great fish",
+                    "time": 1530892039
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 1,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 1,
+                            "time": "1600"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "1600"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "1600"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "1600"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: 9:00 AM – 4:00 PM",
+                    "Tuesday: 9:00 AM – 4:00 PM",
+                    "Wednesday: Closed",
+                    "Thursday: 9:00 AM – 4:00 PM",
+                    "Friday: 9:00 AM – 4:00 PM",
+                    "Saturday: Closed",
+                    "Sunday: Closed"
+                ]
+            },
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ],
+            "vicinity": "314 Industrial Park Drive, Waynesville",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:10.779212Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5911892086620160,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJe73QmGt3WYgRtZDay0ajnrQ",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "attractions",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.498135",
+        "lng": "-82.97909",
+        "name": "Waynesville Soda Jerks",
+        "address": "",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "ta_id": 4548181,
+        "ta_tags": [
+            ""
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "tags": [],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJe73QmGt3WYgRtZDay0ajnrQ",
+            "name": "Waynesville Soda Jerks",
+            "rating": 4.7,
+            "user_ratings_total": 25,
+            "formatted_address": "35 Bridge St, Waynesville, NC 28786, USA",
+            "formatted_phone_number": "(828) 278-8589",
+            "website": "http://www.waynesvillesodajerks.com/",
+            "url": "https://maps.google.com/?cid=13015019497610449077",
+            "geometry": {
+                "location": {
+                    "lat": 35.4977959,
+                    "lng": -82.9791401
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 4,
+                    "author_name": "Valerie Hubbard",
+                    "text": "This company sells some of the best tasting natural sodas I’ve had. The only thing I would add is maybe do one sugar free for people that would love to enjoy your soda without a sugar rush.",
+                    "time": 1588985601
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Margaret Vazquez",
+                    "text": "We love it! We first tasted it at Sierra Nevada Brewery Company and loved its original taste and freshness! Can’t wait to return to NC...we will stop by your soda company to buy some more. Best of luck!!!",
+                    "time": 1585520560
+                },
+                {
+                    "rating": 5,
+                    "author_name": "David Cole",
+                    "text": "I love this place! I'm hooked on the Strawberry Rhubarb. If I remember correctly, it was made with strawberries from Waynesville, and Rhubarb from Robbinsville. Craft soda at it's best! These guys have a bright future and if you ever come across them, make sure to pick up a soda! Definitely worth trying if you haven't yet. Cool staff, and a nice new location.",
+                    "time": 1576165280
+                },
+                {
+                    "rating": 5,
+                    "author_name": "A Z",
+                    "text": "Really like these sodas! I grab one whenever I see them sold. Just tried the strawberry rhubarb and it was delicious and refreshing.",
+                    "time": 1580596948
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Tiffany Stanley",
+                    "text": "Waynesville Soda is the best! We live 1.5 hrs away and making the trip for a case or two is well worth it.",
+                    "time": 1590342507
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "1700"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "1700"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "1700"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "1700"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 6,
+                            "time": "1700"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: Closed",
+                    "Tuesday: 9:00 AM – 5:00 PM",
+                    "Wednesday: 9:00 AM – 5:00 PM",
+                    "Thursday: 9:00 AM – 5:00 PM",
+                    "Friday: 9:00 AM – 5:00 PM",
+                    "Saturday: 9:00 AM – 5:00 PM",
+                    "Sunday: Closed"
+                ]
+            },
+            "types": [
+                "food",
+                "point_of_interest",
+                "clothing_store",
+                "store",
+                "establishment"
+            ],
+            "vicinity": "35 Bridge Street, Waynesville",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:10.935948Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    },
+    {
+        "id": 5975114776969216,
+        "previous_id": 0,
+        "property_id": 5718896489660416,
+        "google_place_id": "ChIJb1dNunl3WYgR5XkbsNnTpJ4",
+        "place_id": 0,
+        "provider_id": 0,
+        "rbr_id": 0,
+        "type": "",
+        "tab_id": "essentials",
+        "display_as": "place",
+        "source": "",
+        "tip": "",
+        "start_date": "",
+        "start_time": "",
+        "end_date": "",
+        "end_time": "",
+        "lat": "35.52657451386137",
+        "lng": "-82.95517845963144",
+        "name": "Haywood Pharmacy",
+        "address": "221 Paragon Pkwy, Clyde",
+        "rank": 0,
+        "rating": 0,
+        "price": 0,
+        "price_str": "",
+        "photo_url": "",
+        "external_link": "",
+        "closed": false,
+        "fs_id": "4fb8e927e4b03516571a9005",
+        "ta_tags": [
+            ""
+        ],
+        "yelp_tags": [
+            ""
+        ],
+        "essential_type": "pharmacy",
+        "tags": [
+            "pharmacy"
+        ],
+        "host": null,
+        "place": null,
+        "google": {
+            "place_id": "ChIJb1dNunl3WYgR5XkbsNnTpJ4",
+            "name": "Haywood Pharmacy",
+            "rating": 4.6,
+            "user_ratings_total": 11,
+            "formatted_address": "221 Paragon Pkwy, Clyde, NC 28721, USA",
+            "formatted_phone_number": "(828) 454-5455",
+            "url": "https://maps.google.com/?cid=11431494686089116133",
+            "geometry": {
+                "location": {
+                    "lat": 35.5268252,
+                    "lng": -82.9551458
+                }
+            },
+            "reviews": [
+                {
+                    "rating": 5,
+                    "author_name": "Marie Riffe",
+                    "text": "Friendly family oriented staff",
+                    "time": 1613153057
+                },
+                {
+                    "rating": 5,
+                    "author_name": "s verse",
+                    "text": "My favorite pharmacy in the area!!  So willing to answer questions too.",
+                    "time": 1599264303
+                },
+                {
+                    "rating": 1,
+                    "author_name": "Beth Whiteman (Beth)",
+                    "text": "Transferred Rx from Walmart for convenience and 9 times out of 10, they aren't open when they say they will be.",
+                    "time": 1586179018
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Christelle Krejci",
+                    "text": "Wonderful pharmacy with an amazing staff!",
+                    "time": 1592350139
+                },
+                {
+                    "rating": 5,
+                    "author_name": "Pam Mann",
+                    "text": "Great locally owned small businesses. Staff is very helpful, friendly, \u0026 fast. Always a pleasure to walk in the store.",
+                    "time": 1544270312
+                }
+            ],
+            "opening_hours": {
+                "periods": [
+                    {
+                        "open": {
+                            "day": 1,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 1,
+                            "time": "1800"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 2,
+                            "time": "1800"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 3,
+                            "time": "1800"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 4,
+                            "time": "1800"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 5,
+                            "time": "1800"
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "time": "0900"
+                        },
+                        "close": {
+                            "day": 6,
+                            "time": "1400"
+                        }
+                    }
+                ],
+                "weekday_text": [
+                    "Monday: 9:00 AM – 6:00 PM",
+                    "Tuesday: 9:00 AM – 6:00 PM",
+                    "Wednesday: 9:00 AM – 6:00 PM",
+                    "Thursday: 9:00 AM – 6:00 PM",
+                    "Friday: 9:00 AM – 6:00 PM",
+                    "Saturday: 9:00 AM – 2:00 PM",
+                    "Sunday: Closed"
+                ]
+            },
+            "types": [
+                "pharmacy",
+                "health",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ],
+            "vicinity": "221 Paragon Parkway, Clyde",
+            "utc_offset": -240,
+            "photos": null,
+            "last_fetched_at": "2021-05-28T21:03:11.09257Z",
+            "address_components": null
+        },
+        "tripadvisor": null,
+        "yelp": null,
+        "attachments": null,
+        "theatre_name": ""
+    }
+]
