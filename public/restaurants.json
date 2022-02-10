@@ -1,0 +1,60 @@
+{
+    "welcome_tabs": [
+        {
+            "host_id": 5991692415008768,
+            "user_id": 0,
+            "type": "about",
+            "label": "About Our Home",
+            "embed_status": true,
+            "guide_status": true
+        },
+        {
+            "host_id": 5991692415008768,
+            "user_id": 0,
+            "type": "rules",
+            "label": "Rental Rules",
+            "embed_status": true,
+            "guide_status": true
+        },
+        {
+            "host_id": 5991692415008768,
+            "user_id": 0,
+            "type": "arrival",
+            "label": "Arrival",
+            "embed_status": true,
+            "guide_status": true
+        },
+        {
+            "host_id": 5991692415008768,
+            "user_id": 0,
+            "type": "2338080747154485",
+            "label": "Re-Book",
+            "embed_status": false,
+            "guide_status": false
+        },
+        {
+            "host_id": 5991692415008768,
+            "user_id": 0,
+            "type": "461180998828086",
+            "label": "Feedback",
+            "embed_status": false,
+            "guide_status": false
+        },
+        {
+            "host_id": 5991692415008768,
+            "user_id": 0,
+            "type": "safety",
+            "label": "Safety Information",
+            "embed_status": true,
+            "guide_status": true
+        },
+        {
+            "host_id": 5991692415008768,
+            "user_id": 0,
+            "type": "departure",
+            "label": "Departure",
+            "embed_status": true,
+            "guide_status": true
+        }
+    ]
+}

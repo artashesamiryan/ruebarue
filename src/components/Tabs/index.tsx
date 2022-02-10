@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -9,14 +8,17 @@ import HomeGuide from "./TabItems/HomeGuide";
 import AreaGuide from "./TabItems/AreaGuide";
 import Map from '../../assets/custom/map.png';
 import useWindowSize from "../../hooks/UseWindowSize";
+import { useState } from "react";
 
 export default function LabTabs() {
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = useState('1');
     let width = useWindowSize();
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
+
+
 
     return (
         <Box sx={{ width: '100%', typography: 'body1' }}>

@@ -1,9 +1,6 @@
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Rating, Typography } from "@mui/material";
 import { makeStyles } from '@mui/styles';
-import StarIcon from '@mui/icons-material/Star';
-
-import DetailImage from '../../assets/custom/DetailImage.png';
 import DetailMap from '../../assets/custom/DetailMap.png';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Network from '../../assets/icons/website.svg';
@@ -12,28 +9,34 @@ import LOCATION from '../../assets/icons/directions.svg';
 import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import GoogleIcon from '../../assets/icons/Google.png';
-
-import { rewiews } from '../../content/data';
 import useWindowSize from "../../hooks/UseWindowSize";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 const useStyles = makeStyles({
     actions: {
         display: 'flex',
-
-
-        "& img": {
-            margin: '5px'
+        alignItems: 'center',
+        "& a": {
+            margin: '5px',
+            display: 'flex',
+            alignItems: 'center',
         }
     },
     Weeks: {
-        display: 'flex',
-
-        "& ul": {
+        "& li": {
             listStyle: "none",
-
+            fontStyle: "normal",
+            fontWeight: "normal",
+            fontSize: "14px",
+            lineHeight: "18px",
+            color: "#333333"
         }
     },
     Reviews: {
-        marginTop: '10px'
+        marginTop: '10px',
+
+
     }
 });
 
@@ -41,24 +44,20 @@ const useStyles = makeStyles({
 interface IReviweItem {
     name: string,
     message?: string,
-    date?: string
+    date?: string,
+    rating: number;
 }
-const ReviweItem = ({ name, message, date }: IReviweItem) => {
+const ReviweItem = ({ name, message, date, rating }: IReviweItem) => {
 
     return (
         <Box marginTop="10px">
             <Typography color="#333333" fontWeight="bolder" fontSize="18px">{name}</Typography>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src={GoogleIcon} alt="" />
-                <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                <StarIcon fontSize="small" sx={{ color: '#666666' }} />
+                <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={rating} readOnly />
                 <span style={{ fontSize: '12px', color: '#333333' }}> &nbsp;{date}</span>
             </div>
             <Typography>{message}</Typography>
-
         </Box>
     )
 }
@@ -68,14 +67,62 @@ const ResturanDetails = () => {
 
     const classes = useStyles();
     const width = useWindowSize();
+    const { id }: any = useParams();
+    const [details, setDetails]: any = useState({});
+    const [location, setLocation]: any = useState('');
+    const [openingHours, setOpeningHours]: any = useState([]);
+    const [reviews, setReviws]: any = useState([]);
+    const [googleRating, setGoogleRating] = useState<number>(0)
+
+
+    useEffect(() => {
+        getPlaceDetails()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id])
+
+
+    const getPlaceDetails = async () => {
+
+        try {
+            const res = await axios(' http://localhost:3000/DB.json');
+            const body = res.data.destination.recommendations;
+            const getOne = body.filter((item: any) => item.id === Number(id));
+            const googleData = getOne[0].google;
+            const locs = googleData.name + googleData.formatted_address + "/" + googleData.geometry.location.lat + "," + googleData.geometry.location.lng;
+            const openHours = googleData.opening_hours.weekday_text;
+            const rvws = googleData.reviews;
+            const googleRtng = googleData.rating;
+            setReviws(rvws)
+            setOpeningHours(openHours)
+            setLocation(locs)
+            setDetails(googleData)
+            setGoogleRating(googleRtng)
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    };
+
+    console.log(details);
+
 
 
     return (
         <Box padding="20px" sx={{ backgroundColor: '#FFFFFF' }}>
-            <Typography variant="h5" fontWeight="bolder">Pacific Beach Tuesday Farmers' Market</Typography>
+            <Typography variant="h5" fontWeight="bolder">{details.name}</Typography>
             <Box display="flex" justifyContent="space-between" >
                 <div style={{ width: width < 900 ? "100%" : "65%" }}>
-                    <img src={DetailImage} alt="" width={width < 900 ? "100%" : "90%"} />
+                    <div style={{
+                        backgroundImage: `url(https://d1l272ftssh5ud.cloudfront.net/google/images/${details.place_id}.jpg)`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        width: '100%',
+                        // border: "1px solid red",
+                        maxHeight: '500px',
+                        minHeight: '400px'
+                    }}></div>
                     <br />
                     <br />
                     <Typography fontSize="14px">$$   *   American (Traditional)</Typography>
@@ -92,11 +139,21 @@ const ResturanDetails = () => {
                             borderRadius: '2px',
                         }}>
                         <div className={classes.actions}>
-                            <img src={Network} alt="" />
-                            <img src={Phone} alt="" />
-                            <img src={LOCATION} alt="" />
-                            <img src={Ride} alt="" />
-                            <img src={More} alt="" />
+                            <a href={details.website} target="_blank" rel="noreferrer">
+                                <img src={Network} alt="" />
+                            </a>
+                            <a href={`tel:${details.formatted_phone_number}`}>
+                                <img src={Phone} alt="" />
+                            </a>
+                            <a href={`https://www.google.com/maps/search/${location}`} target="_blank" rel="noreferrer">
+                                <img src={LOCATION} alt="" />
+                            </a>
+                            <a href="/">
+                                <img src={Ride} alt="" />
+                            </a>
+                            <a href="/">
+                                <img src={More} alt="" />
+                            </a>
                         </div>
 
                         <BookmarkIcon sx={{ color: '#666666' }} />
@@ -115,56 +172,42 @@ const ResturanDetails = () => {
                         <Typography color="#333333" fontWeight="bolder" variant="h6">Hours</Typography>
                         <div className={classes.Weeks}>
                             <ul>
-                                <li>Monday</li>
-                                <li>Tuesday</li>
-                                <li>Wednesday</li>
-                                <li>Thursday</li>
-                                <li>Friday</li>
-                                <li>Saturday</li>
-                                <li>Sunday</li>
-                            </ul>
-                            <ul style={{ marginLeft: '10px' }}>
-                                <li>7:00 AM – 10:00 PM</li>
-                                <li>7:00 AM – 10:00 PM</li>
-                                <li>7:00 AM – 10:00 PM</li>
-                                <li>7:00 AM – 10:00 PM</li>
-                                <li>7:00 AM – 10:00 PM</li>
-                                <li>7:00 AM – 10:00 PM</li>
-                                <li>7:00 AM – 10:00 PM</li>
+                                {
+                                    openingHours.map((item: string, index: number) => {
+
+
+                                        return (
+                                            <li key={index}>
+                                                <span>{item}</span>
+                                            </li>
+                                        )
+                                    })
+                                }
+
                             </ul>
                         </div>
                     </Box>
 
                     <Box className={classes.Reviews}>
                         <Typography color="#333333" fontWeight="bolder" variant="h6">Reviews</Typography>
-                        <div>
+                        <div style={{ display: "flex", alignItems: "center" }}>
                             <img src={GoogleIcon} alt="" />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
+                            <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={googleRating} readOnly />
                         </div>
 
                         {
-                            rewiews.map((item: any, index: number) => {
-
-
-
+                            reviews.map((item: any, index: number) => {
                                 return (
-
-                                    <ReviweItem key={index} name={item.name} message={item.message} date={item.date} />
-
+                                    <ReviweItem key={index} name={item.author_name} message={item.text} date={item.date} rating={item.rating} />
                                 )
                             })
                         }
-
                     </Box>
 
                 </div>
                 {
                     width > 900 && <div style={{ width: '35%' }}>
-                        <Typography>901 Garnet Ave, San Diego, CA 92109, USA</Typography>
+                        <Typography fontSize="14px" lineHeight="20px">{details.formatted_address}</Typography>
                         <img src={DetailMap} alt="" width="100%" />
                     </div>
                 }

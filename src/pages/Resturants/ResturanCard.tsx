@@ -1,5 +1,4 @@
 import { Box } from "@mui/system";
-import Img from '../../assets/custom/zion-national-park.png';
 import StarIcon from '@mui/icons-material/Star';
 import GoogleIcon from '../../assets/icons/Google.png';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -42,9 +41,13 @@ const useStyles = makeStyles({
     },
     actions: {
         display: 'flex',
+        alignItems: 'center',
 
-        "& img": {
-            margin: '5px'
+        "& a": {
+            margin: '5px',
+            display: 'flex',
+            alignItems: 'center',
+
         }
     },
     Host: {
@@ -84,15 +87,13 @@ interface IResturanCardProps {
     id: number;
     name: string;
     location: string,
-    hostSays: string,
-
+    google: IRecommendationsGoogle
 }
 
-const ResturanCard = ({ id, name, location, hostSays }: IResturanCardProps) => {
+const ResturanCard = ({ id, name, location, google }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
-
 
     return (
         <Box
@@ -109,7 +110,7 @@ const ResturanCard = ({ id, name, location, hostSays }: IResturanCardProps) => {
             <Box display="flex" justifyContent="space-between">
                 <Box>
                     <div>
-                        <img src={Img} alt="" width="150px" />
+                        <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="150px" height="150px" />
                         <div>
                             <img src={GoogleIcon} alt="" />
                             <StarIcon fontSize="small" sx={{ color: '#666666' }} />
@@ -141,11 +142,21 @@ const ResturanCard = ({ id, name, location, hostSays }: IResturanCardProps) => {
                     borderRadius: '2px',
                 }}>
                 <div className={classes.actions}>
-                    <img src={Network} alt="" />
-                    <img src={Phone} alt="" />
-                    <img src={LOCATION} alt="" />
-                    <img src={Ride} alt="" />
-                    <img src={More} alt="" />
+                    <a href={google.website} target="_blank" rel="noreferrer">
+                        <img src={Network} alt="" />
+                    </a>
+                    <a href={`tel:${google.formatted_phone_number}`} >
+                        <img src={Phone} alt="" />
+                    </a>
+                    <a href={`https://www.google.com/maps/search/${google.name} ${google.formatted_address}/ ${google.geometry.location.lat},${google.geometry.location.lng}`} rel="noreferrer" target="_blank">
+                        <img src={LOCATION} alt="" />
+                    </a>
+                    <a href="/">
+                        <img src={Ride} alt="" />
+                    </a>
+                    <a href="/">
+                        <img src={More} alt="" />
+                    </a>
                 </div>
 
                 <BookmarkIcon sx={{ color: '#666666' }} />
