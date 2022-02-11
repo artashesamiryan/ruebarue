@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'guide-icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/guide-icons.ttf');
+    font-display: swap;
+  }

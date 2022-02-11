@@ -84,7 +84,7 @@ const ResturanDetails = () => {
     const getPlaceDetails = async () => {
 
         try {
-            const res = await axios(' http://localhost:3000/DB.json');
+            const res = await axios(`${process.env.REACT_APP_BASE_URL}/DB.json`);
             const body = res.data.destination.recommendations;
             const getOne = body.filter((item: any) => item.id === Number(id));
             const googleData = getOne[0].google;
@@ -104,9 +104,6 @@ const ResturanDetails = () => {
 
     };
 
-    console.log(details);
-
-
 
     return (
         <Box padding="20px" sx={{ backgroundColor: '#FFFFFF' }}>
@@ -119,10 +116,17 @@ const ResturanDetails = () => {
                         backgroundSize: "contain",
                         backgroundPosition: "center",
                         width: '100%',
-                        // border: "1px solid red",
                         maxHeight: '500px',
                         minHeight: '400px'
                     }}></div>
+
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                        {
+                            width < 900 &&
+                            <img src={DetailMap} alt="" width={width < 600 ? "100%" : '570px'} style={{ margin: '0 auto' }} />
+                        }
+                    </div>
                     <br />
                     <br />
                     <Typography fontSize="14px">$$   *   American (Traditional)</Typography>

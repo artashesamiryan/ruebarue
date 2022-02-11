@@ -1,5 +1,4 @@
 import { Box } from "@mui/system";
-import StarIcon from '@mui/icons-material/Star';
 import GoogleIcon from '../../assets/icons/Google.png';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Network from '../../assets/icons/website.svg';
@@ -9,11 +8,10 @@ import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import ArrowDown from '../../assets/icons/noun_Arrow_1058456.svg'
 
-import DetailImg from '../../assets/custom/zion-national-park.png';
-
 import { makeStyles } from '@mui/styles';
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { Rating } from "@mui/material";
 
 const useStyles = makeStyles({
     actions: {
@@ -59,11 +57,11 @@ interface IResturanCardProps {
     id: number;
     name: string;
     location: string,
-    hostSays: string,
+    google: IRecommendationsGoogle
 
 }
 
-const MobileResturanCard = ({ id, name, location, hostSays }: IResturanCardProps) => {
+const MobileResturanCard = ({ id, name, location, google }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -85,21 +83,19 @@ const MobileResturanCard = ({ id, name, location, hostSays }: IResturanCardProps
 
             <div style={{ display: "flex", cursor: 'pointer' }} >
                 <div>
-                    <img src={DetailImg} alt="" width="150px" />
+                    <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="110px" height="110px" />
                     <div>
                         <img src={GoogleIcon} alt="" />
-                        <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                        <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                        <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                        <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                        <StarIcon fontSize="small" sx={{ color: '#666666' }} />
+                        <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
                     </div>
                 </div>
 
 
-                <div style={{ paddingLeft: '10px' }}>
+                <div style={{ paddingLeft: '10px', }}>
                     <h3 style={{ fontSize: '2vh' }}>{name}</h3>
                     <p style={{ fontSize: '1.5vh' }}>{location}</p>
+                    <br />
+                    <span >1.1 mi  *   $$   *   American (Traditional)</span>
                 </div>
             </div>
 
@@ -126,7 +122,7 @@ const MobileResturanCard = ({ id, name, location, hostSays }: IResturanCardProps
             </Box>
             <Box className={classes.Host} marginTop="16px" padding="5px">
                 <span>Your Host Says:</span>
-                <p>{hostSays}</p>
+                <p></p>
                 <button className={classes.ReadMore} onClick={() => history.push(`/restaurant/${id}`)}>Read More</button>
             </Box>
 

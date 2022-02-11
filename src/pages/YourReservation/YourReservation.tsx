@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Img from '../../../../assets/custom/Bitmap 7.png';
+import Img from '../../assets/custom/Bitmap 7.png';
 
 import { makeStyles } from '@mui/styles';
 import { Typography } from "@mui/material";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import useWindowSize from "../../../../hooks/UseWindowSize";
+import useWindowSize from "../../hooks/UseWindowSize";
 
 const useStyles = makeStyles({
     Left: {

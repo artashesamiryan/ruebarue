@@ -1,10 +1,15 @@
 import { Box } from "@mui/system"
 import { makeStyles } from '@mui/styles';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Content from "./Content";
 import { Typography } from "@mui/material";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
+import MapImg from "../../assets/custom/map.png";
+import axios from "axios";
+import { getHomeGuideContent } from "../../utils";
+import useWindowSize from "../../hooks/UseWindowSize";
 
 const useStyles = makeStyles({
     Options: {
@@ -33,28 +38,50 @@ const HomeGuide = () => {
     const classes = useStyles();
     const [contentVisible, setContentVisible] = useState(false);
     const [label, setLabel] = useState("")
-
-
+    const [tabs, setTabs]: any = useState([]);
+    const [contents, setContents]: any = useState([]);
+    const [orders, setOrders] = useState<number[]>([]);
+    const width = useWindowSize()
+    useEffect(() => {
+        getTabs();
+        getHomeGuideContent()
+    }, [])
 
     const click = (e: any) => {
         const name = e.target.getAttribute('data-name');
         setLabel(name)
-        setContentVisible(!contentVisible)
+        console.log(name)
+        setContentVisible(!contentVisible);
+        let filterbyType = contents.filter((item: any) => item.type === name);
+        setOrders(filterbyType[0].order)
+    };
+
+    const getTabs = async () => {
+        const response = await axios(`http://localhost:3000/DB.json`);
+        const TABS = response.data.account.preferences.welcome_tabs;
+        const valueArr = response.data.account.welcome_ordering;
+        const filteredArr = Object.values(valueArr.reduce((acc: any, cur: any) => Object.assign(acc, { [cur.type]: cur }), {}));
+        setContents(filteredArr);
+        setTabs(TABS);
     }
 
 
+
     return (
-        <>
+        <Box display="flex">
 
             {
                 !contentVisible ?
                     <Box className={classes.Options} width="98%">
-                        <div onClick={click} data-name="arrival">Arrival <ArrowForwardIosIcon fontSize="small" /></div>
-                        <div onClick={click} data-name="departure">Departure <ArrowForwardIosIcon fontSize="small" /></div>
-                        <div onClick={click} data-name="about-our-home">About Our Home <ArrowForwardIosIcon fontSize="small" /></div>
-                        <div onClick={click} data-name="rental-rules">Rental Rules <ArrowForwardIosIcon fontSize="small" /></div>
-                        <div onClick={click} data-name="safety-information">Safety Information <ArrowForwardIosIcon fontSize="small" /></div>
-                        <div onClick={click} data-name="feedback">Feedback <ArrowForwardIosIcon fontSize="small" /></div>
+                        {
+                            tabs.map((item: any, index: number) => {
+                                return (
+                                    <div key={index} onClick={click} data-name={item.type}>{item.label}<ArrowForwardIosIcon fontSize="small" /></div>
+
+                                )
+                            })
+                        }
+
                     </Box> :
                     <Box >
                         <Typography
@@ -72,10 +99,15 @@ const HomeGuide = () => {
                         >
                             <ArrowBackIosIcon fontSize="small" /> {label}
                         </Typography>
-                        <Content />
+                        <Content orders={orders} />
                     </Box>
             }
-        </>
+
+            {
+                width > 750 &&
+                < img src={MapImg} alt="" />
+            }
+        </Box>
     )
 };
 export default HomeGuide;

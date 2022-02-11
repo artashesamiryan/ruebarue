@@ -9,6 +9,7 @@ import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from "react-router-dom";
+import { Rating } from "@mui/material";
 
 const useStyles = makeStyles({
     address: {
@@ -113,11 +114,7 @@ const ResturanCard = ({ id, name, location, google }: IResturanCardProps) => {
                         <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="150px" height="150px" />
                         <div>
                             <img src={GoogleIcon} alt="" />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
-                            <StarIcon fontSize="small" sx={{ color: '#666666' }} />
+                            <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
                         </div>
                     </div>
                 </Box>

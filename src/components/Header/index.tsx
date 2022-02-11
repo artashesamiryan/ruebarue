@@ -9,9 +9,11 @@ const Header = () => {
 
     return (
 
-        <header>
-            <img style={{ cursor: 'pointer' }} src={LOGO} alt="Blue water" onClick={() => history.push('/')} />
-        </header>
+        <>
+            <header>
+                <img style={{ cursor: 'pointer' }} src={LOGO} alt="Blue water" onClick={() => history.push('/')} />
+            </header>
+        </>
     )
 };
 

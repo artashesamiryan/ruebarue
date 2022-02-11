@@ -6,15 +6,16 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import useWindowSize from "../../hooks/UseWindowSize";
 import MobileResturanCard from "./MobileResturanCard";
 import { useEffect, useState } from "react";
+import MapImg from "../../assets/custom/map.png"
+import { useHistory } from "react-router-dom";
 
-interface IResturants {
-    label: string;
-    goBack: (lab: string) => void;
-}
 
-const Resturants = ({ label, goBack }: IResturants) => {
+
+const Resturants = () => {
     const width = useWindowSize();
+    const history = useHistory()
     const [restaurants, setResturants] = useState([]);
+    const [label, setLabel] = useState('')
 
     useEffect(() => {
         getPlace()
@@ -27,47 +28,58 @@ const Resturants = ({ label, goBack }: IResturants) => {
         setResturants(filteredData)
     };
 
-    console.log(restaurants)
     return (
-        <Box width="96%" height="" sx={{ overflowY: width > 900 ? 'scroll' : 'none' }}>
-            <Box >
-                <Typography
-                    display="flex"
-                    alignItems="center"
-                    textTransform="capitalize"
-                    fontFamily="Lato"
-                    fontStyle="normal"
-                    fontSize="1.2rem"
-                    lineHeight="16px"
-                    color="#333333"
-                    padding="10px 10px"
-                    sx={{ cursor: 'pointer' }}
-                    onClick={() => goBack('')}
-                >
-                    <ArrowBackIosIcon fontSize="small" /> {label}
-                </Typography>
+        <Box display="flex">
+            <Box width="96%" height="" sx={{ overflowY: width > 900 ? 'scroll' : 'none' }}>
+                <Box >
+                    <Typography
+                        display="flex"
+                        alignItems="center"
+                        textTransform="capitalize"
+                        fontFamily="Lato"
+                        fontStyle="normal"
+                        fontSize="1.2rem"
+                        lineHeight="16px"
+                        color="#333333"
+                        padding="10px 10px"
+                        sx={{ cursor: 'pointer' }}
+                        onClick={() => history.goBack()}
+                    >
+                        <ArrowBackIosIcon fontSize="small" /> Restaurants
+                    </Typography>
+                </Box>
+                {
+                    restaurants.map((item: any, index: number) => {
+
+                        return (
+                            <div key={index}>
+                                {
+                                    width > 700 ?
+                                        <ResturanCard
+                                            key={item.id}
+                                            id={item.id}
+                                            location={item.google.formatted_address}
+                                            name={item.name}
+                                            google={item.google}
+                                        />
+                                        :
+                                        <MobileResturanCard
+                                            key={item.id}
+                                            id={item.id}
+                                            location={item.google.formatted_address}
+                                            name={item.name}
+                                            google={item.google}
+                                        />
+                                }
+                            </div>
+                        )
+                    })
+                }
             </Box>
             {
-                restaurants.map((item: any, index: number) => {
+                width > 900 &&
+                <img src={MapImg} alt="" height={"500px"} />
 
-                    return (
-                        <div key={index}>
-                            {
-                                width > 700 ?
-                                    <ResturanCard
-                                        key={item.id}
-                                        id={item.id}
-                                        location={item.google.formatted_address}
-                                        name={item.name}
-                                        google={item.google}
-                                    // google_place_id={item.}
-                                    />
-                                    :
-                                    <MobileResturanCard id={item.id} location={item.google.formatted_address} name={item.name} hostSays={item.hostSays} key={item.id} />
-                            }
-                        </div>
-                    )
-                })
             }
         </Box>
     )
