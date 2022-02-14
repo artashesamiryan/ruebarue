@@ -1,7 +1,162 @@
 @font-face {
-    font-family: 'guide-icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url('./fonts/guide-icons.ttf');
-    font-display: swap;
-  }
+  font-family: 'guide-icons';
+  src:  url('./guide-icons.ttf');
+  src:  url('./guide-icons.ttf') format('embedded-opentype'),
+    url('./guide-icons.ttf') format('truetype'),
+    url('./guide-icons.ttf') format('woff'),
+    url('./guide-icons.ttf') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="guide-icon-"], [class*=" guide-icon-"] {
+  font-family: 'guide-icons' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.guide-icon-cart:before {
+  content: "\e93a";
+}
+.guide-icon-display:before {
+  content: "\e956";
+}
+.guide-icon-warning:before {
+  content: "\ea07";
+}
+.guide-icon-camera:before {
+  content: "\e91a";
+}
+.guide-icon-bookmark:before {
+  content: "\e9d2";
+}
+.guide-icon-star-empty:before {
+  content: "\e9d7";
+}
+.guide-icon-star-half:before {
+  content: "\e9d8";
+}
+.guide-icon-star-full:before {
+  content: "\e9d9";
+}
+.guide-icon-radio-checked:before {
+  content: "\ea54";
+}
+.guide-icon-key:before {
+  content: "\e98d";
+}
+.guide-icon-location2:before {
+  content: "\e948";
+}
+.guide-icon-aid-kit:before {
+  content: "\e998";
+}
+.guide-icon-home:before {
+  content: "\e919";
+}
+.guide-icon-loop2:before {
+  content: "\ea2e";
+}
+.guide-icon-cart1:before {
+  content: "\e93b";
+}
+.guide-icon-display1:before {
+  content: "\e957";
+}
+.guide-icon-mug:before {
+  content: "\e9a2";
+}
+.guide-icon-warning1:before {
+  content: "\ea08";
+}
+.guide-icon-display2:before {
+  content: "\e958";
+}
+.guide-icon-mug1:before {
+  content: "\e9a3";
+}
+.guide-icon-warning2:before {
+  content: "\ea09";
+}
+.guide-icon-menu:before {
+  content: "\e900";
+}
+.guide-icon-move:before {
+  content: "\e901";
+}
+.guide-icon-delete:before {
+  content: "\e902";
+}
+.guide-icon-welcome:before {
+  content: "\e903";
+}
+.guide-icon-home-address:before {
+  content: "\e904";
+}
+.guide-icon-fire-extinguisher:before {
+  content: "\e905";
+}
+.guide-icon-wifi:before {
+  content: "\e906";
+}
+.guide-icon-hot-tub:before {
+  content: "\e907";
+}
+.guide-icon-directions:before {
+  content: "\e908";
+}
+.guide-icon-parking:before {
+  content: "\e909";
+}
+.guide-icon-house-access:before {
+  content: "\e90a";
+}
+.guide-icon-washer:before {
+  content: "\e90b";
+}
+.guide-icon-kitchen:before {
+  content: "\e90c";
+}
+.guide-icon-bathroom:before {
+  content: "\e90d";
+}
+.guide-icon-next:before {
+  content: "\e90e";
+}
+.guide-icon-previous:before {
+  content: "\e90f";
+}
+.guide-icon-check-out:before {
+  content: "\e910";
+}
+.guide-icon-check-in:before {
+  content: "\e911";
+}
+.guide-icon-download:before {
+  content: "\e912";
+}
+.guide-icon-info:before {
+  content: "\e913";
+}
+.guide-icon-edit:before {
+  content: "\e914";
+}
+.guide-icon-close:before {
+  content: "\e915";
+}
+.guide-icon-add:before {
+  content: "\e916";
+}
+.guide-icon-share:before {
+  content: "\e917";
+}
+.guide-icon-no-party:before {
+  content: "\e918";
+}

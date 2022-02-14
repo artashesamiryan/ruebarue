@@ -1,12 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { homeGuideData } from '../../content/data';
-import Icon from '../../assets/icons/noun_Door_1665892.png';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Spinner from "../../components/Spinner/Spinner";
 
 
 interface IContentProps {
@@ -17,6 +17,7 @@ interface IContentProps {
 const Content = ({ orders }: IContentProps) => {
 
     const [items, setItems]: any = useState([])
+    const [loading, setLoading]: any = useState(false)
 
 
     useEffect(() => {
@@ -26,18 +27,26 @@ const Content = ({ orders }: IContentProps) => {
 
     const getContent = async () => {
 
-        const res = await axios(`http://localhost:3000/DB.json`);
-        // const body = res.data.account.preferences.welcome_guide;
-        const body = res.data.account.welcome_guide;
-        const x = body.filter((item: any, index: number) => orders.includes(item.id));
-        setItems(x)
+        try {
+            setLoading(true)
+            const res = await axios(`http://localhost:3000/DB.json`);
+            const body = res.data.account.welcome_guide;
+            const x = body.filter((item: any, index: number) => orders.includes(item.id));
+            setItems(x);
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+        }
 
-        console.log(x, "kkkk")
 
     }
 
     return (
         <div>
+
+            {
+                loading && <Spinner />
+            }
 
             {
                 items.map((item: any, index: number) => {

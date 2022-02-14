@@ -61,7 +61,7 @@ interface IResturanCardProps {
 
 }
 
-const MobileResturanCard = ({ id, name, location, google }: IResturanCardProps) => {
+const MobileAreaCard = ({ id, name, location, google }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -123,7 +123,7 @@ const MobileResturanCard = ({ id, name, location, google }: IResturanCardProps) 
             <Box className={classes.Host} marginTop="16px" padding="5px">
                 <span>Your Host Says:</span>
                 <p></p>
-                <button className={classes.ReadMore} onClick={() => history.push(`/restaurant/${id}`)}>Read More</button>
+                <button className={classes.ReadMore} onClick={() => history.push(`/area/${id}`)}>Read More</button>
             </Box>
 
             <Box display="flex" justifyContent="center" position="absolute" top="90%" left="0" right="0" >
@@ -133,4 +133,4 @@ const MobileResturanCard = ({ id, name, location, google }: IResturanCardProps) 
     )
 };
 
-export default MobileResturanCard;
+export default MobileAreaCard;

@@ -5,7 +5,7 @@ import { Tabs } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 export default function LabTabs() {
-    const [value, setValue] = useState('1');
+    const [value, setValue] = useState('one');
     const history = useHistory();
 
     const handleChange = (event: React.SyntheticEvent, value: string) => {

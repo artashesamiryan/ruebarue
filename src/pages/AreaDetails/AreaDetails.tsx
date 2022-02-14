@@ -13,6 +13,7 @@ import useWindowSize from "../../hooks/UseWindowSize";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import SimpleMap from "../../components/SimpleMap/SimpleMap";
 const useStyles = makeStyles({
     actions: {
         display: 'flex',
@@ -63,11 +64,11 @@ const ReviweItem = ({ name, message, date, rating }: IReviweItem) => {
 }
 
 
-const ResturanDetails = () => {
+const AreaDetails = () => {
 
     const classes = useStyles();
     const width = useWindowSize();
-    const { id }: any = useParams();
+    const { query }: any = useParams();
     const [details, setDetails]: any = useState({});
     const [location, setLocation]: any = useState('');
     const [openingHours, setOpeningHours]: any = useState([]);
@@ -78,7 +79,7 @@ const ResturanDetails = () => {
     useEffect(() => {
         getPlaceDetails()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id])
+    }, [query])
 
 
     const getPlaceDetails = async () => {
@@ -86,7 +87,7 @@ const ResturanDetails = () => {
         try {
             const res = await axios(`${process.env.REACT_APP_BASE_URL}/DB.json`);
             const body = res.data.destination.recommendations;
-            const getOne = body.filter((item: any) => item.id === Number(id));
+            const getOne = body.filter((item: any) => item.id === Number(query));
             const googleData = getOne[0].google;
             const locs = googleData.name + googleData.formatted_address + "/" + googleData.geometry.location.lat + "," + googleData.geometry.location.lng;
             const openHours = googleData.opening_hours.weekday_text;
@@ -212,7 +213,7 @@ const ResturanDetails = () => {
                 {
                     width > 900 && <div style={{ width: '35%' }}>
                         <Typography fontSize="14px" lineHeight="20px">{details.formatted_address}</Typography>
-                        <img src={DetailMap} alt="" width="100%" />
+                        <SimpleMap h="300px" zoom={11} />
                     </div>
                 }
             </Box >
@@ -221,4 +222,4 @@ const ResturanDetails = () => {
 };
 
 
-export default ResturanDetails;
+export default AreaDetails;

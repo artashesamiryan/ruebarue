@@ -1,11 +1,13 @@
 import { makeStyles } from '@mui/styles';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from "react-router-dom";
 
-import MapImg from "../../assets/custom/map.png";
 import useWindowSize from "../../hooks/UseWindowSize";
+import axios from "axios";
+import Spinner from "../../components/Spinner/Spinner";
+import SimpleMap from "../../components/SimpleMap/SimpleMap";
 
 
 
@@ -35,27 +37,65 @@ const AreaGuide = () => {
 
     const classes = useStyles();
     const [contentVisible, setContentVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [backLabel, setBackLabel] = useState("");
+    const [areas, setAreas] = useState([]);
     const width = useWindowSize();
-    const history = useHistory()
+    const history = useHistory();
+
+
     const click = (e: any) => {
-        const name = e.target.getAttribute('data-name');
+
+        const label = e.target.getAttribute('data-label');
+        const name = e.target.getAttribute('data-type');
+
+        setBackLabel(name)
         setContentVisible(!contentVisible);
-        history.push(`/${name}`)
+        history.push(`/${label}`)
+    };
+    useEffect(() => {
+        getTabs()
+    }, [])
+    const getTabs = async () => {
+
+        try {
+            setLoading(true);
+            const response = await axios("DB.json");
+            const body = response.data.account.preferences.tabs;
+            setAreas(body)
+            setLoading(false);
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
     return (
-        <Box display={'flex'}>
+        <Box display={'flex'} width="100%">
+
+            {
+                loading && <Spinner />
+            }
             <Box className={classes.Options} width="98%">
-                <div onClick={click} data-name="grocery-pharmacy">Grocery / Pharmacy <ArrowForwardIosIcon fontSize="small" /></div>
-                <div onClick={click} data-name="restaurants">Restaurants <ArrowForwardIosIcon fontSize="small" /></div>
-                <div onClick={click} data-name="things-to-do">Things to Do<ArrowForwardIosIcon fontSize="small" /></div>
-                <div onClick={click} data-name="guest-services">Guest Services <ArrowForwardIosIcon fontSize="small" /></div>
+
+                {
+                    areas.map((item: any, index: number) => {
+                        return (
+                            <div
+                                key={index}
+                                onClick={click}
+                                data-label={item.type}
+                                data-name={item.label}
+                            >{item.label} <ArrowForwardIosIcon fontSize="small" /></div>
+                        )
+                    })
+                }
             </Box>
 
             {
                 width > 750 &&
-                < img src={MapImg} alt="" />
+                <SimpleMap zoom={11} />
             }
         </Box>
     )

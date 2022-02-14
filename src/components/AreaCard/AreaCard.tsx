@@ -1,5 +1,4 @@
 import { Box } from "@mui/system";
-import StarIcon from '@mui/icons-material/Star';
 import GoogleIcon from '../../assets/icons/Google.png';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Network from '../../assets/icons/website.svg';
@@ -91,7 +90,7 @@ interface IResturanCardProps {
     google: IRecommendationsGoogle
 }
 
-const ResturanCard = ({ id, name, location, google }: IResturanCardProps) => {
+const AreaCard = ({ id, name, location, google }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -161,10 +160,10 @@ const ResturanCard = ({ id, name, location, google }: IResturanCardProps) => {
             <Box className={classes.Host} marginTop="16px" padding="5px">
                 <span>Your Host Says:</span>
                 <p></p>
-                <button className={classes.ReadMore} onClick={() => history.push(`/restaurant/${id}`)}>Read More</button>
+                <button className={classes.ReadMore} onClick={() => history.push(`/area/${id}`)}>Read More</button>
             </Box>
         </Box >
     )
 };
 
-export default ResturanCard;
+export default AreaCard;

@@ -6,10 +6,9 @@ import Content from "./Content";
 import { Typography } from "@mui/material";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-import MapImg from "../../assets/custom/map.png";
 import axios from "axios";
-import { getHomeGuideContent } from "../../utils";
 import useWindowSize from "../../hooks/UseWindowSize";
+import SimpleMap from "../../components/SimpleMap/SimpleMap";
 
 const useStyles = makeStyles({
     Options: {
@@ -37,23 +36,23 @@ const HomeGuide = () => {
 
     const classes = useStyles();
     const [contentVisible, setContentVisible] = useState(false);
-    const [label, setLabel] = useState("")
+    const [backLabel, setBackLabel] = useState("")
     const [tabs, setTabs]: any = useState([]);
     const [contents, setContents]: any = useState([]);
     const [orders, setOrders] = useState<number[]>([]);
     const width = useWindowSize()
     useEffect(() => {
         getTabs();
-        getHomeGuideContent()
+        // getHomeGuideContent()
     }, [])
 
     const click = (e: any) => {
         const name = e.target.getAttribute('data-name');
-        setLabel(name)
-        console.log(name)
+        const back = e.target.getAttribute('data-label');
         setContentVisible(!contentVisible);
         let filterbyType = contents.filter((item: any) => item.type === name);
         setOrders(filterbyType[0].order)
+        setBackLabel(back)
     };
 
     const getTabs = async () => {
@@ -76,7 +75,7 @@ const HomeGuide = () => {
                         {
                             tabs.map((item: any, index: number) => {
                                 return (
-                                    <div key={index} onClick={click} data-name={item.type}>{item.label}<ArrowForwardIosIcon fontSize="small" /></div>
+                                    <div key={index} onClick={click} data-label={item.label} data-name={item.type}>{item.label}<ArrowForwardIosIcon fontSize="small" /></div>
 
                                 )
                             })
@@ -97,7 +96,7 @@ const HomeGuide = () => {
                             sx={{ cursor: 'pointer' }}
                             onClick={() => setContentVisible(false)}
                         >
-                            <ArrowBackIosIcon fontSize="small" /> {label}
+                            <ArrowBackIosIcon fontSize="small" /> {backLabel}
                         </Typography>
                         <Content orders={orders} />
                     </Box>
@@ -105,7 +104,7 @@ const HomeGuide = () => {
 
             {
                 width > 750 &&
-                < img src={MapImg} alt="" />
+                <SimpleMap zoom={11} />
             }
         </Box>
     )
