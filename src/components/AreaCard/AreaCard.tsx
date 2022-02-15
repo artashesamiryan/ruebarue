@@ -4,6 +4,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Network from '../../assets/icons/website.svg';
 import Phone from '../../assets/icons/phone.svg';
 import LOCATION from '../../assets/icons/directions.svg';
+import AreaPin from '../../assets/icons/day_1.png';
 import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import { makeStyles } from '@mui/styles';
@@ -77,9 +78,28 @@ const useStyles = makeStyles({
         marginTop: '10px',
         fontWeight: 'normal',
         fontStyle: 'normal',
-        fontSize: '14px',
-        // lineHeight: '14px',
         color: '#397096',
+    },
+    AreaNumber: {
+        width: '100px',
+        position: "absolute",
+        display: 'flex',
+        justifyContent: 'flex-end',
+        color: 'white',
+        fontSize: '14px',
+
+        "& img": {
+            position: "relative",
+            margin: '5px'
+        },
+        "& span": {
+            position: "absolute",
+            right: "9.5px",
+            margin: '5px',
+            top: '2px',
+            fontSize: '14px',
+
+        }
     }
 });
 
@@ -87,10 +107,12 @@ interface IResturanCardProps {
     id: number;
     name: string;
     location: string,
-    google: IRecommendationsGoogle
+    google: IRecommendationsGoogle;
+    number?: number,
+    tip?: ""
 }
 
-const AreaCard = ({ id, name, location, google }: IResturanCardProps) => {
+const AreaCard = ({ id, name, location, google, number = 1, tip }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -99,7 +121,7 @@ const AreaCard = ({ id, name, location, google }: IResturanCardProps) => {
         <Box
             width="95%"
             margin="10px auto"
-            height="355px"
+            minHeight="200px"
             sx={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: '5px',
@@ -110,7 +132,15 @@ const AreaCard = ({ id, name, location, google }: IResturanCardProps) => {
             <Box display="flex" justifyContent="space-between">
                 <Box>
                     <div>
-                        <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="150px" height="150px" />
+                        {
+                            // number &&
+                            <div className={classes.AreaNumber}>
+                                <img src={AreaPin} alt="" />
+                                <span>{++number}</span>
+                            </div>
+                        }
+
+                        <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
                         <div>
                             <img src={GoogleIcon} alt="" />
                             <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
@@ -121,7 +151,7 @@ const AreaCard = ({ id, name, location, google }: IResturanCardProps) => {
                 <div style={{ display: 'flex', flexDirection: 'column' }} className={classes.address}>
                     <span style={{ fontSize: '20px' }}>{name}</span>
                     <p>{location}</p>
-                    <p>1.1 mi  *   $$   *   American (Traditional)</p>
+                    {/* <p>1.1 mi  *   $$   *   American (Traditional)</p> */}
                 </div>
 
                 <button className={classes.button}>1.1 mi</button>
@@ -158,9 +188,18 @@ const AreaCard = ({ id, name, location, google }: IResturanCardProps) => {
                 <BookmarkIcon sx={{ color: '#666666' }} />
             </Box>
             <Box className={classes.Host} marginTop="16px" padding="5px">
-                <span>Your Host Says:</span>
-                <p></p>
-                <button className={classes.ReadMore} onClick={() => history.push(`/area/${id}`)}>Read More</button>
+
+                {
+                    tip &&
+                    <span>Your Host Says:</span>
+                }
+                <p>{tip}</p>
+
+                {
+                    tip &&
+                    <button className={classes.ReadMore} onClick={() => history.push(`/area/${id}`)}>Read More</button>
+                }
+
             </Box>
         </Box >
     )

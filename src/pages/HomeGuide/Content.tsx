@@ -7,6 +7,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from "../../components/Spinner/Spinner";
+import { makeStyles } from '@mui/styles';
+
+
+const useStyles = makeStyles({
+    Accordion: {
+        margin: '5px',
+        border: 'none',
+        boxShadow: 'none',
+        backgroundColor: 'none',
+
+        "&::before": {
+            backgroundColor: 'unset'
+        }
+    }
+});
 
 
 interface IContentProps {
@@ -16,13 +31,21 @@ interface IContentProps {
 
 const Content = ({ orders }: IContentProps) => {
 
-    const [items, setItems]: any = useState([])
-    const [loading, setLoading]: any = useState(false)
+    const [items, setItems]: any = useState([]);
+    const [loading, setLoading]: any = useState(false);
+    const [expanded, setExpanded] = useState<number | false>(0);
+    const classes = useStyles();
+
+
 
 
     useEffect(() => {
         getContent()
-    }, [])
+    }, []);
+    const handleChange =
+        (panel: number) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+            setExpanded(newExpanded ? panel : false);
+        };
 
 
     const getContent = async () => {
@@ -42,7 +65,7 @@ const Content = ({ orders }: IContentProps) => {
     }
 
     return (
-        <div>
+        <div style={{ width: '566px' }}>
 
             {
                 loading && <Spinner />
@@ -53,16 +76,19 @@ const Content = ({ orders }: IContentProps) => {
 
 
                     return (
-                        <Accordion sx={{ margin: '5px' }} key={index} >
+                        <Accordion defaultExpanded={false} expanded={expanded === index} className={classes.Accordion} sx={{ margin: '5px', border: 'none', boxShadow: 'none' }} key={index} onChange={handleChange(index)}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
+                                sx={{ border: 'none', boxShadow: 'none' }}
                                 id="panel1a-header"
+                                className={classes.Accordion}
+
                             >
                                 <Typography
                                     display="flex"
                                     alignItems="center"
-                                    fontSize="14px"
+                                    fontSize="16px"
                                     fontWeight="bold"
                                     lineHeight="14px"
                                     color="#333333"
@@ -70,12 +96,11 @@ const Content = ({ orders }: IContentProps) => {
                                     fontFamily: 'guide-icons'
                                 }}></i> &nbsp; {item.title}</Typography>
                             </AccordionSummary>
-                            <AccordionDetails>
+                            <AccordionDetails >
                                 <Typography
                                     fontStyle="normal"
-                                    fontWeight="normal"
-                                    fontSize="14px"
-                                    lineHeight="18px"
+                                    fontSize="16px"
+                                    lineHeight="16px"
                                     color="#333333"
                                     sx={{
                                         mixBlendMode: 'normal',

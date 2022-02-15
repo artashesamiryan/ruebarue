@@ -71,11 +71,18 @@ const HomeGuide = () => {
 
             {
                 !contentVisible ?
-                    <Box className={classes.Options} width="98%">
+                    <Box className={classes.Options} sx={{ width: '566px' }}>
                         {
                             tabs.map((item: any, index: number) => {
                                 return (
-                                    <div key={index} onClick={click} data-label={item.label} data-name={item.type}>{item.label}<ArrowForwardIosIcon fontSize="small" /></div>
+                                    <div
+                                        style={{ fontSize: '16px' }}
+                                        key={index}
+                                        onClick={click}
+                                        data-label={item.label}
+                                        data-name={item.type}>
+                                        {item.label}
+                                        <ArrowForwardIosIcon fontSize="small" /></div>
 
                                 )
                             })
@@ -89,7 +96,7 @@ const HomeGuide = () => {
                             textTransform="capitalize"
                             fontFamily="Lato"
                             fontStyle="normal"
-                            fontSize="18px"
+                            fontSize="16px"
                             lineHeight="16px"
                             color="#333333"
                             padding="10px 10px"

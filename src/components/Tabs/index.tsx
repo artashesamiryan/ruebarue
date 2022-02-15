@@ -19,6 +19,7 @@ export default function LabTabs() {
             textColor="primary"
             indicatorColor="primary"
             aria-label="secondary tabs example"
+            sx={{ borderBottom: '1px solid #CCCCCC', marginBottom: '10px' }}
         >
             <Tab value="one" label="YOUR RESERVATION" onClick={() => history.push('/your-reservation')} />
             <Tab value="two" label="HOME GUIDE" onClick={() => history.push('/home-guide')} />

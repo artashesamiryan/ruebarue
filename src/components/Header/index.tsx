@@ -11,7 +11,7 @@ const Header = () => {
 
         <>
             <header>
-                <img style={{ cursor: 'pointer' }} src={LOGO} alt="Blue water" onClick={() => history.push('/')} />
+                <img style={{ cursor: 'pointer', marginTop: '10px' }} src={LOGO} alt="Blue water" onClick={() => history.push('/')} />
             </header>
         </>
     )

@@ -7,6 +7,8 @@ import LOCATION from '../../assets/icons/directions.svg';
 import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import ArrowDown from '../../assets/icons/noun_Arrow_1058456.svg'
+import AreaPin from '../../assets/icons/day_1.png';
+
 
 import { makeStyles } from '@mui/styles';
 import { useHistory } from "react-router-dom";
@@ -50,18 +52,41 @@ const useStyles = makeStyles({
         fontSize: '14px',
         lineHeight: '14px',
         color: '#397096',
+    },
+    AreaNumber: {
+        width: '110px',
+        position: "absolute",
+        display: 'flex',
+        justifyContent: 'flex-end',
+        color: 'white',
+        fontSize: '14px',
+
+        "& img": {
+            position: "relative",
+            margin: '5px'
+        },
+        "& span": {
+            position: "absolute",
+            right: "9.5px",
+            margin: '5px',
+            top: '2px',
+            fontSize: '14px',
+
+        }
     }
 });
 
 interface IResturanCardProps {
     id: number;
     name: string;
-    location: string,
-    google: IRecommendationsGoogle
+    location: string;
+    google: IRecommendationsGoogle;
+    number?: number;
+    tip?: string;
 
 }
 
-const MobileAreaCard = ({ id, name, location, google }: IResturanCardProps) => {
+const MobileAreaCard = ({ id, name, location, google, number = 1, tip }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -83,7 +108,13 @@ const MobileAreaCard = ({ id, name, location, google }: IResturanCardProps) => {
 
             <div style={{ display: "flex", cursor: 'pointer' }} >
                 <div>
-                    <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="110px" height="110px" />
+                    {
+                        <div className={classes.AreaNumber}>
+                            <img src={AreaPin} alt="" />
+                            <span>{++number}</span>
+                        </div>
+                    }
+                    <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
                     <div>
                         <img src={GoogleIcon} alt="" />
                         <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
@@ -121,8 +152,15 @@ const MobileAreaCard = ({ id, name, location, google }: IResturanCardProps) => {
                 <BookmarkIcon sx={{ color: '#666666' }} />
             </Box>
             <Box className={classes.Host} marginTop="16px" padding="5px">
-                <span>Your Host Says:</span>
-                <p></p>
+                {
+                    tip &&
+                    <span>Your Host Says:</span>
+                }
+                <p>{tip}</p>
+
+                {
+                    // tip.length
+                }
                 <button className={classes.ReadMore} onClick={() => history.push(`/area/${id}`)}>Read More</button>
             </Box>
 

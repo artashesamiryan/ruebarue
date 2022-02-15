@@ -36,10 +36,8 @@ const useStyles = makeStyles({
 const AreaGuide = () => {
 
     const classes = useStyles();
-    const [contentVisible, setContentVisible] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [backLabel, setBackLabel] = useState("");
-    const [areas, setAreas] = useState([]);
+    const [filteredAreas, setFilteredAreas] = useState([]);
     const width = useWindowSize();
     const history = useHistory();
 
@@ -47,47 +45,55 @@ const AreaGuide = () => {
     const click = (e: any) => {
 
         const label = e.target.getAttribute('data-label');
-        const name = e.target.getAttribute('data-type');
-
-        setBackLabel(name)
-        setContentVisible(!contentVisible);
         history.push(`/${label}`)
     };
     useEffect(() => {
-        getTabs()
+        getPlace()
     }, [])
-    const getTabs = async () => {
+
+    const getPlace = async () => {
 
         try {
-            setLoading(true);
-            const response = await axios("DB.json");
-            const body = response.data.account.preferences.tabs;
-            setAreas(body)
-            setLoading(false);
-
+            setLoading(true)
+            const res = await axios('http://localhost:3000/DB.json');
+            const data = res.data.destination.recommendations;
+            const filteredArr = data.reduce((acc: any, current: any) => {
+                const x = acc.find((item: any) => item.tab_id === current.tab_id);
+                if (!x) {
+                    return acc.concat([current]);
+                } else {
+                    return acc;
+                }
+            }, []);
+            setFilteredAreas(filteredArr);
+            setLoading(false)
         } catch (error) {
             console.log(error)
         }
-    }
+    };
 
 
     return (
-        <Box display={'flex'} width="100%">
+        <Box display={'flex'} width="100%" >
 
             {
                 loading && <Spinner />
             }
-            <Box className={classes.Options} width="98%">
+            <Box className={classes.Options} sx={{ width: '566px' }}>
 
                 {
-                    areas.map((item: any, index: number) => {
+                    filteredAreas.map((item: any, index: number) => {
+
+                        console.log(item, '<<<<<<');
+
                         return (
                             <div
+                                style={{ textTransform: 'capitalize' }}
                                 key={index}
                                 onClick={click}
-                                data-label={item.type}
+                                data-label={item.tab_id}
                                 data-name={item.label}
-                            >{item.label} <ArrowForwardIosIcon fontSize="small" /></div>
+                            >{item.tab_id} <ArrowForwardIosIcon fontSize="small" /></div>
                         )
                     })
                 }

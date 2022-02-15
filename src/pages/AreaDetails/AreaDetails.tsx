@@ -130,7 +130,7 @@ const AreaDetails = () => {
                     </div>
                     <br />
                     <br />
-                    <Typography fontSize="14px">$$   *   American (Traditional)</Typography>
+                    {/* <Typography fontSize="14px">$$   *   American (Traditional)</Typography> */}
 
                     <Box
                         display="flex"
