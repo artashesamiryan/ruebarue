@@ -10,6 +10,7 @@ import More from '../../assets/icons/more.svg';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from "react-router-dom";
 import { Rating } from "@mui/material";
+import Distance from "../Distance";
 
 const useStyles = makeStyles({
     address: {
@@ -109,29 +110,35 @@ interface IResturanCardProps {
     location: string,
     google: IRecommendationsGoogle;
     number?: number,
-    tip?: ""
+    tip?: string;
+    lat?: any;
+    lng?: any;
 }
 
-const AreaCard = ({ id, name, location, google, number = 1, tip }: IResturanCardProps) => {
+const AreaCard = ({ id, name, location, google, number = 1, tip, lat, lng }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
 
+
+
+
     return (
         <Box
             width="95%"
-            margin="10px auto"
+            margin="0 0 10px 0"
             minHeight="200px"
             sx={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: '5px',
-                padding: "23px",
+                padding: "10px",
 
             }}>
 
-            <Box display="flex" justifyContent="space-between">
+
+            <Box display="flex" justifyContent="space-between" onClick={() => history.push(`/area/${id}`)} style={{ cursor: 'pointer' }}>
                 <Box>
-                    <div>
+                    <div >
                         {
                             // number &&
                             <div className={classes.AreaNumber}>
@@ -151,10 +158,10 @@ const AreaCard = ({ id, name, location, google, number = 1, tip }: IResturanCard
                 <div style={{ display: 'flex', flexDirection: 'column' }} className={classes.address}>
                     <span style={{ fontSize: '20px' }}>{name}</span>
                     <p>{location}</p>
-                    {/* <p>1.1 mi  *   $$   *   American (Traditional)</p> */}
                 </div>
-
-                <button className={classes.button}>1.1 mi</button>
+                <Box>
+                    <Distance lat2={lat} lng2={lng} />
+                </Box>
             </Box>
 
             <Box
@@ -193,11 +200,13 @@ const AreaCard = ({ id, name, location, google, number = 1, tip }: IResturanCard
                     tip &&
                     <span>Your Host Says:</span>
                 }
-                <p>{tip}</p>
+                {
+                    tip && <p>{tip}</p>
+                }
 
                 {
-                    tip &&
-                    <button className={classes.ReadMore} onClick={() => history.push(`/area/${id}`)}>Read More</button>
+                    tip && tip.length > 77 &&
+                    <button className={classes.ReadMore} >Read More</button>
                 }
 
             </Box>

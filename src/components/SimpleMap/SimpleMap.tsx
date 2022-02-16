@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GoogleMapReact from 'google-map-react';
 import HomePin from '../../assets/icons/day_home.png';
 import AreaPin from '../../assets/icons/day_1.png';
@@ -38,9 +38,29 @@ interface SompleMapProps {
 
 const SimpleMap = ({ center = { lat: 35.5244754, lng: -82.9820933 }, zoom = 11, w, h = "600px", locations }: SompleMapProps) => {
 
+    const [fixed, setFixed]: any = useState(false)
+
+
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 250) {
+                setFixed(true)
+            } else {
+                setFixed(false)
+            }
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
-        <div style={{ height: h, width: '400px' }}>
+        <div style={{
+            height: h,
+            width: '400px',
+            position: fixed ? 'sticky' : 'relative',
+            left: fixed ? '49.5%' : '',
+            top: fixed ? '1%' : '',
+        }}>
             <GoogleMapReact
+                yesIWantToUseGoogleMapApiInternals
                 defaultCenter={center}
                 defaultZoom={zoom}
             >

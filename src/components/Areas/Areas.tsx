@@ -29,18 +29,10 @@ const Areas = () => {
 
         try {
             setloading(true)
-            const res = await axios('http://localhost:3000/DB.json');
+            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
             const data = res.data.destination.recommendations;
             const filteredData = data.filter((item: any) => item.tab_id === id);
-            const filteredArr = data.reduce((acc: any, current: any) => {
-                const x = acc.find((item: any) => item.tab_id === current.tab_id);
-                if (!x) {
-                  return acc.concat([current]);
-                } else {
-                  return acc;
-                }
-              }, []);
-            console.log(filteredArr, "++++++++");
+            
             setloading(false)
             setAreas(filteredData)
         } catch (error) {
@@ -73,6 +65,8 @@ const Areas = () => {
                     </Typography>
                 </Box>
 
+                
+
 
                 {
                     areas.length === 0 ?
@@ -87,6 +81,8 @@ const Areas = () => {
                                                 key={item.id}
                                                 id={item.id}
                                                 number={index}
+                                                lat={item.lat}
+                                                lng={item.lng}
                                                 location={item.google.formatted_address}
                                                 name={item.name}
                                                 tip={item.tip}
@@ -97,6 +93,8 @@ const Areas = () => {
                                                 key={item.id}
                                                 id={item.id}
                                                 number={index}
+                                                lat={item.lat}
+                                                lng={item.lng}
                                                 location={item.google.formatted_address}
                                                 name={item.name}
                                                 tip={item.tip}

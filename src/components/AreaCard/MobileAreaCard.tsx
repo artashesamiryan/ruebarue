@@ -14,6 +14,7 @@ import { makeStyles } from '@mui/styles';
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { Rating } from "@mui/material";
+import Distance from "../Distance";
 
 const useStyles = makeStyles({
     actions: {
@@ -83,10 +84,12 @@ interface IResturanCardProps {
     google: IRecommendationsGoogle;
     number?: number;
     tip?: string;
+    lat?: any;
+    lng?: any;
 
 }
 
-const MobileAreaCard = ({ id, name, location, google, number = 1, tip }: IResturanCardProps) => {
+const MobileAreaCard = ({ id, name, location, google, number = 1, tip, lat, lng }: IResturanCardProps) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -106,7 +109,7 @@ const MobileAreaCard = ({ id, name, location, google, number = 1, tip }: IRestur
             }
             }>
 
-            <div style={{ display: "flex", cursor: 'pointer' }} >
+            <div style={{ display: "flex" }} onClick={() => history.push(`/area/${id}`)} >
                 <div>
                     {
                         <div className={classes.AreaNumber}>
@@ -126,8 +129,10 @@ const MobileAreaCard = ({ id, name, location, google, number = 1, tip }: IRestur
                     <h3 style={{ fontSize: '2vh' }}>{name}</h3>
                     <p style={{ fontSize: '1.5vh' }}>{location}</p>
                     <br />
-                    <span >1.1 mi  *   $$   *   American (Traditional)</span>
                 </div>
+                <Box>
+                    <Distance lat2={lat} lng2={lng} />
+                </Box>
             </div>
 
             <Box
@@ -156,12 +161,14 @@ const MobileAreaCard = ({ id, name, location, google, number = 1, tip }: IRestur
                     tip &&
                     <span>Your Host Says:</span>
                 }
-                <p>{tip}</p>
+                {
+                    tip && <p>{tip}</p>
+                }
 
                 {
-                    // tip.length
+                    tip && tip.length > 77 &&
+                    <button className={classes.ReadMore} >Read More</button>
                 }
-                <button className={classes.ReadMore} onClick={() => history.push(`/area/${id}`)}>Read More</button>
             </Box>
 
             <Box display="flex" justifyContent="center" position="absolute" top="90%" left="0" right="0" >

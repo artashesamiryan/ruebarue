@@ -79,14 +79,14 @@ const AreaDetails = () => {
     useEffect(() => {
         getPlaceDetails()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [query])
+    }, [query]);
+
 
 
     const getPlaceDetails = async () => {
-
         try {
-            const res = await axios(`${process.env.REACT_APP_BASE_URL}/DB.json`);
-            const body = res.data.destination.recommendations;
+            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+            const body = await res.data.destination.recommendations;
             const getOne = body.filter((item: any) => item.id === Number(query));
             const googleData = getOne[0].google;
             const locs = googleData.name + googleData.formatted_address + "/" + googleData.geometry.location.lat + "," + googleData.geometry.location.lng;
@@ -125,7 +125,7 @@ const AreaDetails = () => {
 
                         {
                             width < 900 &&
-                            <img src={DetailMap} alt="" width={width < 600 ? "100%" : '570px'} style={{ margin: '0 auto' }} />
+                            <SimpleMap h="250px" zoom={11} />
                         }
                     </div>
                     <br />

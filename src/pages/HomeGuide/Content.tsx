@@ -52,7 +52,7 @@ const Content = ({ orders }: IContentProps) => {
 
         try {
             setLoading(true)
-            const res = await axios(`http://localhost:3000/DB.json`);
+            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
             const body = res.data.account.welcome_guide;
             const x = body.filter((item: any, index: number) => orders.includes(item.id));
             setItems(x);

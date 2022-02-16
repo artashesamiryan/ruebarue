@@ -43,7 +43,6 @@ const HomeGuide = () => {
     const width = useWindowSize()
     useEffect(() => {
         getTabs();
-        // getHomeGuideContent()
     }, [])
 
     const click = (e: any) => {
@@ -56,7 +55,7 @@ const HomeGuide = () => {
     };
 
     const getTabs = async () => {
-        const response = await axios(`http://localhost:3000/DB.json`);
+        const response = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
         const TABS = response.data.account.preferences.welcome_tabs;
         const valueArr = response.data.account.welcome_ordering;
         const filteredArr = Object.values(valueArr.reduce((acc: any, cur: any) => Object.assign(acc, { [cur.type]: cur }), {}));
@@ -111,7 +110,9 @@ const HomeGuide = () => {
 
             {
                 width > 750 &&
-                <SimpleMap zoom={11} />
+                <div style={{ position: "relative" }}>
+                    <SimpleMap zoom={11} />
+                </div>
             }
         </Box>
     )

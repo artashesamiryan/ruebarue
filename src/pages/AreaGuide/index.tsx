@@ -55,8 +55,8 @@ const AreaGuide = () => {
 
         try {
             setLoading(true)
-            const res = await axios('http://localhost:3000/DB.json');
-            const data = res.data.destination.recommendations;
+            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+            const data = await res.data.destination.recommendations;
             const filteredArr = data.reduce((acc: any, current: any) => {
                 const x = acc.find((item: any) => item.tab_id === current.tab_id);
                 if (!x) {
@@ -84,8 +84,6 @@ const AreaGuide = () => {
                 {
                     filteredAreas.map((item: any, index: number) => {
 
-                        console.log(item, '<<<<<<');
-
                         return (
                             <div
                                 style={{ textTransform: 'capitalize' }}
@@ -101,7 +99,9 @@ const AreaGuide = () => {
 
             {
                 width > 750 &&
-                <SimpleMap zoom={11} />
+                <div style={{ position: "relative" }}>
+                    <SimpleMap zoom={11} />
+                </div>
             }
         </Box>
     )
