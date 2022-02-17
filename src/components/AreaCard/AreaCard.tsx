@@ -8,9 +8,11 @@ import AreaPin from '../../assets/icons/day_1.png';
 import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import { makeStyles } from '@mui/styles';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { Rating } from "@mui/material";
 import Distance from "../Distance";
+import Modal from "../../UI/Modal";
+import { useState } from "react";
 
 const useStyles = makeStyles({
     address: {
@@ -106,6 +108,7 @@ const useStyles = makeStyles({
 
 interface IResturanCardProps {
     id: number;
+    price: number;
     name: string;
     location: string,
     google: IRecommendationsGoogle;
@@ -113,14 +116,19 @@ interface IResturanCardProps {
     tip?: string;
     lat?: any;
     lng?: any;
+    areas: any;
 }
 
-const AreaCard = ({ id, name, location, google, number = 1, tip, lat, lng }: IResturanCardProps) => {
+const AreaCard = ({ id, price, name, location, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
 
     const classes = useStyles();
-    const history = useHistory();
+    // const history = useHistory();
+    const [open, setOpen] = useState(false);
 
 
+    const onCardClick = () => {
+        setOpen(true)
+    }
 
 
     return (
@@ -135,8 +143,19 @@ const AreaCard = ({ id, name, location, google, number = 1, tip, lat, lng }: IRe
 
             }}>
 
+            <Modal
+                open={open}
+                setOpen={() => setOpen(!open)}
+                areas={areas} query={id}
+            />
 
-            <Box display="flex" justifyContent="space-between" onClick={() => history.push(`/area/${id}`)} style={{ cursor: 'pointer' }}>
+
+            <Box
+                display="flex"
+                justifyContent="space-between"
+                // onClick={() => history.push(`/area/${id}`)} 
+                onClick={onCardClick}
+                style={{ cursor: 'pointer' }}>
                 <Box>
                     <div >
                         {
@@ -158,6 +177,7 @@ const AreaCard = ({ id, name, location, google, number = 1, tip, lat, lng }: IRe
                 <div style={{ display: 'flex', flexDirection: 'column' }} className={classes.address}>
                     <span style={{ fontSize: '20px' }}>{name}</span>
                     <p>{location}</p>
+                    <p>{price !== 0 ? price : "--"} $$</p>
                 </div>
                 <Box>
                     <Distance lat2={lat} lng2={lng} />

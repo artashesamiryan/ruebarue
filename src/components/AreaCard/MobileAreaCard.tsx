@@ -11,10 +11,10 @@ import AreaPin from '../../assets/icons/day_1.png';
 
 
 import { makeStyles } from '@mui/styles';
-import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { Rating } from "@mui/material";
 import Distance from "../Distance";
+import Modal from "../../UI/Modal";
 
 const useStyles = makeStyles({
     actions: {
@@ -79,22 +79,22 @@ const useStyles = makeStyles({
 
 interface IResturanCardProps {
     id: number;
+    price: number;
     name: string;
-    location: string;
+    location: string,
     google: IRecommendationsGoogle;
-    number?: number;
+    number?: number,
     tip?: string;
     lat?: any;
     lng?: any;
-
+    areas: any;
 }
 
-const MobileAreaCard = ({ id, name, location, google, number = 1, tip, lat, lng }: IResturanCardProps) => {
+const MobileAreaCard = ({ id, price, name, location, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
 
     const classes = useStyles();
-    const history = useHistory();
     const [more, setMore] = useState(false);
-
+    const [open, setOpen] = useState(false);
 
     return (
         <Box
@@ -109,7 +109,15 @@ const MobileAreaCard = ({ id, name, location, google, number = 1, tip, lat, lng 
             }
             }>
 
-            <div style={{ display: "flex" }} onClick={() => history.push(`/area/${id}`)} >
+
+            <Modal
+                open={open}
+                setOpen={() => setOpen(!open)}
+                areas={areas} query={id}
+            />
+
+
+            <div style={{ display: "flex" }} onClick={() => setOpen(true)} >
                 <div>
                     {
                         <div className={classes.AreaNumber}>

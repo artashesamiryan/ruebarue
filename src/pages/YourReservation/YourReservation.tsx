@@ -7,10 +7,11 @@ import { Typography } from "@mui/material";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useWindowSize from "../../hooks/UseWindowSize";
+import SimpleMap from "../../components/SimpleMap/SimpleMap";
 
 const useStyles = makeStyles({
     Left: {
-        width: '98%',
+        width: '566px',
         display: 'flex',
         flexDirection: 'column',
         "& img": {
@@ -81,6 +82,7 @@ const YourReservation = () => {
 
     return (
         <Box
+            display="flex"
             width={'100%'}>
             <div className={classes.Left}>
                 <div style={{ position: 'relative' }}>
@@ -124,7 +126,12 @@ const YourReservation = () => {
                     <div>Visit Our Website <ArrowForwardIosIcon fontSize="small" /></div>
                 </Box>
             </div>
-
+            {
+                width > 750 &&
+                <div style={{ position: "relative", marginLeft: '10px' }}>
+                    <SimpleMap zoom={11} home={true} />
+                </div>
+            }
 
         </Box>
     );

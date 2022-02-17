@@ -6,9 +6,9 @@ import Content from "./Content";
 import { Typography } from "@mui/material";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-import axios from "axios";
 import useWindowSize from "../../hooks/UseWindowSize";
 import SimpleMap from "../../components/SimpleMap/SimpleMap";
+import api from "../../api";
 
 const useStyles = makeStyles({
     Options: {
@@ -55,7 +55,7 @@ const HomeGuide = () => {
     };
 
     const getTabs = async () => {
-        const response = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+        const response = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
         const TABS = response.data.account.preferences.welcome_tabs;
         const valueArr = response.data.account.welcome_ordering;
         const filteredArr = Object.values(valueArr.reduce((acc: any, cur: any) => Object.assign(acc, { [cur.type]: cur }), {}));
@@ -111,7 +111,7 @@ const HomeGuide = () => {
             {
                 width > 750 &&
                 <div style={{ position: "relative" }}>
-                    <SimpleMap zoom={11} />
+                    <SimpleMap zoom={11} home={true} />
                 </div>
             }
         </Box>

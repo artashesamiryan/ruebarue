@@ -5,9 +5,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useHistory } from "react-router-dom";
 
 import useWindowSize from "../../hooks/UseWindowSize";
-import axios from "axios";
 import Spinner from "../../components/Spinner/Spinner";
 import SimpleMap from "../../components/SimpleMap/SimpleMap";
+import api from "../../api";
 
 
 
@@ -55,8 +55,8 @@ const AreaGuide = () => {
 
         try {
             setLoading(true)
-            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-            const data = await res.data.destination.recommendations;
+            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+            const data = res.data.destination.recommendations;
             const filteredArr = data.reduce((acc: any, current: any) => {
                 const x = acc.find((item: any) => item.tab_id === current.tab_id);
                 if (!x) {
@@ -100,7 +100,7 @@ const AreaGuide = () => {
             {
                 width > 750 &&
                 <div style={{ position: "relative" }}>
-                    <SimpleMap zoom={11} />
+                    <SimpleMap zoom={11} home={false} />
                 </div>
             }
         </Box>

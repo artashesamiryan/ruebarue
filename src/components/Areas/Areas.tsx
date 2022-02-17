@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -10,7 +9,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import AreaCard from "../../components/AreaCard/AreaCard";
 import MobileAreaCard from "../../components/AreaCard/MobileAreaCard";
 import SimpleMap from "../SimpleMap/SimpleMap";
-
+import api from '../../api';
 
 
 const Areas = () => {
@@ -29,10 +28,10 @@ const Areas = () => {
 
         try {
             setloading(true)
-            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
             const data = res.data.destination.recommendations;
             const filteredData = data.filter((item: any) => item.tab_id === id);
-            
+
             setloading(false)
             setAreas(filteredData)
         } catch (error) {
@@ -65,7 +64,7 @@ const Areas = () => {
                     </Typography>
                 </Box>
 
-                
+
 
 
                 {
@@ -80,6 +79,7 @@ const Areas = () => {
                                             <AreaCard
                                                 key={item.id}
                                                 id={item.id}
+                                                price={item.price}
                                                 number={index}
                                                 lat={item.lat}
                                                 lng={item.lng}
@@ -87,11 +87,13 @@ const Areas = () => {
                                                 name={item.name}
                                                 tip={item.tip}
                                                 google={item.google}
+                                                areas={areas}
                                             />
                                             :
                                             <MobileAreaCard
                                                 key={item.id}
                                                 id={item.id}
+                                                price={item.price}
                                                 number={index}
                                                 lat={item.lat}
                                                 lng={item.lng}
@@ -99,6 +101,7 @@ const Areas = () => {
                                                 name={item.name}
                                                 tip={item.tip}
                                                 google={item.google}
+                                                areas={areas}
                                             />
                                     }
                                 </div>
@@ -108,7 +111,7 @@ const Areas = () => {
             </Box>
             {
                 width > 900 &&
-                <SimpleMap zoom={11} locations={areas} />
+                <SimpleMap zoom={11} home={false} locations={areas} />
 
             }
         </Box>
@@ -116,22 +119,3 @@ const Areas = () => {
 };
 export default Areas;
 
-
-// try {
-//     var lat1 = location1.lat,
-//         lng1 = location1.lng,
-//         lat2 = location2.lat || location2.location.lat(),
-//         lng2 = location2.lng || location2.location.lng();
-//     var R = 6371, // Radius of the earth in km
-//         dLat = this.deg2rad(lat2-lat1),  // deg2rad below
-//         dLon = this.deg2rad(lng2-lng1), 
-//         a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
-    
-//     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)),
-//         d = R * c; // Distance in km
-    
-//     var m = d * 0.621371;
-//     return m;
-// } catch(e){
-//     return null;
-// }

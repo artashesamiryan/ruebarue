@@ -4,10 +4,10 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from "../../components/Spinner/Spinner";
 import { makeStyles } from '@mui/styles';
+import api from "../../api";
 
 
 const useStyles = makeStyles({
@@ -52,7 +52,7 @@ const Content = ({ orders }: IContentProps) => {
 
         try {
             setLoading(true)
-            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
             const body = res.data.account.welcome_guide;
             const x = body.filter((item: any, index: number) => orders.includes(item.id));
             setItems(x);

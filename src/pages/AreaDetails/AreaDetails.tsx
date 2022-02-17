@@ -1,7 +1,6 @@
 import { Box } from "@mui/system";
 import { Rating, Typography } from "@mui/material";
 import { makeStyles } from '@mui/styles';
-import DetailMap from '../../assets/custom/DetailMap.png';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import Network from '../../assets/icons/website.svg';
 import Phone from '../../assets/icons/phone.svg';
@@ -10,10 +9,10 @@ import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import GoogleIcon from '../../assets/icons/Google.png';
 import useWindowSize from "../../hooks/UseWindowSize";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SimpleMap from "../../components/SimpleMap/SimpleMap";
+import api from '../../api';
 const useStyles = makeStyles({
     actions: {
         display: 'flex',
@@ -85,8 +84,8 @@ const AreaDetails = () => {
 
     const getPlaceDetails = async () => {
         try {
-            const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-            const body = await res.data.destination.recommendations;
+            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+            const body = res.data.destination.recommendations;
             const getOne = body.filter((item: any) => item.id === Number(query));
             const googleData = getOne[0].google;
             const locs = googleData.name + googleData.formatted_address + "/" + googleData.geometry.location.lat + "," + googleData.geometry.location.lng;
@@ -137,7 +136,6 @@ const AreaDetails = () => {
                         justifyContent="space-between"
                         alignItems="center"
                         width={width < 900 ? "100%" : "90%"}
-
                         sx={{
                             backgroundColor: '#E9F0F6',
                             mixBlendMode: 'normal',
