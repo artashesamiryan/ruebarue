@@ -19,7 +19,9 @@ const useStyles = makeStyles({
             display: 'flex',
             justifyContent: "space-between",
             alignItems: 'center',
-            padding: '8px',
+            padding: '10px',
+            paddingLeft: '10px',
+            paddingRight: '3px',
             marginTop: "6px",
             cursor: "pointer",
             fontStyle: "normal",
@@ -70,7 +72,7 @@ const HomeGuide = () => {
 
             {
                 !contentVisible ?
-                    <Box className={classes.Options} sx={{ width: '566px' }}>
+                    <Box className={classes.Options} sx={{ width: '595px' }}>
                         {
                             tabs.map((item: any, index: number) => {
                                 return (
@@ -110,8 +112,8 @@ const HomeGuide = () => {
 
             {
                 width > 750 &&
-                <div style={{ position: "relative" }}>
-                    <SimpleMap zoom={11} home={true} />
+                <div style={{ position: "relative", width: "595px" }}>
+                    <SimpleMap zoom={11} home={true} w="595px" />
                 </div>
             }
         </Box>

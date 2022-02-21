@@ -191,9 +191,9 @@
             "guestlink_available": 0,
             "exclude_long_term": false,
             "exclude_seasonal_long_term": false,
-            "pms": "LiveRez",
-            "pms_sync": false,
-            "property_sync": false,
+            "pms": "Track",
+            "pms_sync": true,
+            "property_sync": true,
             "syncable": false,
             "custom_url": "",
             "overwrite_door_codes": false,
@@ -206,7 +206,7 @@
             "pms": "",
             "referrer": "",
             "company_name": "Bluewater Vacation Homes",
-            "type": "expired",
+            "type": "partner",
             "product": "basic",
             "properties": 0,
             "cost": 3,
@@ -217,22 +217,7 @@
         },
         "permissions": null,
         "providers": null,
-        "custom_macros": [
-            {
-                "id": 106,
-                "account_id": 5191095186096128,
-                "macro": "[WifiNetworkName]",
-                "category": "Standard",
-                "field": "wifiNetworkName"
-            },
-            {
-                "id": 107,
-                "account_id": 5191095186096128,
-                "macro": "[WifiNetworkPassword]",
-                "category": "Standard",
-                "field": "wifiNetworkPassword"
-            }
-        ],
+        "custom_macros": null,
         "welcome_guide": [
             {
                 "id": 4534855120453632,
@@ -15242,20 +15227,20 @@
             "suspended": false,
             "attachments": [
                 {
-                    "id": 5116888738430976,
-                    "parent_type": "welcome_guide_question",
-                    "name": "",
-                    "original_name": "Spa Control.jpg",
-                    "url": "http://uploads.ruebarue.com/welcome_guide/attachments/768A9ABA-049E-13B9-C2C4-7850B61D2488.jpeg",
-                    "type": "image",
-                    "cleared": false
-                },
-                {
                     "id": 5415333500026880,
                     "parent_type": "welcome_guide_question",
                     "name": "",
                     "original_name": "Spa Control-2.jpg",
                     "url": "http://uploads.ruebarue.com/welcome_guide/attachments/92DA2AE4-EAB9-7CC9-7C24-5AF31F7B71A2.jpeg",
+                    "type": "image",
+                    "cleared": false
+                },
+                {
+                    "id": 5116888738430976,
+                    "parent_type": "welcome_guide_question",
+                    "name": "",
+                    "original_name": "Spa Control.jpg",
+                    "url": "http://uploads.ruebarue.com/welcome_guide/attachments/768A9ABA-049E-13B9-C2C4-7850B61D2488.jpeg",
                     "type": "image",
                     "cleared": false
                 }

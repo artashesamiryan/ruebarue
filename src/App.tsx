@@ -1,22 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC } from 'react';
 import './App.css';
-import { BrowserRouter, useHistory, useLocation } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import AppLayout from "./Layouts/AppLayout";
-import Header from "./components/Header";
-import AppRouter from "./components/AppRouter";
-import LabTabs from "./components/Tabs";
+import { useAppSelector } from "./Redux/hooks";
+
 
 const App: FC = () => {
 
+  const { pathType } = useAppSelector(state => state.jsonType);
+
+
+
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <AppLayout>
-          <Header />
-          <LabTabs />
-
-          <AppRouter />
-        </AppLayout>
+      <BrowserRouter
+        // basename={pathType}
+        basename="/rental/5188536216846336"
+      >
+        <AppLayout />
       </BrowserRouter>
     </div>
   );

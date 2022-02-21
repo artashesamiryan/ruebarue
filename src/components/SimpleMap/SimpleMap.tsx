@@ -33,12 +33,16 @@ interface SompleMapProps {
     h?: string;
     zoom: number,
     locations?: any,
-    home?: boolean
+    home?: boolean,
+    link?: string;
 }
 
-const SimpleMap = ({ home, center = { lat: 35.5244754, lng: -82.9820933 }, zoom = 11, w, h = "600px", locations }: SompleMapProps) => {
+const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }, zoom = 11, w = "595px", h = "600px", locations }: SompleMapProps) => {
 
-    const [fixed, setFixed]: any = useState(false)
+    const [fixed, setFixed]: any = useState(false);
+
+
+
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -51,13 +55,17 @@ const SimpleMap = ({ home, center = { lat: 35.5244754, lng: -82.9820933 }, zoom 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
-        <div style={{
-            height: h,
-            width: '400px',
-            position: fixed ? 'sticky' : 'relative',
-            left: fixed ? '49.5%' : '',
-            top: fixed ? '1%' : '',
-        }}>
+        <a
+            href={`https://www.google.com/maps/search/${link}`}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+                height: h,
+                width: w,
+                position: fixed ? 'sticky' : 'relative',
+                left: fixed ? '49.5%' : '',
+                top: fixed ? '1%' : '',
+            }}>
             <GoogleMapReact
                 yesIWantToUseGoogleMapApiInternals
                 defaultCenter={center}
@@ -95,7 +103,7 @@ const SimpleMap = ({ home, center = { lat: 35.5244754, lng: -82.9820933 }, zoom 
                     })
                 }
             </GoogleMapReact>
-        </div>
+        </a>
     );
 
 }

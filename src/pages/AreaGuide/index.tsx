@@ -20,7 +20,9 @@ const useStyles = makeStyles({
             display: 'flex',
             justifyContent: "space-between",
             alignItems: 'center',
-            padding: '8px',
+            padding: '10px',
+            paddingLeft: '10px',
+            paddingRight: '3px',
             marginTop: "6px",
             cursor: "pointer",
             fontStyle: "normal",
@@ -79,19 +81,21 @@ const AreaGuide = () => {
             {
                 loading && <Spinner />
             }
-            <Box className={classes.Options} sx={{ width: '566px' }}>
+            <Box className={classes.Options} sx={{ width: '595px' }}>
 
                 {
                     filteredAreas.map((item: any, index: number) => {
 
                         return (
                             <div
-                                style={{ textTransform: 'capitalize' }}
+                                style={{ textTransform: 'capitalize', }}
                                 key={index}
                                 onClick={click}
                                 data-label={item.tab_id}
                                 data-name={item.label}
-                            >{item.tab_id} <ArrowForwardIosIcon fontSize="small" /></div>
+                            >
+                                {item.tab_id}
+                                <ArrowForwardIosIcon fontSize="small" sx={{ padding: "none" }} /></div>
                         )
                     })
                 }

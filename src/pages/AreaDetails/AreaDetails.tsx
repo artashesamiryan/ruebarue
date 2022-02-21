@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SimpleMap from "../../components/SimpleMap/SimpleMap";
 import api from '../../api';
+
 const useStyles = makeStyles({
     actions: {
         display: 'flex',

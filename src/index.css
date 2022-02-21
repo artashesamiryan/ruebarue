@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'guide-icons';
+  font-family: 'Lato';
   src:  url('./guide-icons.ttf');
   src:  url('./guide-icons.ttf') format('embedded-opentype'),
     url('./guide-icons.ttf') format('truetype'),
@@ -10,7 +10,7 @@
 }
 
 [class^="guide-icon-"], [class*=" guide-icon-"] {
-  font-family: 'guide-icons' !important;
+  /* font-family: 'guide-icons' !important; */
   font-style: normal;
   font-weight: normal;
   font-variant: normal;

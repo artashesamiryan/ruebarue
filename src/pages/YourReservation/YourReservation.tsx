@@ -8,6 +8,8 @@ import { Typography } from "@mui/material";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useWindowSize from "../../hooks/UseWindowSize";
 import SimpleMap from "../../components/SimpleMap/SimpleMap";
+import { useDispatch } from "react-redux";
+import { pathSlice } from '../../Redux/features/PathType/pathTypeSlice';
 
 const useStyles = makeStyles({
     Left: {
@@ -79,6 +81,8 @@ const useStyles = makeStyles({
 const YourReservation = () => {
     const classes = useStyles();
     const width = useWindowSize();
+    const { setPathtype } = pathSlice.actions;
+    const dispatch = useDispatch();
 
     return (
         <Box
@@ -91,7 +95,7 @@ const YourReservation = () => {
                         <Typography color={'white'} variant="body1">
                             7 Nights
                         </Typography>
-                        <Typography color={'white'} variant="h6" sx={{ fontWeight: 'bold', lineHeight: '25px' }}>
+                        <Typography color={'white'} sx={{ fontWeight: 'bold', lineHeight: '25px', fontSize: '18px' }}>
                             B5335 Bayside Breeze Guestbook
                         </Typography>
                         <Typography color={'white'}>
@@ -103,19 +107,19 @@ const YourReservation = () => {
                 <Box display="flex" justifyContent="space-between" className={classes.Checks}>
                     <div style={{ borderLeft: "2px solid #21305B", borderRadius: '2px 5px 5px 2px' }}>
                         <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666">Check In</Typography>
-                        <Typography fontSize={width < 700 ? "1.8vh" : "20px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
+                        <Typography fontSize={width < 700 ? "1.8vh" : "18px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
                         <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666" >4:00 PM</Typography>
                     </div>
                     <div style={{ borderRight: "2px solid #21305B", borderRadius: '5px 2px 2px 5px' }}>
                         <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666">Check Out</Typography>
-                        <Typography fontSize={width < 700 ? "1.8vh" : "20px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
+                        <Typography fontSize={width < 700 ? "1.8vh" : "18px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
                         <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666" >10:00 AM</Typography>
                     </div>
 
 
                 </Box>
                 <Box display="flex" justifyContent="center" padding="10px 0">
-                    <button className={classes.CheckIn}>Check In</button>
+                    <button className={classes.CheckIn} onClick={() => dispatch(setPathtype(`llllll`))}>Check In</button>
                 </Box>
 
                 <Box className={classes.Options}>

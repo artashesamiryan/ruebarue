@@ -1,4 +1,4 @@
-import { Dialog, IconButton, Rating, Slide, Toolbar, Typography } from "@mui/material";
+import { Container, Dialog, IconButton, Rating, Slide, Toolbar, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import { TransitionProps } from '@mui/material/transitions';
@@ -47,9 +47,18 @@ const useStyles = makeStyles({
     },
     Reviews: {
         marginTop: '10px',
-
-
-    }
+    },
+    ReadMore: {
+        width: '108px',
+        height: '34px',
+        borderRadius: '3px',
+        backgroundColor: 'e9f0f6',
+        border: 'none',
+        marginTop: '10px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        color: '#397096',
+    },
 });
 
 
@@ -95,6 +104,8 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
     const [googleRating, setGoogleRating] = useState<number>(0);
     const [loading, setLoading] = useState(false);
     const [location, setLocation] = useState([]);
+    const [tip, setTipes] = useState('')
+    const [less, setLess] = useState(true)
 
     const handleClose = () => {
         setOpen(false);
@@ -109,11 +120,12 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
     const getPlaceDetails = () => {
         try {
             setLoading(true)
-            // const res = await axios(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-            // const body = res.data.destination.recommendations;
+
             const getOne = areas.filter((item: any) => item.id === Number(query));
             const googleData = getOne[0].google;
             // const locs = googleData.name + googleData.formatted_address + "/" + googleData.geometry.location.lat + "," + googleData.geometry.location.lng;
+            setTipes(getOne[0].tip);
+            setLess(getOne[0].tip.length > 300 ? true : false)
             const openHours = googleData.opening_hours.weekday_text;
             const rvws = googleData.reviews;
             const googleRtng = googleData.rating;
@@ -134,6 +146,7 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
     }
 
 
+
     return (
         <Dialog
             fullScreen
@@ -142,130 +155,146 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
             TransitionComponent={Transition}
             sx={{ height: '100vh' }}
         >
-            <Box width="100%" display="flex" justifyContent="flex-end" sx={{ border: 'none' }}>
-                <Toolbar>
-                    <IconButton
-                        edge="end"
-                        color="inherit"
-                        onClick={handleClose}
-                        aria-label="close"
-                    >
-                        <CloseIcon />
-                    </IconButton>
+            <Container maxWidth="lg">
+                <Box width="100%" display="flex" justifyContent="flex-end" sx={{ border: 'none' }}>
+                    <Toolbar>
+                        <IconButton
+                            edge="end"
+                            color="inherit"
+                            onClick={handleClose}
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
 
 
-                </Toolbar>
-            </Box>
-            <Box padding="20px" sx={{ backgroundColor: '#FFFFFF' }}>
-                <Typography variant="h5" fontWeight="bolder">{details.name}</Typography>
-                <Box display="flex" justifyContent="space-between" >
-                    <div style={{ width: width < 900 ? "100%" : "65%" }}>
-                        <div style={{
-                            backgroundImage: `url(https://d1l272ftssh5ud.cloudfront.net/google/images/${details.place_id}.jpg)`,
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: "contain",
-                            backgroundPosition: "center",
-                            width: '100%',
-                            maxHeight: '500px',
-                            minHeight: '400px'
-                        }}></div>
+                    </Toolbar>
+                </Box>
+                <Box width="100%" sx={{ backgroundColor: '#FFFFFF' }} justifyContent="space-between" >
+                    <Typography variant="h5" fontWeight="bolder">{details.name}</Typography>
+                    <Box width="100%" display="flex">
+                        <div style={{ width: width < 900 ? "100%" : "65%" }}>
+                            <div style={{
+                                backgroundImage: `url(https://d1l272ftssh5ud.cloudfront.net/google/images/${details.place_id}.jpg)`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: "contain",
+                                backgroundPositionY: '20px',
+                                width: '98%',
+                                maxHeight: '500px',
+                                minHeight: '400px'
+                            }}></div>
 
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
 
-                            {
-                                width < 900 &&
-                                <SimpleMap h="250px" zoom={11} home={false} locations={areas} />
-                            }
-                        </div>
-                        <br />
-                        <br />
-
-                        <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            width={width < 900 ? "100%" : "90%"}
-
-                            sx={{
-                                backgroundColor: '#E9F0F6',
-                                mixBlendMode: 'normal',
-                                borderRadius: '2px',
-                            }}>
-                            <div className={classes.actions}>
-                                <a href={details.website} target="_blank" rel="noreferrer">
-                                    <img src={Network} alt="" />
-                                </a>
-                                <a href={`tel:${details.formatted_phone_number}`}>
-                                    <img src={Phone} alt="" />
-                                </a>
-                                <a href={`https://www.google.com/maps/search/${details.formatted_address}`} target="_blank" rel="noreferrer">
-                                    <img src={LOCATION} alt="" />
-                                </a>
-                                <a href="/">
-                                    <img src={Ride} alt="" />
-                                </a>
-                                <a href="/">
-                                    <img src={More} alt="" />
-                                </a>
+                                {
+                                    width < 900 &&
+                                    <SimpleMap h="250px" zoom={11} home={false} locations={areas} />
+                                }
                             </div>
+                            <br />
+                            <br />
 
-                            <BookmarkIcon sx={{ color: '#666666' }} />
-                        </Box>
+                            <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                width={width < 900 ? "100%" : "90%"}
 
-                        <Box>
-                            <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
-                            <Typography color="#333333" width={width < 900 ? "100%" : "50%"} fontSize="14px">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut convallis elit.
-                                Praesent tempor iaculis quam quis accumsan. Ut ac risus tortor. Mauris pulvinar ipsum porta tortor fringilla,
-                                non efficitur eros dapibus.
-                            </Typography>
-                        </Box>
+                                sx={{
+                                    backgroundColor: '#E9F0F6',
+                                    mixBlendMode: 'normal',
+                                    borderRadius: '2px',
+                                }}>
+                                <div className={classes.actions}>
+                                    <a href={details.website} target="_blank" rel="noreferrer">
+                                        <img src={Network} alt="" />
+                                    </a>
+                                    <a href={`tel:${details.formatted_phone_number}`}>
+                                        <img src={Phone} alt="" />
+                                    </a>
+                                    <a href={`https://www.google.com/maps/search/${details.formatted_address}`} target="_blank" rel="noreferrer">
+                                        <img src={LOCATION} alt="" />
+                                    </a>
+                                    <a href="/">
+                                        <img src={Ride} alt="" />
+                                    </a>
+                                    <a href="/">
+                                        <img src={More} alt="" />
+                                    </a>
+                                </div>
 
-                        <Box marginTop="10px">
-                            <Typography color="#333333" fontWeight="bolder" variant="h6">Hours</Typography>
-                            <div className={classes.Weeks}>
-                                <ul>
+                                <BookmarkIcon sx={{ color: '#666666' }} />
+                            </Box>
+                            {
+                                tip &&
+
+                                <Box >
+                                    <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
                                     {
-                                        openingHours && openingHours.map((item: string, index: number) => {
+                                        less ?
+                                            <Typography color="#333333" width={width < 900 ? "100%" : "80%"} fontSize="14px">
+                                                {tip.slice(0, 100)}
+                                                <span>...</span>
+                                            </Typography >
+                                            :
 
+                                            <Typography color="#333333" width={width < 900 ? "100%" : "80%"} fontSize="14px">
 
-                                            return (
-                                                <li key={index}>
-                                                    <span>{item}</span>
-                                                </li>
-                                            )
-                                        })
+                                                {tip}
+                                            </Typography>
                                     }
 
-                                </ul>
-                            </div>
-                        </Box>
-
-                        <Box className={classes.Reviews}>
-                            <Typography color="#333333" fontWeight="bolder" variant="h6">Reviews</Typography>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <img src={GoogleIcon} alt="" />
-                                <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={googleRating} readOnly />
-                            </div>
-
-                            {
-                                reviews.map((item: any, index: number) => {
-                                    return (
-                                        <ReviweItem key={index} name={item.author_name} message={item.text} date={item.date} rating={item.rating} />
-                                    )
-                                })
+                                    <button className={classes.ReadMore} onClick={() => setLess(!less)}>Read More</button>
+                                </Box>
                             }
-                        </Box>
 
-                    </div>
-                    {
-                        width > 900 && <div style={{ width: '35%' }}>
-                            <Typography fontSize="14px" lineHeight="20px">{details.formatted_address}</Typography>
-                            <SimpleMap h="300px" zoom={11} home={false} locations={location} />
+                            <Box marginTop="10px">
+                                <Typography color="#333333" fontWeight="bolder" variant="h6">Hours</Typography>
+                                <div className={classes.Weeks}>
+                                    <ul>
+                                        {
+                                            openingHours && openingHours.map((item: string, index: number) => {
+
+
+                                                return (
+                                                    <li key={index}>
+                                                        <span>{item}</span>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+
+                                    </ul>
+                                </div>
+                            </Box>
+
+                            <Box className={classes.Reviews}>
+                                <Typography color="#333333" fontWeight="bolder" variant="h6">Reviews</Typography>
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <img src={GoogleIcon} alt="" />
+                                    <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={googleRating} readOnly />
+                                </div>
+
+                                {
+                                    reviews.map((item: any, index: number) => {
+                                        return (
+                                            <ReviweItem key={index} name={item.author_name} message={item.text} date={item.date} rating={item.rating} />
+                                        )
+                                    })
+                                }
+                            </Box>
+
                         </div>
-                    }
+                        {
+                            width > 900 &&
+                            <div style={{ width: '595px', height: '300px' }} >
+                                <Typography fontSize="14px" lineHeight="20px">{details.formatted_address}</Typography>
+                                <SimpleMap link={details.formatted_address} h="300px" zoom={11} home={false} locations={location} />
+                            </div>
+                        }
+                    </Box >
                 </Box >
-            </Box >
+            </Container>
         </Dialog>
     )
 };

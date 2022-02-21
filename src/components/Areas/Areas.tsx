@@ -41,7 +41,9 @@ const Areas = () => {
 
     if (loading) {
         return <Spinner />
-    }
+    };
+
+
 
     return (
         <Box display="flex">

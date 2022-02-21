@@ -3,5 +3,58 @@
     background-color: #F2F2F2;
 }
 .css-1aquho2-MuiTabs-indicator{
-    background-color: aquamarine;
+    background-color: aquamarine ;
+}
+
+.css-1k40d9q-MuiTypography-root {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+}
+.css-1di5mry-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+    min-height: 40px !important;
+}
+.css-6i0s6h-MuiTypography-root {
+  line-height: 1.4 !important;
+}
+.css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
+    margin: 20px 0 10px !important;
+}
+.makeStyles-Host-7 p {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  margin-top: 10px !important;
+}
+.css-f9a8ja, .css-1hm2wwn {
+  margin-top: 5px !important;
+  background: none !important;
+}
+.css-c199hx {
+    margin-top: 5px !important;
+ }
+.makeStyles-address-1 span, .css-rfahp9-MuiTypography-root {
+  color: #333333 !important;
+  font-weight: bold !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.25px !important;
+  font-size: 18px !important;
+}
+ .makeStyles-address-4 span, .css-1tgig32-MuiTypography-root, .makeStyles-Host-4 span, .css-1bov8gm-MuiTypography-root, .css-xp668h-MuiTypography-root {
+    color: #333333 !important;
+    font-weight: bold !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.25px !important;
+    font-size: 16px !important;
+}
+.makeStyles-address-1 p, .makeStyles-address-4 p, .css-ahj2mt-MuiTypography-root, .makeStyles-Host-4 p, .makeStyles-Weeks-8 li, .css-1aijmbe-MuiTypography-root {
+    color: #555555 !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    padding-top: 5px !important;
+    letter-spacing: 0.25px !important;
+}
+.css-15oc0sm {
+    padding: 15px !important;
+}
+.makeStyles-Options-1 div {
+    padding: 8px 12px !important;
 }

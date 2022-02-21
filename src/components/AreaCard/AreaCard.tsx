@@ -9,7 +9,7 @@ import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import { makeStyles } from '@mui/styles';
 // import { useHistory } from "react-router-dom";
-import { Rating } from "@mui/material";
+import { Rating, Typography } from "@mui/material";
 import Distance from "../Distance";
 import Modal from "../../UI/Modal";
 import { useState } from "react";
@@ -122,8 +122,8 @@ interface IResturanCardProps {
 const AreaCard = ({ id, price, name, location, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
 
     const classes = useStyles();
-    // const history = useHistory();
     const [open, setOpen] = useState(false);
+    const [less, setLess] = useState(true)
 
 
     const onCardClick = () => {
@@ -175,7 +175,7 @@ const AreaCard = ({ id, price, name, location, google, number = 1, tip, lat, lng
                 </Box>
 
                 <div style={{ display: 'flex', flexDirection: 'column' }} className={classes.address}>
-                    <span style={{ fontSize: '20px' }}>{name}</span>
+                    <span style={{ fontSize: '18px' }}>{name}</span>
                     <p>{location}</p>
                     <p>{price !== 0 ? price : "--"} $$</p>
                 </div>
@@ -215,18 +215,27 @@ const AreaCard = ({ id, price, name, location, google, number = 1, tip, lat, lng
                 <BookmarkIcon sx={{ color: '#666666' }} />
             </Box>
             <Box className={classes.Host} marginTop="16px" padding="5px">
-
                 {
                     tip &&
-                    <span>Your Host Says:</span>
-                }
-                {
-                    tip && <p>{tip}</p>
-                }
 
-                {
-                    tip && tip.length > 77 &&
-                    <button className={classes.ReadMore} >Read More</button>
+                    <Box >
+                        <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
+                        {
+                            less ?
+                                <Typography color="#333333" fontSize="14px">
+                                    {tip.slice(0, 100)}
+                                    <span>...</span>
+                                </Typography >
+                                :
+
+                                <Typography color="#333333" fontSize="14px">
+
+                                    {tip}
+                                </Typography>
+                        }
+
+                        <button className={classes.ReadMore} onClick={() => setLess(!less)}>Read More</button>
+                    </Box>
                 }
 
             </Box>
