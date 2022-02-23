@@ -70,8 +70,16 @@
                 {
                     "host_id": 5191095186096128,
                     "user_id": 0,
-                    "type": "2013705337559644",
-                    "label": "Office Location",
+                    "type": "essentials",
+                    "label": "Grocery / Pharmacy",
+                    "embed_status": true,
+                    "guide_status": true
+                },
+                {
+                    "host_id": 5191095186096128,
+                    "user_id": 0,
+                    "type": "restaurants",
+                    "label": "Restaurants",
                     "embed_status": true,
                     "guide_status": true
                 },
@@ -86,16 +94,16 @@
                 {
                     "host_id": 5191095186096128,
                     "user_id": 0,
-                    "type": "essentials",
-                    "label": "Grocery / Pharmacy",
+                    "type": "2351933327999025",
+                    "label": "Guest Services \u0026 Beach Gear",
                     "embed_status": true,
                     "guide_status": true
                 },
                 {
                     "host_id": 5191095186096128,
                     "user_id": 0,
-                    "type": "2351933327999025",
-                    "label": "Guest Services \u0026 Beach Gear",
+                    "type": "2013705337559644",
+                    "label": "Office Location",
                     "embed_status": true,
                     "guide_status": true
                 },
@@ -106,24 +114,24 @@
                     "label": "Getting Here",
                     "embed_status": false,
                     "guide_status": false
-                },
-                {
-                    "host_id": 5191095186096128,
-                    "user_id": 0,
-                    "type": "restaurants",
-                    "label": "Restaurants",
-                    "embed_status": true,
-                    "guide_status": true
                 }
             ],
             "welcome_tabs": [
                 {
                     "host_id": 5191095186096128,
                     "user_id": 0,
-                    "type": "4606649521653732",
-                    "label": "Feedback",
-                    "embed_status": false,
-                    "guide_status": false
+                    "type": "arrival",
+                    "label": "Arrival",
+                    "embed_status": true,
+                    "guide_status": true
+                },
+                {
+                    "host_id": 5191095186096128,
+                    "user_id": 0,
+                    "type": "departure",
+                    "label": "Departure",
+                    "embed_status": true,
+                    "guide_status": true
                 },
                 {
                     "host_id": 5191095186096128,
@@ -136,8 +144,8 @@
                 {
                     "host_id": 5191095186096128,
                     "user_id": 0,
-                    "type": "departure",
-                    "label": "Departure",
+                    "type": "rules",
+                    "label": "Rental Rules",
                     "embed_status": true,
                     "guide_status": true
                 },
@@ -160,18 +168,10 @@
                 {
                     "host_id": 5191095186096128,
                     "user_id": 0,
-                    "type": "arrival",
-                    "label": "Arrival",
-                    "embed_status": true,
-                    "guide_status": true
-                },
-                {
-                    "host_id": 5191095186096128,
-                    "user_id": 0,
-                    "type": "rules",
-                    "label": "Rental Rules",
-                    "embed_status": true,
-                    "guide_status": true
+                    "type": "4606649521653732",
+                    "label": "Feedback",
+                    "embed_status": false,
+                    "guide_status": false
                 }
             ],
             "email_popup_title": "",
@@ -219,6 +219,19 @@
         "providers": null,
         "custom_macros": null,
         "welcome_guide": [
+            {
+                "id": 5708416111607808,
+                "host_id": 5191095186096128,
+                "rental_id": 0,
+                "parent_id": 0,
+                "icon": "guide-icon-welcome",
+                "title": "Welcome to your vacation!",
+                "body": "Below are your check-in instructions and directions to the home. This guide includes how to access the home and local information to help make your stay more enjoyable. \nNOTE: If you haven't already, please email guests@bwvh.com with the email addresses of everyone in your group and we will share these instructions so they will have the code and house instructions handy on their phone.",
+                "placeholder": "",
+                "suspended": false,
+                "attachments": null,
+                "tags": null
+            },
             {
                 "id": 4534855120453632,
                 "host_id": 5191095186096128,
@@ -497,19 +510,6 @@
                 "icon": "guide-icon-check-in",
                 "title": "Check-In",
                 "body": "*Check-in time is 4:00 pm and check-out is 10:00 am.*\n\nYour door code will not be active until 4:00 pm. \n\nPlease do not arrive to the home before your check-in time as cleaners and other staff may be in the home and using the parking spaces.\n\n*Early Arrivals*\nWhile we would love to accommodate all early arrivals, we are typically not able to do so. Please email guests@bwvh.com if you'd like to put in a request and you will be notified on the day of check in if we are able to grant early access. Otherwise, please plan on the 4 PM check-in time.\n\n*Late Arrivals*\nIf you plan on arriving after our office closes at 6:00 pm, please contact us in advance at 858-605-1497 or guests@bwvh.com\n\n*Storing Luggage*\nIf you do not want to carry your luggage around until check-in time, please look into using Luggage Hero for all your luggage storing and delivery needs - https://luggagehero.com/",
-                "placeholder": "",
-                "suspended": false,
-                "attachments": null,
-                "tags": null
-            },
-            {
-                "id": 5708416111607808,
-                "host_id": 5191095186096128,
-                "rental_id": 0,
-                "parent_id": 0,
-                "icon": "guide-icon-welcome",
-                "title": "Welcome to your vacation!",
-                "body": "Below are your check-in instructions and directions to the home. This guide includes how to access the home and local information to help make your stay more enjoyable. \nNOTE: If you haven't already, please email guests@bwvh.com with the email addresses of everyone in your group and we will share these instructions so they will have the code and house instructions handy on their phone.",
                 "placeholder": "",
                 "suspended": false,
                 "attachments": null,

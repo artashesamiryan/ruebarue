@@ -13,7 +13,7 @@ import { pathSlice } from '../../Redux/features/PathType/pathTypeSlice';
 
 const useStyles = makeStyles({
     Left: {
-        width: '566px',
+        width: '49%',
         display: 'flex',
         flexDirection: 'column',
         "& img": {
@@ -87,8 +87,11 @@ const YourReservation = () => {
     return (
         <Box
             display="flex"
-            width={'100%'}>
-            <div className={classes.Left}>
+            width={'100%'}
+            justifyContent="space-between"
+        >
+
+            <div className={classes.Left} style={{ width: width < 750 ? "100%" : "49%" }}>
                 <div style={{ position: 'relative' }}>
                     <img src={Img} alt="" />
                     <div style={{ position: 'absolute', bottom: '15px', zIndex: 1, padding: " 0 15px" }}>
@@ -132,8 +135,8 @@ const YourReservation = () => {
             </div>
             {
                 width > 750 &&
-                <div style={{ position: "relative", marginLeft: '10px' }}>
-                    <SimpleMap zoom={11} home={true} />
+                <div style={{ position: "relative", width: "49%", height: '100vh' }}>
+                    <SimpleMap zoom={11} home={true} w="566px" />
                 </div>
             }
 

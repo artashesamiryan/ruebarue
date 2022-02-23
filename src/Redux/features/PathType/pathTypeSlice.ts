@@ -4,7 +4,6 @@ import { IPathType } from "./model";
 
 
 const initialState: IPathType = {
-    // pathType: 'rental/5188536216846336'
     pathType: window.location.pathname
 };
 

@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 import Spinner from "../../components/Spinner/Spinner";
 import { makeStyles } from '@mui/styles';
 import api from "../../api";
-import { useAppSelector } from "../../Redux/hooks";
+// import { useAppSelector } from "../../Redux/hooks";
+import { Box } from "@mui/system";
 
 
 const useStyles = makeStyles({
@@ -38,7 +39,7 @@ const Content = ({ orders }: IContentProps) => {
     const [loading, setLoading]: any = useState(false);
     const [expanded, setExpanded] = useState<number | false>(0);
     const classes = useStyles();
-    const { pathType } = useAppSelector(state => state.jsonType);
+    // const { pathType } = useAppSelector(state => state.jsonType);
 
 
 
@@ -52,14 +53,12 @@ const Content = ({ orders }: IContentProps) => {
 
 
     const getContent = async () => {
-
-        const jsonAddress = pathType.split('/');
-
-
+        // const jsonAddress = pathType.split('/');
         try {
             setLoading(true)
-            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/${jsonAddress[1]}.json`);
+            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
             const body = res.data.account.welcome_guide;
+
             const x = body.filter((item: any, index: number) => orders.includes(item.id));
             setItems(x);
             setLoading(false)
@@ -67,8 +66,6 @@ const Content = ({ orders }: IContentProps) => {
             console.log(error)
         }
     };
-
-
 
     return (
         <div style={{ width: '566px' }}>
@@ -82,21 +79,20 @@ const Content = ({ orders }: IContentProps) => {
 
 
                     return (
-                        <>
-                            {item.body &&
+                        <div key={index}>
+                            {(item.body !== "" || item.attachments !== null) &&
                                 <Accordion
                                     defaultExpanded={false}
                                     expanded={expanded === index}
                                     className={classes.Accordion}
                                     sx={{ margin: '5px', border: 'none', boxShadow: 'none' }}
-                                    key={item.icon} onChange={handleChange(index)}>
+                                    onChange={handleChange(index)}>
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
                                         aria-controls="panel1a-content"
                                         sx={{ border: 'none', boxShadow: 'none' }}
                                         id="panel1a-header"
                                         className={classes.Accordion}
-
                                     >
                                         <Typography
                                             display="flex"
@@ -122,9 +118,15 @@ const Content = ({ orders }: IContentProps) => {
 
                                             {item.body}
                                         </Typography>
+
+                                        {item.attachments &&
+                                            <Box>
+                                                <img src={item.attachments[0].url} alt="" width="300px" />
+                                            </Box>
+                                        }
                                     </AccordionDetails>
                                 </Accordion>}
-                        </>
+                        </div>
                     )
                 })
             }

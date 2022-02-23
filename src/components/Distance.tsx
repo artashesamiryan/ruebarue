@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import api from "../api";
 
 interface IDistanceProps {
     lat2: any;
@@ -7,11 +8,12 @@ interface IDistanceProps {
 }
 
 const Distance = ({ lat2, lng2 }: IDistanceProps) => {
-    const [location1,] = useState({
-        lat: 35.5244754,
-        lng: -82.9820933
+    const [center, setCenter] = useState({
+        lat: 32.7865986,
+        lng: -117.2541316
     });
-    const [km, setKm] = useState('')
+    const [km, setKm] = useState('');
+
 
     const degrees_to_radians = (degrees: any) => {
         var pi = Math.PI;
@@ -19,17 +21,39 @@ const Distance = ({ lat2, lng2 }: IDistanceProps) => {
     }
 
     useEffect(() => {
+        getCenter()
         calc()
-    }, [])
+    }, []);
+
+    const getCenter = async () => {
+
+        try {
+            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
+            const data = res.data;
+            setCenter((prev: any) => {
+
+                return {
+                    ...prev,
+                    center: {
+                        lat: data.lat,
+                        lng: data.lng
+                    }
+                }
+            })
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
 
 
     const calc = () => {
 
         const R = 6371;
-        let dLat = degrees_to_radians(lat2 - location1.lat);
-        let dLng = degrees_to_radians(lng2 - location1.lng);
+        let dLat = degrees_to_radians(lat2 - center.lat);
+        let dLng = degrees_to_radians(lng2 - center.lng);
 
-        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(degrees_to_radians(location1.lat)) * Math.cos(degrees_to_radians(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(degrees_to_radians(center.lat)) * Math.cos(degrees_to_radians(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
         let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         let d = R * c;
         let m = d * 0.621371;
@@ -43,7 +67,7 @@ const Distance = ({ lat2, lng2 }: IDistanceProps) => {
         <div style={{
             width: '50px',
             height: '30px',
-            background: '#20305B',
+            background: 'rgba(65,119,148,1)',
             borderRadius: '3px',
             display: 'flex',
             justifyContent: 'center',

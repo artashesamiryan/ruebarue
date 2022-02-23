@@ -1,10 +1,12 @@
+import bookmarksReducer from './features/Bookmark/bookmarkSlice';
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import pathTypeReducer from './features/PathType/pathTypeSlice'
 
 
 export const store = configureStore({
     reducer: {
-        jsonType: pathTypeReducer
+        jsonType: pathTypeReducer,
+        bookmarksId: bookmarksReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

@@ -12,6 +12,8 @@ export default function LabTabs() {
         setValue(value);
     };
 
+
+
     return (
         <Tabs
             value={value}

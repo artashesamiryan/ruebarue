@@ -37,7 +37,7 @@ interface SompleMapProps {
     link?: string;
 }
 
-const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }, zoom = 11, w = "595px", h = "600px", locations }: SompleMapProps) => {
+const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }, zoom = 11, w = "566px", h = "600px", locations }: SompleMapProps) => {
 
     const [fixed, setFixed]: any = useState(false);
 

@@ -8,11 +8,10 @@ import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import ArrowDown from '../../assets/icons/noun_Arrow_1058456.svg'
 import AreaPin from '../../assets/icons/day_1.png';
-
-
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { makeStyles } from '@mui/styles';
 import { useState } from "react";
-import { Rating } from "@mui/material";
+import { Checkbox, Rating } from "@mui/material";
 import Distance from "../Distance";
 import Modal from "../../UI/Modal";
 
@@ -64,11 +63,12 @@ const useStyles = makeStyles({
 
         "& img": {
             position: "relative",
-            margin: '5px'
+            margin: '5px',
+            marginRight: '10px'
         },
         "& span": {
             position: "absolute",
-            right: "9.5px",
+            right: "14.5px",
             margin: '5px',
             top: '2px',
             fontSize: '14px',
@@ -81,16 +81,20 @@ interface IResturanCardProps {
     id: number;
     price: number;
     name: string;
-    location: string,
-    google: IRecommendationsGoogle;
+    location?: string,
+    google: IRecommendationsGoogle | any;
     number?: number,
     tip?: string;
     lat?: any;
     lng?: any;
     areas: any;
-}
+    tags?: string[];
+};
 
-const MobileAreaCard = ({ id, price, name, location, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+
+const MobileAreaCard = ({ id, price, name, location, tags, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
 
     const classes = useStyles();
     const [more, setMore] = useState(false);
@@ -100,7 +104,7 @@ const MobileAreaCard = ({ id, price, name, location, google, number = 1, tip, la
         <Box
             width="100%"
             marginTop={"20px"}
-            height={more ? "0" : "160px"}
+            height={more ? "0" : "180px"}
             padding="10px"
             overflow="hidden"
             position="relative"
@@ -117,8 +121,11 @@ const MobileAreaCard = ({ id, price, name, location, google, number = 1, tip, la
             />
 
 
-            <div style={{ display: "flex" }} onClick={() => setOpen(true)} >
-                <div>
+            <Box
+                display="flex"
+                justifyContent="space-between"
+                style={{ display: "flex" }} onClick={() => setOpen(true)} >
+                <Box>
                     {
                         <div className={classes.AreaNumber}>
                             <img src={AreaPin} alt="" />
@@ -130,24 +137,33 @@ const MobileAreaCard = ({ id, price, name, location, google, number = 1, tip, la
                         <img src={GoogleIcon} alt="" />
                         <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
                     </div>
-                </div>
+                </Box>
 
 
-                <div style={{ paddingLeft: '10px', }}>
-                    <h3 style={{ fontSize: '2vh' }}>{name}</h3>
-                    <p style={{ fontSize: '1.5vh' }}>{location}</p>
-                    <br />
+
+
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span style={{ fontSize: '18px' }}>{name}</span>
+                    <p style={{ fontSize: '14px' }}>{google.formatted_address}</p>
+                    {price !== 0 ? <p>{price} $$</p> : ""}
+                    {tags && tags.length > 0 &&
+                        <p>
+                            {tags.join(' ')}
+                        </p>}
+                    <p></p>
+
                 </div>
                 <Box>
                     <Distance lat2={lat} lng2={lng} />
                 </Box>
-            </div>
+            </Box>
+
 
             <Box
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                marginTop="20px"
+                marginTop="5px"
 
                 sx={{
                     backgroundColor: '#E9F0F6',
@@ -162,9 +178,13 @@ const MobileAreaCard = ({ id, price, name, location, google, number = 1, tip, la
                     <img src={More} alt="" />
                 </div>
 
-                <BookmarkIcon sx={{ color: '#666666' }} />
+                <Checkbox
+                    {...label}
+                    icon={<BookmarkBorderIcon />}
+                    checkedIcon={<BookmarkIcon />}
+                />
             </Box>
-            <Box className={classes.Host} marginTop="16px" padding="5px">
+            <Box className={classes.Host} marginTop="20px" padding="5px">
                 {
                     tip &&
                     <span>Your Host Says:</span>

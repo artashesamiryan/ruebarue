@@ -8,11 +8,13 @@ import AreaPin from '../../assets/icons/day_1.png';
 import Ride from '../../assets/icons/ride.svg';
 import More from '../../assets/icons/more.svg';
 import { makeStyles } from '@mui/styles';
-// import { useHistory } from "react-router-dom";
-import { Rating, Typography } from "@mui/material";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import { Checkbox, Rating, Typography } from "@mui/material";
 import Distance from "../Distance";
 import Modal from "../../UI/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { bookmarksSlice } from '../../Redux/features/Bookmark/bookmarkSlice';
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
     address: {
@@ -27,10 +29,10 @@ const useStyles = makeStyles({
         },
         "& p": {
             colore: "#333333",
-            lineHeight: '14px',
+            // lineHeight: '12px',
             fontSize: '14px',
-            letterSpacing: "1px",
-            paddingTop: '20px'
+            // letterSpacing: "1px",
+            paddingTop: '5px'
 
         },
     },
@@ -110,137 +112,166 @@ interface IResturanCardProps {
     id: number;
     price: number;
     name: string;
-    location: string,
-    google: IRecommendationsGoogle;
+    location?: string,
+    google: IRecommendationsGoogle | any;
     number?: number,
     tip?: string;
     lat?: any;
     lng?: any;
     areas: any;
-}
+    tags?: string[];
+};
 
-const AreaCard = ({ id, price, name, location, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
+// const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+function AreaCard({ id, price, name, location, tags, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) {
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [less, setLess] = useState(true)
+    const [less, setLess] = useState(true);
+    const dispatch = useDispatch();
 
+
+
+    useEffect(() => {
+
+
+    }, [])
 
     const onCardClick = () => {
-        setOpen(true)
+        setOpen(true);
+    };
+    const { setBookmarksId } = bookmarksSlice.actions;
+
+    const onBook = (e: any) => {
+
+        dispatch(setBookmarksId([id]));
     }
 
 
+
     return (
-        <Box
-            width="95%"
-            margin="0 0 10px 0"
-            minHeight="200px"
-            sx={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '5px',
-                padding: "10px",
-
-            }}>
-
+        <>
             <Modal
                 open={open}
+                query={id}
                 setOpen={() => setOpen(!open)}
-                areas={areas} query={id}
+                areas={areas}
             />
+            {google &&
+                <Box
+                    width="95%"
+                    margin="0 0 10px 0"
+                    minHeight="200px"
+                    sx={{
+                        backgroundColor: '#FFFFFF',
+                        borderRadius: '5px',
+                        padding: "10px",
+                    }}>
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        onClick={onCardClick}
+                        style={{ cursor: 'pointer' }}>
+                        <Box>
+                            <div>
+                                <div className={classes.AreaNumber}>
+                                    <img src={AreaPin} alt="" />
+                                    <span>{++number}</span>
+                                </div>
 
-
-            <Box
-                display="flex"
-                justifyContent="space-between"
-                // onClick={() => history.push(`/area/${id}`)} 
-                onClick={onCardClick}
-                style={{ cursor: 'pointer' }}>
-                <Box>
-                    <div >
-                        {
-                            // number &&
-                            <div className={classes.AreaNumber}>
-                                <img src={AreaPin} alt="" />
-                                <span>{++number}</span>
+                                <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
+                                <div>
+                                    <img src={GoogleIcon} alt="" />
+                                    <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
+                                </div>
                             </div>
-                        }
+                        </Box>
 
-                        <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
-                        <div>
-                            <img src={GoogleIcon} alt="" />
-                            <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
+                        <div style={{ display: 'flex', flexDirection: 'column' }} className={classes.address}>
+                            <span style={{ fontSize: '18px' }}>{name}</span>
+                            <p style={{ fontSize: '14px' }}>{google.formatted_address}</p>
+                            {price !== 0 ? <p>{price} $$</p> : ""}
+                            {tags && tags.length > 0 &&
+                                <p>
+                                    {tags.join(' ')}
+                                </p>}
+                            <p></p>
+
                         </div>
-                    </div>
-                </Box>
-
-                <div style={{ display: 'flex', flexDirection: 'column' }} className={classes.address}>
-                    <span style={{ fontSize: '18px' }}>{name}</span>
-                    <p>{location}</p>
-                    <p>{price !== 0 ? price : "--"} $$</p>
-                </div>
-                <Box>
-                    <Distance lat2={lat} lng2={lng} />
-                </Box>
-            </Box>
-
-            <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-
-                sx={{
-                    backgroundColor: '#E9F0F6',
-                    mixBlendMode: 'normal',
-                    borderRadius: '2px',
-                }}>
-                <div className={classes.actions}>
-                    <a href={google.website} target="_blank" rel="noreferrer">
-                        <img src={Network} alt="" />
-                    </a>
-                    <a href={`tel:${google.formatted_phone_number}`} >
-                        <img src={Phone} alt="" />
-                    </a>
-                    <a href={`https://www.google.com/maps/search/${google.name} ${google.formatted_address}/ ${google.geometry.location.lat},${google.geometry.location.lng}`} rel="noreferrer" target="_blank">
-                        <img src={LOCATION} alt="" />
-                    </a>
-                    <a href="/">
-                        <img src={Ride} alt="" />
-                    </a>
-                    <a href="/">
-                        <img src={More} alt="" />
-                    </a>
-                </div>
-
-                <BookmarkIcon sx={{ color: '#666666' }} />
-            </Box>
-            <Box className={classes.Host} marginTop="16px" padding="5px">
-                {
-                    tip &&
-
-                    <Box >
-                        <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
-                        {
-                            less ?
-                                <Typography color="#333333" fontSize="14px">
-                                    {tip.slice(0, 100)}
-                                    <span>...</span>
-                                </Typography >
-                                :
-
-                                <Typography color="#333333" fontSize="14px">
-
-                                    {tip}
-                                </Typography>
-                        }
-
-                        <button className={classes.ReadMore} onClick={() => setLess(!less)}>Read More</button>
+                        <Box>
+                            <Distance lat2={lat} lng2={lng} />
+                        </Box>
                     </Box>
-                }
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
 
-            </Box>
-        </Box >
-    )
-};
+                        sx={{
+                            backgroundColor: '#E9F0F6',
+                            mixBlendMode: 'normal',
+                            borderRadius: '2px',
+                        }}>
+                        <div className={classes.actions}>
+                            <a href={google.website} target="_blank" rel="noreferrer">
+                                <img src={Network} alt="" />
+                            </a>
+                            <a href={`tel:${google.formatted_phone_number}`}>
+                                <img src={Phone} alt="" />
+                            </a>
+                            <a href={`https://www.google.com/maps/search/${google.name} ${google.formatted_address}/ ${google.geometry.location.lat},${google.geometry.location.lng}`} rel="noreferrer" target="_blank">
+                                <img src={LOCATION} alt="" />
+                            </a>
+                            <a href="/">
+                                <img src={Ride} alt="" />
+                            </a>
+                            <a href="/">
+                                <img src={More} alt="" />
+                            </a>
+                        </div>
+
+                        <Checkbox
+                            // {...label}
+                            icon={<BookmarkBorderIcon />}
+                            checkedIcon={<BookmarkIcon />}
+                            name={String(id)}
+                            onChange={onBook}
+                        />
+                    </Box>
+                    <Box className={classes.Host} marginTop="16px" padding="5px">
+                        {tip &&
+
+                            <Box>
+                                <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
+                                {tip.length > 300 && less ?
+                                    <Typography color="#333333" fontSize="14px">
+                                        {tip.slice(0, 100)}
+                                        <span>...</span>
+                                    </Typography>
+                                    :
+
+                                    <Typography color="#333333" fontSize="14px">
+
+                                        {tip}
+                                    </Typography>}
+
+                                {
+                                    tip.length > 300 && <button className={classes.ReadMore} onClick={() => setLess(!less)}>
+                                        Read
+                                        {
+                                            less ? " more" : " less"
+                                        }
+                                        {/* More */}
+                                    </button>
+                                }
+                            </Box>}
+
+                    </Box>
+                </Box>
+            }
+        </>
+    );
+}
 
 export default AreaCard;

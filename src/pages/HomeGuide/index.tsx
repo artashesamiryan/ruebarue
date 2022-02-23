@@ -13,7 +13,7 @@ import api from "../../api";
 const useStyles = makeStyles({
     Options: {
         "& div": {
-            width: '98%',
+            width: '100%',
             background: "#FFFFFF",
             borderRadius: "5px",
             display: 'flex',
@@ -42,9 +42,17 @@ const HomeGuide = () => {
     const [tabs, setTabs]: any = useState([]);
     const [contents, setContents]: any = useState([]);
     const [orders, setOrders] = useState<number[]>([]);
-    const width = useWindowSize()
+    const width = useWindowSize();
     useEffect(() => {
         getTabs();
+
+        window.addEventListener("click", (e: any) => {
+            if (e.target.innerText === "HOME GUIDE") {
+                setContentVisible(false)
+            }
+        })
+
+
     }, [])
 
     const click = (e: any) => {
@@ -53,7 +61,7 @@ const HomeGuide = () => {
         setContentVisible(!contentVisible);
         let filterbyType = contents.filter((item: any) => item.type === name);
         setOrders(filterbyType[0].order)
-        setBackLabel(back)
+        setBackLabel(back);
     };
 
     const getTabs = async () => {
@@ -63,22 +71,26 @@ const HomeGuide = () => {
         const filteredArr = Object.values(valueArr.reduce((acc: any, cur: any) => Object.assign(acc, { [cur.type]: cur }), {}));
         setContents(filteredArr);
         setTabs(TABS);
+
     }
 
 
 
     return (
-        <Box display="flex">
+        <Box
+            display="flex"
+            justifyContent="space-between"
+        >
 
             {
                 !contentVisible ?
-                    <Box className={classes.Options} sx={{ width: '595px' }}>
+                    <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "49%" }}>
                         {
                             tabs.map((item: any, index: number) => {
                                 return (
                                     <div
                                         style={{ fontSize: '16px' }}
-                                        key={index}
+                                        key={item.label}
                                         onClick={click}
                                         data-label={item.label}
                                         data-name={item.type}>
@@ -112,8 +124,8 @@ const HomeGuide = () => {
 
             {
                 width > 750 &&
-                <div style={{ position: "relative", width: "595px" }}>
-                    <SimpleMap zoom={11} home={true} w="595px" />
+                <div style={{ position: "relative", width: "49%", height: '100vh' }}>
+                    <SimpleMap zoom={11} home={true} w="566px" />
                 </div>
             }
         </Box>

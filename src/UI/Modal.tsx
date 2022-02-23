@@ -1,4 +1,4 @@
-import { Container, Dialog, IconButton, Rating, Slide, Toolbar, Typography } from "@mui/material";
+import { Checkbox, Container, Dialog, IconButton, Rating, Slide, Toolbar, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import { TransitionProps } from '@mui/material/transitions';
@@ -13,6 +13,7 @@ import Ride from '../assets/icons/ride.svg';
 import More from '../assets/icons/more.svg';
 import useWindowSize from "../hooks/UseWindowSize";
 import SimpleMap from "../components/SimpleMap/SimpleMap";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -92,11 +93,12 @@ interface IModalProps {
 
 }
 
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
     const classes = useStyles();
     const width = useWindowSize();
-    // const { query }: any = useParams();
+
 
     const [details, setDetails]: any = useState({});
     const [openingHours, setOpeningHours]: any = useState([]);
@@ -223,7 +225,12 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
                                     </a>
                                 </div>
 
-                                <BookmarkIcon sx={{ color: '#666666' }} />
+                                <Checkbox
+                                    {...label}
+                                    icon={<BookmarkBorderIcon />}
+                                    checkedIcon={<BookmarkIcon />}
+                                />
+
                             </Box>
                             {
                                 tip &&
@@ -272,11 +279,11 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
                                 <Typography color="#333333" fontWeight="bolder" variant="h6">Reviews</Typography>
                                 <div style={{ display: "flex", alignItems: "center" }}>
                                     <img src={GoogleIcon} alt="" />
-                                    <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={googleRating} readOnly />
+                                    {/* <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={googleRating} readOnly /> */}
                                 </div>
 
                                 {
-                                    reviews.map((item: any, index: number) => {
+                                    reviews && reviews.map((item: any, index: number) => {
                                         return (
                                             <ReviweItem key={index} name={item.author_name} message={item.text} date={item.date} rating={item.rating} />
                                         )

@@ -14,7 +14,7 @@ import api from "../../api";
 const useStyles = makeStyles({
     Options: {
         "& div": {
-            width: '98%',
+            width: '100%',
             background: "#FFFFFF",
             borderRadius: "5px",
             display: 'flex',
@@ -39,9 +39,17 @@ const AreaGuide = () => {
 
     const classes = useStyles();
     const [loading, setLoading] = useState(false);
-    const [filteredAreas, setFilteredAreas] = useState([]);
+    const [filteredAreas, setFilteredAreas]: any = useState([]);
     const width = useWindowSize();
     const history = useHistory();
+
+
+
+
+    useEffect(() => {
+        getPlace()
+    }, []);
+
 
 
     const click = (e: any) => {
@@ -49,25 +57,17 @@ const AreaGuide = () => {
         const label = e.target.getAttribute('data-label');
         history.push(`/${label}`)
     };
-    useEffect(() => {
-        getPlace()
-    }, [])
 
     const getPlace = async () => {
 
         try {
             setLoading(true)
             const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-            const data = res.data.destination.recommendations;
-            const filteredArr = data.reduce((acc: any, current: any) => {
-                const x = acc.find((item: any) => item.tab_id === current.tab_id);
-                if (!x) {
-                    return acc.concat([current]);
-                } else {
-                    return acc;
-                }
-            }, []);
-            setFilteredAreas(filteredArr);
+            // const data = res.data.destination.recommendations;
+            const d = await res.data.account.preferences.tabs;
+
+
+            setFilteredAreas(d);
             setLoading(false)
         } catch (error) {
             console.log(error)
@@ -76,12 +76,12 @@ const AreaGuide = () => {
 
 
     return (
-        <Box display={'flex'} width="100%" >
+        <Box display={'flex'} justifyContent="space-between">
 
             {
                 loading && <Spinner />
             }
-            <Box className={classes.Options} sx={{ width: '595px' }}>
+            <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "49%" }}>
 
                 {
                     filteredAreas.map((item: any, index: number) => {
@@ -91,10 +91,10 @@ const AreaGuide = () => {
                                 style={{ textTransform: 'capitalize', }}
                                 key={index}
                                 onClick={click}
-                                data-label={item.tab_id}
+                                data-label={item.type}
                                 data-name={item.label}
                             >
-                                {item.tab_id}
+                                {item.label}
                                 <ArrowForwardIosIcon fontSize="small" sx={{ padding: "none" }} /></div>
                         )
                     })
@@ -103,8 +103,8 @@ const AreaGuide = () => {
 
             {
                 width > 750 &&
-                <div style={{ position: "relative" }}>
-                    <SimpleMap zoom={11} home={false} />
+                <div style={{ position: "relative", width: "49%", height: '100vh' }}>
+                    <SimpleMap zoom={11} home={true} w="566px" h="100vh" />
                 </div>
             }
         </Box>

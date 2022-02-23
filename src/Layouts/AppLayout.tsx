@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Container } from "@mui/material";
 import React, { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
@@ -21,8 +22,6 @@ const AppLayout: FC = () => {
             <Header />
             <LabTabs />
             <AppRouter />
-
-            {/* {children} */}
         </Container>
     );
 };
