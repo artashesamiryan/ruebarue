@@ -9,13 +9,13 @@ import Spinner from "../../components/Spinner/Spinner";
 import AreaCard from "../../components/AreaCard/AreaCard";
 import MobileAreaCard from "../../components/AreaCard/MobileAreaCard";
 import SimpleMap from "../SimpleMap/SimpleMap";
-import api from '../../api';
 import { useAppSelector } from "../../Redux/hooks";
 
 
 const Areas = () => {
     const width = useWindowSize();
     const history = useHistory()
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
     const [areas, setAreas]: any = useState([]);
     const [loading, setloading] = useState(false);
     const { id }: any = useParams();
@@ -29,11 +29,24 @@ const Areas = () => {
     const getPlace = async () => {
         try {
             setloading(true)
-            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-            const data = content?.destination?.recommendations;
-            console.log(data, "ssss");
 
-            const filteredData = data.filter((item: any) => item.tab_id === id);
+            let data: any = [];
+            if (location === "guide") {
+                data = content?.recommendations
+            } else if (location === "guestbook") {
+                data = content?.rental?.destination?.recommendations
+            } else {
+                data = content?.destination?.recommendations
+            }
+
+            // const data = location === "guide" ? content?.recommendations
+            //     :
+            //     location === "guestbook" ? content?.rental?.destination?.recommendations :
+            //         content?.destination?.recommendations
+
+            console.log(data);
+
+            const filteredData = data?.filter((item: any) => item.tab_id === id);
 
             setAreas(filteredData)
             setloading(false)

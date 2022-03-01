@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Img from '../../assets/custom/Bitmap 7.png';
 
@@ -11,6 +10,7 @@ import SimpleMap from "../../components/SimpleMap/SimpleMap";
 import { useDispatch } from "react-redux";
 import { pathSlice } from '../../Redux/features/PathType/pathTypeSlice';
 import { useHistory } from "react-router-dom";
+import { useAppSelector } from "../../Redux/hooks";
 
 const useStyles = makeStyles({
     Left: {
@@ -85,9 +85,8 @@ const YourReservation = () => {
     const { setPathtype } = pathSlice.actions;
     const dispatch = useDispatch();
     const history = useHistory();
-
-
-
+    const { content } = useAppSelector(state => state.content);
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
     return (
         <Box
             display="flex"
@@ -99,35 +98,45 @@ const YourReservation = () => {
                 <div style={{ position: 'relative' }}>
                     <img src={Img} alt="" />
                     <div style={{ position: 'absolute', bottom: '15px', zIndex: 1, padding: " 0 15px" }}>
-                        <Typography color={'white'} variant="body1">
-                            7 Nights
-                        </Typography>
+                        {
+                            location === "rental" ?
+                                ""
+                                :
+                                <Typography color={'white'} variant="body1">
+                                    7 Nights
+                                </Typography>
+
+                        }
                         <Typography color={'white'} sx={{ fontWeight: 'bold', lineHeight: '25px', fontSize: '18px' }}>
-                            91 North Lakeshore Drive Guestbook
+                            {content.name}
                         </Typography>
                         <Typography color={'white'}>
-                            San Diego, CA
+                            {content.address}
                         </Typography>
                     </div>
                     <div className={classes.ImgRibbon}></div>
                 </div>
-                <Box display="flex" justifyContent="space-between" className={classes.Checks}>
-                    <div style={{ borderLeft: "2px solid #21305B", borderRadius: '2px 5px 5px 2px' }}>
-                        <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666">Check In</Typography>
-                        <Typography fontSize={width < 700 ? "1.8vh" : "18px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
-                        <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666" >4:00 PM</Typography>
-                    </div>
-                    <div style={{ borderRight: "2px solid #21305B", borderRadius: '5px 2px 2px 5px' }}>
-                        <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666">Check Out</Typography>
-                        <Typography fontSize={width < 700 ? "1.8vh" : "18px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
-                        <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666" >10:00 AM</Typography>
-                    </div>
+                {location === "rental" ? ""
+                    :
+                    <>
+                        <Box display="flex" justifyContent="space-between" className={classes.Checks}>
+                            <div style={{ borderLeft: "2px solid #21305B", borderRadius: '2px 5px 5px 2px' }}>
+                                <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666">Check In</Typography>
+                                <Typography fontSize={width < 700 ? "1.8vh" : "18px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
+                                <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666" >4:00 PM</Typography>
+                            </div>
+                            <div style={{ borderRight: "2px solid #21305B", borderRadius: '5px 2px 2px 5px' }}>
+                                <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666">Check Out</Typography>
+                                <Typography fontSize={width < 700 ? "1.8vh" : "18px"} lineHeight={"30px"} variant="h6" sx={{ fontWeight: 'bold' }}>Sat, Dec 11, 2021</Typography>
+                                <Typography fontSize={width < 700 ? "1.5vh" : "15px"} lineHeight={"20px"} color="#666666" >10:00 AM</Typography>
+                            </div>
 
 
-                </Box>
-                <Box display="flex" justifyContent="center" padding="10px 0">
-                    <button className={classes.CheckIn} onClick={() => dispatch(setPathtype(`llllll`))}>Check In</button>
-                </Box>
+                        </Box>
+                        <Box display="flex" justifyContent="center" padding="10px 0">
+                            <button className={classes.CheckIn} onClick={() => dispatch(setPathtype(`llllll`))}>Check In</button>
+                        </Box>
+                    </>}
 
                 <Box className={classes.Options}>
                     <div>Address and Access <ArrowForwardIosIcon fontSize="small" /></div>

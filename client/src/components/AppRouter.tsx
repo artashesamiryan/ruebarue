@@ -1,29 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import AreaGuide from "../pages/AreaGuide";
 import HomeGuide from "../pages/HomeGuide";
 import Content from "../pages/HomeGuide/Content";
 import YourReservation from "../pages/YourReservation/YourReservation";
 import { contentSlice } from "../Redux/features/Content/contentSlice";
-import { useAppDispatch, useAppSelector } from "../Redux/hooks";
+import { useAppDispatch } from "../Redux/hooks";
 import Areas from "./Areas/Areas";
 import Spinner from "./Spinner/Spinner";
 const AppRouter = () => {
 
-    const { pathId, pathName } = useAppSelector(state => state.jsonType);
-    const { content } = useAppSelector(state => state.content);
     const { getContent } = contentSlice.actions
     const dispatch = useAppDispatch();
-    const [data, setData]: any = useState({});
     let typeName = window.location.pathname.split("/").filter((item: any) => item);
     let typeId = window.location.pathname.split("/").filter((item: any) => item);
     const [loading, setLoading] = useState(false)
-
-
+    const history = useHistory();
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
     useEffect(() => {
+        location === "guide" && history.push("/area-guide")
         getData();
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
@@ -36,25 +34,15 @@ const AppRouter = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         });
-
         const body = await res.data;
-        console.log(res.data);
         dispatch(getContent(body))
 
-        setData(body)
         setLoading(false)
     };
 
-
     if (loading) {
-        return (
-            <Spinner />
-        )
+        return <Spinner />
     }
-
-
-    console.log(content, "*********")
-
     return (
         <Switch>
             <Route path={`/`} component={YourReservation} exact />

@@ -7,25 +7,45 @@ import { useHistory } from "react-router-dom";
 export default function LabTabs() {
     const [value, setValue] = useState('one');
     const history = useHistory();
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
+    console.log(location);
 
     const handleChange = (event: React.SyntheticEvent, value: string) => {
         setValue(value);
     };
 
-
-
     return (
-        <Tabs
-            value={value}
-            onChange={handleChange}
-            textColor="primary"
-            indicatorColor="primary"
-            aria-label="secondary tabs example"
-            sx={{ borderBottom: '1px solid #CCCCCC', marginBottom: '10px' }}
-        >
-            <Tab value="one" label="YOUR RESERVATION" onClick={() => history.push('/your-reservation')} />
-            <Tab value="two" label="HOME GUIDE" onClick={() => history.push('/home-guide')} />
-            <Tab value="three" label="AREA GUIDE" onClick={() => history.push('/area-guide')} />
-        </Tabs>
+        <>
+
+            {
+                location === "guide" ?
+                    <Tabs
+                        value={"three"}
+                        onChange={handleChange}
+                        textColor="primary"
+                        indicatorColor="primary"
+                        aria-label="secondary tabs example"
+                        sx={{ borderBottom: '1px solid #CCCCCC', marginBottom: '10px' }}
+                    >
+
+                        <Tab value="three" label="AREA GUIDE" onClick={() => history.push('/area-guide')} />
+                    </Tabs>
+                    :
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        textColor="primary"
+                        indicatorColor="primary"
+                        aria-label="secondary tabs example"
+                        sx={{ borderBottom: '1px solid #CCCCCC', marginBottom: '10px' }}
+                    >
+
+                        <Tab value="one" label="YOUR RESERVATION" onClick={() => history.push('/your-reservation')} />
+                        <Tab value="two" label="HOME GUIDE" onClick={() => history.push('/home-guide')} />
+                        <Tab value="three" label="AREA GUIDE" onClick={() => history.push('/area-guide')} />
+                    </Tabs>
+
+            }
+        </>
     );
 }

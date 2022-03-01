@@ -826,25 +826,17 @@
                     "attachments": null,
                     "tags": [
                         {
-                            "id": 4653,
-                            "account_id": 5991692415008768,
-                            "name": "Keystone",
-                            "type": "welcome_item",
-                            "count": 0,
-                            "created_at": "0001-01-01T00:00:00Z"
-                        },
-                        {
-                            "id": 14,
-                            "account_id": 5991692415008768,
-                            "name": "Beach",
-                            "type": "welcome_item",
-                            "count": 0,
-                            "created_at": "0001-01-01T00:00:00Z"
-                        },
-                        {
                             "id": 5535,
                             "account_id": 5991692415008768,
                             "name": "Flood-Prone",
+                            "type": "welcome_item",
+                            "count": 0,
+                            "created_at": "0001-01-01T00:00:00Z"
+                        },
+                        {
+                            "id": 7,
+                            "account_id": 5991692415008768,
+                            "name": "Beacon Hill Condo",
                             "type": "welcome_item",
                             "count": 0,
                             "created_at": "0001-01-01T00:00:00Z"
@@ -858,9 +850,17 @@
                             "created_at": "0001-01-01T00:00:00Z"
                         },
                         {
-                            "id": 7,
+                            "id": 4653,
                             "account_id": 5991692415008768,
-                            "name": "Beacon Hill Condo",
+                            "name": "Keystone",
+                            "type": "welcome_item",
+                            "count": 0,
+                            "created_at": "0001-01-01T00:00:00Z"
+                        },
+                        {
+                            "id": 14,
+                            "account_id": 5991692415008768,
+                            "name": "Beach",
                             "type": "welcome_item",
                             "count": 0,
                             "created_at": "0001-01-01T00:00:00Z"

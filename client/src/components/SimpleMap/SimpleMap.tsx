@@ -4,8 +4,6 @@ import HomePin from '../../assets/icons/day_home.png';
 import AreaPin from '../../assets/icons/day_1.png';
 
 const AnyReactComponent = ({ text, num = 1, home }: any) => {
-
-
     return (
         <>
             {
@@ -18,15 +16,12 @@ const AnyReactComponent = ({ text, num = 1, home }: any) => {
                     </div>
             }
         </>
-
     )
 };
-
 interface ILatLng {
     lat: any;
     lng: any;
 }
-
 interface SompleMapProps {
     center?: ILatLng;
     w?: string;
@@ -36,14 +31,8 @@ interface SompleMapProps {
     home?: boolean,
     link?: string;
 }
-
 const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }, zoom = 11, w = "566px", h = "600px", locations }: SompleMapProps) => {
-
     const [fixed, setFixed]: any = useState(false);
-
-
-
-
     useEffect(() => {
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 250) {
@@ -71,7 +60,6 @@ const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }
                 defaultCenter={center}
                 defaultZoom={zoom}
             >
-
                 {
                     home &&
                     <AnyReactComponent
@@ -81,17 +69,10 @@ const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }
                         home={home}
                     />
                 }
-
-
                 {
-
                     locations &&
-
                     locations.map((item: any, index: number) => {
-
-
                         return (
-
                             <AnyReactComponent
                                 key={item.lat}
                                 lat={item.lat}

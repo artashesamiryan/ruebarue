@@ -6,7 +6,6 @@ interface IDistanceProps {
     lat2: any;
     lng2: any;
 }
-
 const Distance = ({ lat2, lng2 }: IDistanceProps) => {
     const [center, setCenter] = useState({
         lat: 32.7865986,
@@ -14,8 +13,6 @@ const Distance = ({ lat2, lng2 }: IDistanceProps) => {
     });
     const [km, setKm] = useState('');
     const { content } = useAppSelector(state => state.content);
-
-
 
     const degrees_to_radians = (degrees: any) => {
         var pi = Math.PI;
@@ -28,15 +25,8 @@ const Distance = ({ lat2, lng2 }: IDistanceProps) => {
     }, []);
 
     const getCenter = async () => {
-
-        console.log(content.lat, "-");
-        console.log(content.lng, "+");
-
-
         try {
-
             setCenter((prev: any) => {
-
                 return {
                     ...prev,
                     center: {
@@ -47,25 +37,19 @@ const Distance = ({ lat2, lng2 }: IDistanceProps) => {
             })
         } catch (error) {
             console.log(error);
-
         }
     }
 
-
     const calc = () => {
-
         const R = 6371;
         let dLat = degrees_to_radians(lat2 - center.lat);
         let dLng = degrees_to_radians(lng2 - center.lng);
-
         let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(degrees_to_radians(center.lat)) * Math.cos(degrees_to_radians(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
         let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         let d = R * c;
         let m = d * 0.621371;
         let fixed = m.toFixed(1).toString()
-
         setKm(fixed)
-
     }
 
     return (

@@ -1,1 +1,1 @@
-use {npm run dev} in this direction
+use {npm run dev} in this directory

@@ -26,19 +26,6 @@ export const pathSlice = createSlice({
     }
 });
 
-
-// export const fetchContent = (): AppThunk => {
-//     return async (dispatch: any) => {
-//         try {
-//             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/${typeName[0]}/${typeId[1]}`);
-//             dispatch(fetchContent());
-//         } catch (error: any) {
-//             console.log(error);
-
-//         }
-//     };
-// };
-
 export const a = pathSlice.reducer;
 
 export default pathSlice.reducer;

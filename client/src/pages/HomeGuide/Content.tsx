@@ -7,12 +7,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useEffect, useState } from "react";
 import Spinner from "../../components/Spinner/Spinner";
 import { makeStyles } from '@mui/styles';
-import api from "../../api";
-// import { useAppSelector } from "../../Redux/hooks";
 import { Box } from "@mui/system";
 import { useAppSelector } from "../../Redux/hooks";
 import { getYoutubeFrameLink } from "../../utils";
-
 
 const useStyles = makeStyles({
     Accordion: {
@@ -20,31 +17,25 @@ const useStyles = makeStyles({
         border: 'none',
         boxShadow: 'none',
         backgroundColor: 'none',
-
         "&::before": {
             backgroundColor: 'unset'
         }
     }
 });
 
-
 interface IContentProps {
     orders: number[];
-}
-
-
+};
 const Content = ({ orders }: IContentProps) => {
-
-
 
     const [items, setItems]: any = useState([]);
     const [loading, setLoading]: any = useState(false);
     const [expanded, setExpanded] = useState<number | false>(0);
     const classes = useStyles();
     const { content } = useAppSelector(state => state.content);
-
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
     useEffect(() => {
-        getContent()
+        getContent();
     }, []);
     const handleChange =
         (panel: number, tit: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -52,44 +43,40 @@ const Content = ({ orders }: IContentProps) => {
         };
 
 
-    const getContent = async () => {
+    const getContent = () => {
         try {
             setLoading(true)
-            const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-            const body = content.welcome_guide;
+            const body = location === "guestbook" ? content?.rental?.account?.welcome_guide : content?.account?.welcome_guide;
+            const initialTabs = location === "guestbook" ? content?.rental?.welcome_guide : content?.welcome_guide;
+            const allSubTabs = initialTabs.concat(body);
+            console.log(body);
 
-            console.log(body, "??????");
-
-
-            const x = body.filter((item: any, index: number) => {
-                console.log(item, "items");
-
-                return orders.includes(item.parent_id)
+            const x = allSubTabs?.filter((item: any, index: number) => {
+                return orders.includes(item.parent_id) || orders.includes(item.id) as any;
             });
-            console.log(x, "XXXXXXXS");
 
-            setItems(x);
+            const clearEmptys = x.filter((item: any) => item.body !== "");
+            let pp = clearEmptys.filter((ele: any, ind: number) => ind === clearEmptys.findIndex((elem: any) => elem.title === ele.title))
+
+            setItems(pp);
             setLoading(false)
         } catch (error) {
             console.log(error)
         }
     };
 
+
+
     return (
         <div style={{ width: '566px' }}>
-
-            {
-                loading && <Spinner />
-            }
-
+            {loading && <Spinner />}
             {
                 items.map((item: any, index: number) => {
 
-                    console.log(item.body)
 
                     return (
                         <div key={index}>
-                            {(item.body !== "" || item.attachments !== null) &&
+                            {
                                 <Accordion
                                     defaultExpanded={false}
                                     expanded={expanded === index}
@@ -116,42 +103,43 @@ const Content = ({ orders }: IContentProps) => {
                                     </AccordionSummary>
                                     <AccordionDetails >
                                         <Typography
-                                        // fontStyle="normal"
-                                        // fontSize="16px"
-                                        // variant="body1"
-                                        // lineHeight="16px"
-                                        // color="#333333"
-                                        // sx={{
-                                        //     mixBlendMode: 'normal',
-                                        //     opacity: 0.9
-                                        // }}
+                                            fontStyle="normal"
+                                            fontSize="16px"
+                                            variant="body1"
+                                            lineHeight="16px"
+                                            color="#333333"
+                                            sx={{
+                                                mixBlendMode: 'normal',
+                                                opacity: 0.9
+                                            }}
                                         >
 
                                             {String(item.body)}
                                         </Typography>
+                                        <Box>
+                                            {
+                                                item?.attachments?.map((item: any, index: number) => {
 
-                                        {item.attachments &&
-                                            <Box>
-                                                {
-                                                    item.attachments[0].url.includes("youtube") ?
+                                                    const a = item.url.includes("youtube") ?
                                                         <iframe
-                                                            src={getYoutubeFrameLink(item.attachments[0].url) as string}
+                                                            key={index}
+                                                            src={getYoutubeFrameLink(item.url) as string}
                                                             title="asdasd"
                                                             width={"350px"}
                                                             height={"300px"}></iframe> :
-                                                        <img src={item.attachments[0].url} alt="" width="300px" />
-                                                }
-                                                {/* <img src={item.attachments[0].url} alt="" width="300px" /> */}
-                                            </Box>
-                                        }
+                                                        <img src={item.url} key={item.url} alt="" width="300px" />
 
+                                                    return a
+                                                })
+                                            }
+
+                                        </Box>
                                     </AccordionDetails>
                                 </Accordion>}
                         </div>
                     )
                 })
             }
-
         </div >
     );
 };

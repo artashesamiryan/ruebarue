@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box } from "@mui/system"
 import { makeStyles } from '@mui/styles';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -5,13 +6,10 @@ import { useEffect, useState } from "react";
 import Content from "./Content";
 import { Typography } from "@mui/material";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
 import useWindowSize from "../../hooks/UseWindowSize";
 import SimpleMap from "../../components/SimpleMap/SimpleMap";
-import api from "../../api";
-import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useAppSelector } from "../../Redux/hooks";
+import { homeGuideTabs } from '../../Sort-models/home-guide-tabs';
 
 const useStyles = makeStyles({
     Options: {
@@ -47,8 +45,7 @@ const HomeGuide = () => {
     const [orders, setOrders] = useState<number[]>([]);
     const width = useWindowSize();
     const { content } = useAppSelector(state => state.content);
-
-    const location: any = useLocation();
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
 
     useEffect(() => {
         getTabs();
@@ -58,9 +55,6 @@ const HomeGuide = () => {
                 setContentVisible(false)
             }
         })
-
-        console.log(content, "><><><><><><><><>");
-
     }, [])
 
     const click = (e: any) => {
@@ -68,19 +62,44 @@ const HomeGuide = () => {
         const back = e.target.getAttribute('data-label');
         setContentVisible(!contentVisible);
         let filterbyType = contents.filter((item: any) => item.type === name);
-
         setOrders(filterbyType[0].order)
         setBackLabel(back);
     };
 
-    const getTabs = async () => {
-        const response = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-        const TABS = response.data.account.preferences.welcome_tabs;
-        const valueArr = response.data.account.welcome_ordering;
-        const filteredArr = Object.values(valueArr.reduce((acc: any, cur: any) => Object.assign(acc, { [cur.type]: cur }), {}));
-        setContents(filteredArr);
-        setTabs(TABS);
+    const getTabs = () => {
 
+        if (location === "guestbook") {
+            setContents(content?.rental?.account?.preferences?.tabs)
+        } else {
+            const data = content?.account?.preferences?.tabs;
+            setContents(data);
+        }
+
+        const TABS = location === "guestbook" ? content?.rental?.account?.preferences?.welcome_tabs
+            :
+            content?.account?.preferences?.welcome_tabs
+        // const TABS = content?.account?.preferences?.welcome_tabs;
+
+        const valueArr = location === "guestbook" ? content?.rental?.account?.preferences?.welcome_tabs
+            :
+            content?.account?.welcome_ordering
+        // const valueArr = content?.account?.welcome_ordering;
+        setContents(valueArr);
+
+        const sorted: any = [];
+        // eslint-disable-next-line array-callback-return
+        Object.keys(homeGuideTabs).map((item: any, index) => {
+
+            // eslint-disable-next-line array-callback-return
+            TABS?.map((i: any, idx: number) => {
+                if (i.type !== item) {
+                    sorted.push(homeGuideTabs[item])
+                }
+            })
+        });
+
+        const a = [...new Set(sorted) as any]
+        setTabs(a);
     }
 
     return (
@@ -88,12 +107,11 @@ const HomeGuide = () => {
             display="flex"
             justifyContent="space-between"
         >
-
             {
                 !contentVisible ?
                     <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "49%" }}>
                         {
-                            tabs.map((item: any, index: number) => {
+                            tabs?.map((item: any, index: number) => {
                                 return (
                                     <div
                                         style={{ fontSize: '16px' }}
@@ -103,11 +121,9 @@ const HomeGuide = () => {
                                         data-name={item.type}>
                                         {item.label}
                                         <ArrowForwardIosIcon fontSize="small" /></div>
-
                                 )
                             })
                         }
-
                     </Box> :
                     <Box >
                         <Typography
@@ -127,11 +143,9 @@ const HomeGuide = () => {
                         </Typography>
                         <Content
                             orders={orders}
-                        // wifi={location.state ? location.state.detail : 'Arrival'} 
                         />
                     </Box>
             }
-
             {
                 width > 750 &&
                 <div style={{ position: "relative", width: "49%", height: '100vh' }}>

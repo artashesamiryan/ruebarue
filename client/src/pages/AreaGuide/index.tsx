@@ -7,10 +7,7 @@ import { useHistory } from "react-router-dom";
 import useWindowSize from "../../hooks/UseWindowSize";
 import Spinner from "../../components/Spinner/Spinner";
 import SimpleMap from "../../components/SimpleMap/SimpleMap";
-import api from "../../api";
 import { useAppSelector } from "../../Redux/hooks";
-
-
 
 const useStyles = makeStyles({
     Options: {
@@ -42,36 +39,30 @@ const AreaGuide = () => {
     const [loading, setLoading] = useState(false);
     const [filteredAreas, setFilteredAreas]: any = useState([]);
     const width = useWindowSize();
-    const history = useHistory();
     const { content } = useAppSelector(state => state.content);
-
-
-
-
+    const history = useHistory()
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
 
     useEffect(() => {
         getPlace()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
-
     const click = (e: any) => {
-
         const label = e.target.getAttribute('data-label');
         history.push(`/${label}`)
     };
-
     const getPlace = async () => {
-
         try {
-            setLoading(true)
-            // const res = await api.get(`${process.env.REACT_APP_BASE_URL}/rental.json`);
-            // const data = res.data.destination.recommendations;
-            const d = content.account.preferences.tabs;
-
-
-            setFilteredAreas(d);
+            setLoading(true);
+            if (location === "guestbook") {
+                setFilteredAreas(content?.rental?.account?.preferences?.tabs)
+            } else {
+                const data = content?.account?.preferences?.tabs;
+                setFilteredAreas(data);
+            }
             setLoading(false)
+
         } catch (error) {
             console.log(error)
         }
@@ -80,15 +71,12 @@ const AreaGuide = () => {
 
     return (
         <Box display={'flex'} justifyContent="space-between">
-
             {
                 loading && <Spinner />
             }
             <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "49%" }}>
-
                 {
                     filteredAreas.map((item: any, index: number) => {
-
                         return (
                             <div
                                 style={{ textTransform: 'capitalize', }}
@@ -103,7 +91,6 @@ const AreaGuide = () => {
                     })
                 }
             </Box>
-
             {
                 width > 750 &&
                 <div style={{ position: "relative", width: "49%", height: '100vh' }}>
