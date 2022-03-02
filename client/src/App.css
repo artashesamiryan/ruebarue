@@ -1,6 +1,5 @@
 .App{
     min-height: 100vh;
-    background-color: #F2F2F2;
 }
 .css-1aquho2-MuiTabs-indicator{
     background-color: aquamarine ;
@@ -35,14 +34,14 @@
   color: #333333 !important;
   font-weight: bold !important;
   line-height: 1.4 !important;
-  letter-spacing: 0.25px !important;
+  /* letter-spacing: 0.25px !important; */
   font-size: 18px !important;
 }
  .makeStyles-address-4 span, .css-1tgig32-MuiTypography-root, .makeStyles-Host-4 span, .css-1bov8gm-MuiTypography-root, .css-xp668h-MuiTypography-root {
     color: #333333 !important;
     font-weight: bold !important;
     line-height: 1.4 !important;
-    letter-spacing: 0.25px !important;
+    /* letter-spacing: 0.25px !important; */
     font-size: 16px !important;
 }
 .makeStyles-address-1 p, .makeStyles-address-4 p, .css-ahj2mt-MuiTypography-root, .makeStyles-Host-4 p, .makeStyles-Weeks-8 li, .css-1aijmbe-MuiTypography-root {
@@ -50,11 +49,15 @@
     font-size: 16px !important;
     line-height: 1.4 !important;
     padding-top: 5px !important;
-    letter-spacing: 0.25px !important;
+    /* letter-spacing: 0.25px !important; */
 }
 .css-15oc0sm {
     padding: 15px !important;
 }
 .makeStyles-Options-1 div {
     padding: 8px 12px !important;
+}
+
+.css-jpln7h-MuiTabs-scroller{
+  max-height: 40px;
 }

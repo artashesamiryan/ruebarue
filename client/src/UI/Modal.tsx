@@ -14,6 +14,7 @@ import More from '../assets/icons/more.svg';
 import useWindowSize from "../hooks/UseWindowSize";
 import SimpleMap from "../components/SimpleMap/SimpleMap";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import Spinner from "../components/Spinner/Spinner";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -143,9 +144,9 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
 
     };
 
-    if (loading) {
-        return <p>asdasdasd</p>
-    }
+    // if (loading) {
+    //     return <Spinner />
+    // }
 
 
 

@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { pathSlice } from '../../Redux/features/PathType/pathTypeSlice';
 import { useHistory } from "react-router-dom";
 import { useAppSelector } from "../../Redux/hooks";
+import { Helmet } from 'react-helmet'
+
 
 const useStyles = makeStyles({
     Left: {
@@ -93,8 +95,13 @@ const YourReservation = () => {
             width={'100%'}
             justifyContent="space-between"
         >
+            <>
+                <Helmet>
+                    <title>{content?.name}</title>
+                </Helmet>
+            </>
 
-            <div className={classes.Left} style={{ width: width < 750 ? "100%" : "49%" }}>
+            <div className={classes.Left} style={{ width: width < 750 ? "100%" : "59%" }}>
                 <div style={{ position: 'relative' }}>
                     <img src={Img} alt="" />
                     <div style={{ position: 'absolute', bottom: '15px', zIndex: 1, padding: " 0 15px" }}>
@@ -139,14 +146,19 @@ const YourReservation = () => {
                     </>}
 
                 <Box className={classes.Options}>
-                    <div>Address and Access <ArrowForwardIosIcon fontSize="small" /></div>
-                    <div onClick={() => history.push({
-                        pathname: '/home-guide',
-                        state: { detail: 'Wifi' }
-                    })}>WiFi <ArrowForwardIosIcon fontSize="small" /></div>
+                    <div style={{ boxShadow: "0 1px 12px rgb(0 0 0 / 8%)", border: "1px solid rgba(0,0,0,0.12)" }}>
+                        Address and Access <ArrowForwardIosIcon sx={{ fontSize: '16px', marginRight: '5px' }} />
+                    </div>
+                    <div
+                        style={{ boxShadow: "0 1px 12px rgb(0 0 0 / 8%)", border: "1px solid rgba(0,0,0,0.12)" }}
+                        onClick={() => history.push({
+                            pathname: '/home-guide',
+                            state: { detail: 'Wifi' }
+                        })}>WiFi <ArrowForwardIosIcon sx={{ fontSize: '16px', marginRight: '5px' }} /></div>
                     <br />
-                    <div>Book Again <ArrowForwardIosIcon fontSize="small" /></div>
-                    <div style={{ padding: '0' }}>
+                    <div style={{ boxShadow: "0 1px 12px rgb(0 0 0 / 8%)", border: "1px solid rgba(0,0,0,0.12)" }}>
+                        Book Again <ArrowForwardIosIcon sx={{ fontSize: '16px', marginRight: '5px' }} /></div>
+                    <div style={{ padding: '0', boxShadow: "0 1px 12px rgb(0 0 0 / 8%)", border: "1px solid rgba(0,0,0,0.12)" }}>
                         <a
                             href="https://www.carolinaretreats.com/"
                             target="_blank"
@@ -161,14 +173,14 @@ const YourReservation = () => {
                                 // border: "1px solid red"
                             }}>
 
-                            Visit Our Website <ArrowForwardIosIcon fontSize="small" />
+                            Visit Our Website <ArrowForwardIosIcon sx={{ fontSize: '16px', marginRight: '5px' }} />
                         </a>
                     </div>
                 </Box>
             </div>
             {
                 width > 750 &&
-                <div style={{ position: "relative", width: "49%", height: '100vh' }}>
+                <div style={{ position: "relative", width: "40%", height: '90vh' }}>
                     <SimpleMap zoom={11} home={true} w="566px" />
                 </div>
             }

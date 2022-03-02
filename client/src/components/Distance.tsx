@@ -56,7 +56,7 @@ const Distance = ({ lat2, lng2 }: IDistanceProps) => {
         <div style={{
             width: '50px',
             height: '30px',
-            background: 'rgba(65,119,148,1)',
+            background: content?.account?.preferences?.color_2,
             borderRadius: '3px',
             display: 'flex',
             justifyContent: 'center',

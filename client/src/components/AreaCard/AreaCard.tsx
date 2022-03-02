@@ -131,25 +131,13 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
     const [less, setLess] = useState(true);
     const dispatch = useDispatch();
 
-
-
-    useEffect(() => {
-
-
-    }, [])
-
     const onCardClick = () => {
         setOpen(true);
     };
     const { setBookmarksId } = bookmarksSlice.actions;
-
     const onBook = (e: any) => {
-
         dispatch(setBookmarksId([id]));
     }
-
-
-
     return (
         <>
             <Modal
@@ -180,7 +168,7 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                                     <span>{++number}</span>
                                 </div>
 
-                                <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
+                                <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="160px" height="90px" />
                                 <div>
                                     <img src={GoogleIcon} alt="" />
                                     <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />

@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import useWindowSize from "../../hooks/UseWindowSize";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import AreaCard from "../../components/AreaCard/AreaCard";
 import MobileAreaCard from "../../components/AreaCard/MobileAreaCard";
@@ -20,6 +20,10 @@ const Areas = () => {
     const [loading, setloading] = useState(false);
     const { id }: any = useParams();
     const { content } = useAppSelector(state => state.content);
+    const { state }: any = useLocation()
+
+
+    console.log(state);
 
 
     useEffect(() => {
@@ -44,7 +48,6 @@ const Areas = () => {
             //     location === "guestbook" ? content?.rental?.destination?.recommendations :
             //         content?.destination?.recommendations
 
-            console.log(data);
 
             const filteredData = data?.filter((item: any) => item.tab_id === id);
 
@@ -74,9 +77,10 @@ const Areas = () => {
                         color="#333333"
                         padding="10px 10px"
                         sx={{ cursor: 'pointer' }}
-                        onClick={() => history.goBack()}
+                        onClick={() => history.push('/area-guide')}
                     >
-                        <ArrowBackIosIcon fontSize="small" /> {id}
+                        <ArrowBackIosIcon fontSize="small" onClick={() => history.goBack()} />
+                        {state?.detail}
                     </Typography>
                 </Box>
 

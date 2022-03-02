@@ -67,23 +67,19 @@ const HomeGuide = () => {
     };
 
     const getTabs = () => {
-
         if (location === "guestbook") {
             setContents(content?.rental?.account?.preferences?.tabs)
         } else {
             const data = content?.account?.preferences?.tabs;
             setContents(data);
         }
-
         const TABS = location === "guestbook" ? content?.rental?.account?.preferences?.welcome_tabs
             :
             content?.account?.preferences?.welcome_tabs
-        // const TABS = content?.account?.preferences?.welcome_tabs;
 
         const valueArr = location === "guestbook" ? content?.rental?.account?.preferences?.welcome_tabs
             :
             content?.account?.welcome_ordering
-        // const valueArr = content?.account?.welcome_ordering;
         setContents(valueArr);
 
         const sorted: any = [];
@@ -109,18 +105,18 @@ const HomeGuide = () => {
         >
             {
                 !contentVisible ?
-                    <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "49%" }}>
+                    <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "59%" }}>
                         {
                             tabs?.map((item: any, index: number) => {
                                 return (
                                     <div
-                                        style={{ fontSize: '16px' }}
+                                        style={{ fontSize: '16px', boxShadow: "0 1px 12px rgb(0 0 0 / 8%)", border: "1px solid rgba(0,0,0,0.12)" }}
                                         key={item.label}
                                         onClick={click}
                                         data-label={item.label}
                                         data-name={item.type}>
                                         {item.label}
-                                        <ArrowForwardIosIcon fontSize="small" /></div>
+                                        <ArrowForwardIosIcon sx={{ fontSize: '16px', marginRight: '5px' }} /></div>
                                 )
                             })
                         }
@@ -148,7 +144,7 @@ const HomeGuide = () => {
             }
             {
                 width > 750 &&
-                <div style={{ position: "relative", width: "49%", height: '100vh' }}>
+                <div style={{ position: "relative", width: "40%", height: '90vh' }}>
                     <SimpleMap zoom={11} home={true} w="566px" />
                 </div>
             }

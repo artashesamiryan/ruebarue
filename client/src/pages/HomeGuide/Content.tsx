@@ -49,7 +49,6 @@ const Content = ({ orders }: IContentProps) => {
             const body = location === "guestbook" ? content?.rental?.account?.welcome_guide : content?.account?.welcome_guide;
             const initialTabs = location === "guestbook" ? content?.rental?.welcome_guide : content?.welcome_guide;
             const allSubTabs = initialTabs.concat(body);
-            console.log(body);
 
             const x = allSubTabs?.filter((item: any, index: number) => {
                 return orders.includes(item.parent_id) || orders.includes(item.id) as any;
@@ -98,7 +97,8 @@ const Content = ({ orders }: IContentProps) => {
                                             lineHeight="14px"
                                             color="#333333"
                                         ><i className={item.icon} style={{
-                                            fontFamily: 'guide-icons'
+                                            fontFamily: 'guide-icons',
+                                            color: content?.account?.preferences?.color_2,
                                         }}></i> &nbsp; {item.title}</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails >
@@ -125,7 +125,7 @@ const Content = ({ orders }: IContentProps) => {
                                                             key={index}
                                                             src={getYoutubeFrameLink(item.url) as string}
                                                             title="asdasd"
-                                                            width={"350px"}
+                                                            width={"100%"}
                                                             height={"300px"}></iframe> :
                                                         <img src={item.url} key={item.url} alt="" width="300px" />
 

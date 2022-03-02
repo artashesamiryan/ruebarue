@@ -22,6 +22,7 @@ const AppLayout: FC = () => {
         <Container maxWidth="lg" >
             <Header />
             <LabTabs />
+            <br />
             <AppRouter />
         </Container>
     );

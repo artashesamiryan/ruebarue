@@ -50,7 +50,12 @@ const AreaGuide = () => {
 
     const click = (e: any) => {
         const label = e.target.getAttribute('data-label');
+        const name = e.target.getAttribute('data-name');
         history.push(`/${label}`)
+        history.push({
+            pathname: label,
+            state: { detail: name }
+        })
     };
     const getPlace = async () => {
         try {
@@ -62,7 +67,6 @@ const AreaGuide = () => {
                 setFilteredAreas(data);
             }
             setLoading(false)
-
         } catch (error) {
             console.log(error)
         }
@@ -74,27 +78,27 @@ const AreaGuide = () => {
             {
                 loading && <Spinner />
             }
-            <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "49%" }}>
+            <Box className={classes.Options} sx={{ width: width < 750 ? "100%" : "59%" }}>
                 {
                     filteredAreas.map((item: any, index: number) => {
                         return (
                             <div
-                                style={{ textTransform: 'capitalize', }}
+                                style={{ textTransform: 'capitalize', boxShadow: "0 1px 12px rgb(0 0 0 / 8%)", border: "1px solid rgba(0,0,0,0.12)" }}
                                 key={index}
                                 onClick={click}
                                 data-label={item.type}
                                 data-name={item.label}
                             >
                                 {item.label}
-                                <ArrowForwardIosIcon fontSize="small" sx={{ padding: "none" }} /></div>
+                                <ArrowForwardIosIcon sx={{ padding: "none", fontSize: '16px', marginRight: '5px' }} /></div>
                         )
                     })
                 }
             </Box>
             {
                 width > 750 &&
-                <div style={{ position: "relative", width: "49%", height: '100vh' }}>
-                    <SimpleMap zoom={11} home={true} w="566px" h="100vh" />
+                <div style={{ position: "relative", width: "40%", height: '90vh' }}>
+                    <SimpleMap zoom={11} home={true} w="566px" />
                 </div>
             }
         </Box>
