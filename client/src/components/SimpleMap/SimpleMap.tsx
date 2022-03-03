@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import GoogleMapReact from 'google-map-react';
 import HomePin from '../../assets/icons/day_home.png';
 import AreaPin from '../../assets/icons/day_1.png';
+import { useAppSelector } from "../../Redux/hooks";
 
 const AnyReactComponent = ({ text, num = 1, home }: any) => {
     return (
@@ -18,6 +19,8 @@ const AnyReactComponent = ({ text, num = 1, home }: any) => {
         </>
     )
 };
+
+
 interface ILatLng {
     lat: any;
     lng: any;
@@ -32,6 +35,12 @@ interface SompleMapProps {
     link?: string;
 }
 const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }, zoom = 11, w = "566px", h = "600px", locations }: SompleMapProps) => {
+    const { content } = useAppSelector(state => state.content);
+
+    const defaultCenter = {
+        lat: Number(content.lat),
+        lng: Number(content.lng)
+    };
     const [fixed, setFixed]: any = useState(false);
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -57,14 +66,14 @@ const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }
             }}>
             <GoogleMapReact
                 yesIWantToUseGoogleMapApiInternals
-                defaultCenter={center}
+                defaultCenter={defaultCenter}
                 defaultZoom={zoom}
             >
                 {
                     home &&
                     <AnyReactComponent
-                        lat={center.lat}
-                        lng={center.lng}
+                        lat={defaultCenter.lat}
+                        lng={defaultCenter.lng}
                         text={'home'}
                         home={home}
                     />

@@ -14,7 +14,7 @@ const AppLayout: FC = () => {
     const location = window.location.pathname.split("/").filter((item: string) => item)[0];
 
     useEffect(() => {
-        history.push('');
+        // history.push('');
         location === "guide" && history.push("/area-guide")
     }, [])
 

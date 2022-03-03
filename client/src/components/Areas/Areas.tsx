@@ -10,6 +10,8 @@ import AreaCard from "../../components/AreaCard/AreaCard";
 import MobileAreaCard from "../../components/AreaCard/MobileAreaCard";
 import SimpleMap from "../SimpleMap/SimpleMap";
 import { useAppSelector } from "../../Redux/hooks";
+import { calc } from "../../utils";
+// import { v4 as uuid_v4 } from 'uuid'
 
 
 const Areas = () => {
@@ -20,20 +22,16 @@ const Areas = () => {
     const [loading, setloading] = useState(false);
     const { id }: any = useParams();
     const { content } = useAppSelector(state => state.content);
-    const { state }: any = useLocation()
-
-
-    console.log(state);
-
+    const { state }: any = useLocation();
+    const [obj, setObj]: any = useState({})
 
     useEffect(() => {
         getPlace()
     }, [id])
 
-    const getPlace = async () => {
+    const getPlace = () => {
         try {
             setloading(true)
-
             let data: any = [];
             if (location === "guide") {
                 data = content?.recommendations
@@ -43,25 +41,58 @@ const Areas = () => {
                 data = content?.destination?.recommendations
             }
 
-            // const data = location === "guide" ? content?.recommendations
-            //     :
-            //     location === "guestbook" ? content?.rental?.destination?.recommendations :
-            //         content?.destination?.recommendations
-
-
             const filteredData = data?.filter((item: any) => item.tab_id === id);
+            const checkEssentialType = filteredData?.map((item: any, index: number) => {
+                let tempProps = JSON.parse(JSON.stringify(item));
+                if (!item.hasOwnProperty("essential_type")) {
+                    tempProps["essential_type"] = "a"
 
-            setAreas(filteredData)
+                    setObj((prev: any) => {
+
+
+                        return {
+                            ...prev,
+                            [tempProps["essential_type"]]: []
+                        }
+                    })
+                }
+                else if (item.hasOwnProperty("essential_type")) {
+                    tempProps["essential_type"] = item.essential_type;
+                    setObj((prev: any) => {
+
+                        return {
+                            ...prev,
+                            [item.essential_type]: []
+                        }
+                    })
+
+                }
+                return tempProps
+            });
+
+
+            const sorted = checkEssentialType?.sort((a: any, b: any) => {
+                console.log(calc(content, a.lat, a.lng), "a");
+                console.log(calc(content, b.lat, b.lng), "b");
+
+                if (a.essential_type > b.essential_type) return 1;
+                if (a.essential_type < b.essential_type) return -1;
+                return 0
+            });
+
+
+
+            setAreas(sorted)
             setloading(false)
         } catch (error) {
             console.log(error)
         }
     };
+    console.log(obj, "<<<");
 
     if (loading) {
         return <Spinner />
     };
-
     return (
         <Box display="flex">
             <Box width="566px" height="">
@@ -88,7 +119,7 @@ const Areas = () => {
                 {
                     areas && areas.map((item: any, index: number) => {
                         return (
-                            <div key={index}>
+                            <div key={item.name}>
                                 {
                                     width > 700 ?
                                         <AreaCard
@@ -128,7 +159,7 @@ const Areas = () => {
             </Box>
             {
                 width > 900 &&
-                <SimpleMap zoom={11} home={false} locations={areas} h="100vh" />
+                <SimpleMap zoom={11} home={false} locations={areas} h="90vh" />
 
             }
         </Box>

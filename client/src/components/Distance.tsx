@@ -7,44 +7,23 @@ interface IDistanceProps {
     lng2: any;
 }
 const Distance = ({ lat2, lng2 }: IDistanceProps) => {
-    const [center, setCenter] = useState({
-        lat: 32.7865986,
-        lng: -117.2541316
-    });
     const [km, setKm] = useState('');
     const { content } = useAppSelector(state => state.content);
+    useEffect(() => {
+
+        calc()
+    }, []);
 
     const degrees_to_radians = (degrees: any) => {
         var pi = Math.PI;
         return degrees * (pi / 180);
     }
 
-    useEffect(() => {
-        getCenter()
-        calc()
-    }, []);
-
-    const getCenter = async () => {
-        try {
-            setCenter((prev: any) => {
-                return {
-                    ...prev,
-                    center: {
-                        lat: content.lat,
-                        lng: content.lng
-                    }
-                }
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     const calc = () => {
         const R = 6371;
-        let dLat = degrees_to_radians(lat2 - center.lat);
-        let dLng = degrees_to_radians(lng2 - center.lng);
-        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(degrees_to_radians(center.lat)) * Math.cos(degrees_to_radians(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        let dLat = degrees_to_radians(lat2 - content?.lat);
+        let dLng = degrees_to_radians(lng2 - content?.lng);
+        let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(degrees_to_radians(content?.lat)) * Math.cos(degrees_to_radians(lat2)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
         let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         let d = R * c;
         let m = d * 0.621371;

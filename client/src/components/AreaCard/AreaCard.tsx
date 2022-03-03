@@ -12,7 +12,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Checkbox, Rating, Typography } from "@mui/material";
 import Distance from "../Distance";
 import Modal from "../../UI/Modal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { bookmarksSlice } from '../../Redux/features/Bookmark/bookmarkSlice';
 import { useDispatch } from "react-redux";
 
@@ -167,15 +167,13 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                                     <img src={AreaPin} alt="" />
                                     <span>{++number}</span>
                                 </div>
-
                                 <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="160px" height="90px" />
                                 <div>
                                     <img src={GoogleIcon} alt="" />
-                                    <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
+                                    <Rating sx={{ color: '#4791db', marginTop: '10px' }} size="small" name="read-only" value={google.rating} readOnly />
                                 </div>
                             </div>
                         </Box>
-
                         <div style={{ display: 'flex', flexDirection: 'column' }} className={classes.address}>
                             <span style={{ fontSize: '18px' }}>{name}</span>
                             <p style={{ fontSize: '14px' }}>{google.formatted_address}</p>

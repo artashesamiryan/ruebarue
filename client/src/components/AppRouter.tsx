@@ -47,9 +47,9 @@ const AppRouter = () => {
         <Switch>
             <Route path={`/`} component={YourReservation} exact />
             <Route path={`/your-reservation`} component={YourReservation} exact />
-            <Route path={`/home-guide`} component={HomeGuide} exact />
-            <Route path={`/home-guide`} component={Content} exact />
-            <Route path={`/area-guide`} component={AreaGuide} exact />
+            <Route path={`/home-guide`} component={HomeGuide} />
+            <Route path={`/home-guide`} component={Content} />
+            <Route path={`/area-guide`} component={AreaGuide} />
             <Route path={`/:id`} component={Areas} exact />
             {/* <Route path="/area/:query" component={AreaDetails} exact /> */}
             {/* <Redirect to="/" /> */}

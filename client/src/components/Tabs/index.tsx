@@ -1,15 +1,24 @@
 import Tab from '@mui/material/Tab';
 // import useWindowSize from "../../hooks/UseWindowSize";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tabs } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../Redux/hooks";
 
 export default function LabTabs() {
     const [value, setValue] = useState('one');
     const history = useHistory();
+    const Location = useLocation()
     const location = window.location.pathname.split("/").filter((item: string) => item)[0];
     const { content } = useAppSelector(state => state.content);
+
+    useEffect(() => {
+        if (Location.pathname === "/home-guide") {
+            setValue("two")
+        } else if (Location.pathname === "/area-guide") {
+            setValue("three")
+        }
+    }, [Location])
 
 
     const handleChange = (event: React.SyntheticEvent, value: string) => {
@@ -61,19 +70,17 @@ export default function LabTabs() {
                         sx={{
                             borderBottom: '1px solid #CCCCCC',
                             maxHeight: "40px",
-                        }}
-                    >
-                        <Tab
-                            sx={{
-                                width: '180px',
-                                color: 'white',
-                                borderRight: '1px solid white',
-                                boxSizing: 'border-box',
-                                fontSize: "13px",
-                                maxHeight: "40px !important",
-                                paddingBottom: '15px',
-                                backgroundColor: value === "one" ? content?.account?.preferences?.color_2 : ""
-                            }} value="one" label="YOUR RESERVATION" onClick={() => history.push('/your-reservation')} />
+                        }}>
+                        <Tab sx={{
+                            width: '180px',
+                            color: 'white',
+                            borderRight: '1px solid white',
+                            boxSizing: 'border-box',
+                            fontSize: "13px",
+                            maxHeight: "40px !important",
+                            paddingBottom: '15px',
+                            backgroundColor: value === "one" ? content?.account?.preferences?.color_2 : ""
+                        }} value="one" label="YOUR RESERVATION" onClick={() => history.push('/your-reservation')} />
                         <Tab sx={{
                             width: '180px',
                             color: 'white',

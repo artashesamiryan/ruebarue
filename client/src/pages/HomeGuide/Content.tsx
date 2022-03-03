@@ -125,9 +125,17 @@ const Content = ({ orders }: IContentProps) => {
                                                             key={index}
                                                             src={getYoutubeFrameLink(item.url) as string}
                                                             title="asdasd"
+                                                            style={{ border: "none", marginTop: '15px' }}
                                                             width={"100%"}
                                                             height={"300px"}></iframe> :
-                                                        <img src={item.url} key={item.url} alt="" width="300px" />
+                                                        <img
+                                                            style={{
+                                                                borderRadius: '3px',
+                                                                marginTop: '15px'
+                                                            }}
+                                                            src={item.url}
+                                                            key={item.url}
+                                                            alt="" width="100%" />
 
                                                     return a
                                                 })

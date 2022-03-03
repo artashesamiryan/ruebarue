@@ -135,7 +135,7 @@ const MobileAreaCard = ({ id, price, name, location, tags, google, number = 1, t
                     <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
                     <div>
                         <img src={GoogleIcon} alt="" />
-                        <Rating sx={{ color: '#4791db' }} size="small" name="read-only" value={google.rating} readOnly />
+                        <Rating sx={{ color: '#4791db', marginTop: '10px' }} size="small" name="read-only" value={google.rating} readOnly />
                     </div>
                 </Box>
 
