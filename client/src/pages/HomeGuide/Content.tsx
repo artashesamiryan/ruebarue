@@ -124,7 +124,7 @@ const Content = ({ orders }: IContentProps) => {
                                                         <iframe
                                                             key={index}
                                                             src={getYoutubeFrameLink(item.url) as string}
-                                                            title="asdasd"
+                                                            title="Video"
                                                             style={{ border: "none", marginTop: '15px' }}
                                                             width={"100%"}
                                                             height={"300px"}></iframe> :

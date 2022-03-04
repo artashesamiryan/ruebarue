@@ -15,6 +15,7 @@ import Modal from "../../UI/Modal";
 import { useState } from "react";
 import { bookmarksSlice } from '../../Redux/features/Bookmark/bookmarkSlice';
 import { useDispatch } from "react-redux";
+import { getVimeoFrameLink } from "../../utils";
 
 const useStyles = makeStyles({
     address: {
@@ -120,11 +121,12 @@ interface IResturanCardProps {
     lng?: any;
     areas: any;
     tags?: string[];
+    attachments?: any;
 };
 
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-function AreaCard({ id, price, name, location, tags, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) {
+function AreaCard({ id, price, attachments, name, location, tags, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) {
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
@@ -138,6 +140,7 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
     const onBook = (e: any) => {
         dispatch(setBookmarksId([id]));
     }
+
     return (
         <>
             <Modal
@@ -167,7 +170,10 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                                     <img src={AreaPin} alt="" />
                                     <span>{++number}</span>
                                 </div>
-                                <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="160px" height="90px" />
+                                {
+                                    google.place_id! &&
+                                    <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="160px" height="90px" />
+                                }
                                 <div>
                                     <img src={GoogleIcon} alt="" />
                                     <Rating sx={{ color: '#4791db', marginTop: '10px' }} size="small" name="read-only" value={google.rating} readOnly />
@@ -183,7 +189,6 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                                     {tags.join(' ')}
                                 </p>}
                             <p></p>
-
                         </div>
                         <Box>
                             <Distance lat2={lat} lng2={lng} />
@@ -193,7 +198,6 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
-
                         sx={{
                             backgroundColor: '#E9F0F6',
                             mixBlendMode: 'normal',
@@ -216,7 +220,6 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                                 <img src={More} alt="" />
                             </a>
                         </div>
-
                         <Checkbox
                             // {...label}
                             icon={<BookmarkBorderIcon />}
@@ -227,7 +230,6 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                     </Box>
                     <Box className={classes.Host} marginTop="16px" padding="5px">
                         {tip &&
-
                             <Box>
                                 <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
                                 {tip.length > 300 && less ?
@@ -236,23 +238,41 @@ function AreaCard({ id, price, name, location, tags, google, number = 1, tip, la
                                         <span>...</span>
                                     </Typography>
                                     :
-
                                     <Typography color="#333333" fontSize="14px">
-
                                         {tip}
                                     </Typography>}
-
                                 {
                                     tip.length > 300 && <button className={classes.ReadMore} onClick={() => setLess(!less)}>
                                         Read
                                         {
-                                            less ? " more" : " less"
+                                            less ? " More" : " Less"
                                         }
-                                        {/* More */}
                                     </button>
                                 }
                             </Box>}
-
+                        <Box>
+                            {
+                                attachments && attachments?.map((vid: any, index: number) => {
+                                    // console.log(parseVideoURL(vid?.url));
+                                    return (
+                                        vid.url.includes("vime" || "youtube") ?
+                                            <iframe
+                                                key={index}
+                                                src={getVimeoFrameLink(vid?.url)}
+                                                title="lll"
+                                                width="100%"
+                                                height="300px"
+                                                style={{ border: "none" }}></iframe>
+                                            :
+                                            <img
+                                                src={vid?.url}
+                                                alt=""
+                                                width={"100%"}
+                                                height="300px" />
+                                    )
+                                })
+                            }
+                        </Box>
                     </Box>
                 </Box>
             }

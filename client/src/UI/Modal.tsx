@@ -239,20 +239,9 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
                                 <Box >
                                     <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
                                     {
-                                        less ?
-                                            <Typography color="#333333" width={width < 900 ? "100%" : "80%"} fontSize="14px">
-                                                {tip.slice(0, 100)}
-                                                <span>...</span>
-                                            </Typography >
-                                            :
-
-                                            <Typography color="#333333" width={width < 900 ? "100%" : "80%"} fontSize="14px">
-
-                                                {tip}
-                                            </Typography>
+                                        tip
                                     }
 
-                                    <button className={classes.ReadMore} onClick={() => setLess(!less)}>Read More</button>
                                 </Box>
                             }
 
@@ -296,7 +285,16 @@ const Modal: FC<IModalProps> = ({ open, setOpen, query, areas }) => {
                         {
                             width > 900 &&
                             <div style={{ width: '595px', height: '300px' }} >
-                                <Typography fontSize="14px" lineHeight="20px">{details.formatted_address}</Typography>
+                                <a
+                                    href={`https://www.google.com/maps/search/${details.formatted_address}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{
+                                        fontSize: '14px',
+                                        lineHeight: '20px',
+                                        textDecoration: "none",
+                                        color: "black"
+                                    }} >{details.formatted_address}</a>
                                 <SimpleMap link={details.formatted_address} h="300px" zoom={11} home={false} locations={location} />
                             </div>
                         }

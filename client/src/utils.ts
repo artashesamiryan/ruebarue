@@ -13,11 +13,19 @@ export const getYoutubeFrameLink = (url: string): string | null => {
     return `https://www.youtube.com/embed/${videoId}`
 }
 
+// "https://player.vimeo.com/video/348628277"
+
+export const getVimeoFrameLink = (url: string) => {
+    var res = url.replace(/\D/g, "");
+    console.log(res, "gggggggggg");
+
+    return `https://player.vimeo.com/video/${res}`
+}
+
 const degrees_to_radians = (degrees: any) => {
     var pi = Math.PI;
     return degrees * (pi / 180);
 }
-
 export const calc = (content: any, lat2: any, lng2: any) => {
     const R = 6371;
     let dLat = degrees_to_radians(lat2 - content?.lat);

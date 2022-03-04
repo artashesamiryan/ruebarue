@@ -160,7 +160,7 @@ const YourReservation = () => {
                         Book Again <ArrowForwardIosIcon sx={{ fontSize: '16px', marginRight: '5px' }} /></div>
                     <div style={{ padding: '0', boxShadow: "0 1px 12px rgb(0 0 0 / 8%)", border: "1px solid rgba(0,0,0,0.12)" }}>
                         <a
-                            href="https://www.carolinaretreats.com/"
+                            href={content?.account?.preferences?.logo_url}
                             target="_blank"
                             rel="noreferrer"
                             style={{

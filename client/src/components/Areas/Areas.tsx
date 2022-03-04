@@ -41,43 +41,44 @@ const Areas = () => {
                 data = content?.destination?.recommendations
             }
 
-            const filteredData = data?.filter((item: any) => item.tab_id === id);
-            const checkEssentialType = filteredData?.map((item: any, index: number) => {
+            const filteredData = data?.filter(({ tab_id }: { tab_id: string }) => tab_id === id);
+            const checkEssentialType = filteredData?.map((item: any) => {
                 let tempProps = JSON.parse(JSON.stringify(item));
                 if (!item.hasOwnProperty("essential_type")) {
-                    tempProps["essential_type"] = "a"
-
+                    tempProps["essential_type"] = "a";
+                    let n = filteredData.filter((item: any) => !item.essential_type)
                     setObj((prev: any) => {
-
-
                         return {
                             ...prev,
-                            [tempProps["essential_type"]]: []
+                            [tempProps["essential_type"]]: [...n]
                         }
                     })
                 }
-                else if (item.hasOwnProperty("essential_type")) {
+                else {
                     tempProps["essential_type"] = item.essential_type;
+                    const n = filteredData.filter((item: any) => item.essential_type === tempProps["essential_type"])
                     setObj((prev: any) => {
-
                         return {
                             ...prev,
-                            [item.essential_type]: []
+                            [item.essential_type]: [...n]
                         }
                     })
-
                 }
                 return tempProps
             });
-
-
             const sorted = checkEssentialType?.sort((a: any, b: any) => {
-                console.log(calc(content, a.lat, a.lng), "a");
-                console.log(calc(content, b.lat, b.lng), "b");
-
                 if (a.essential_type > b.essential_type) return 1;
                 if (a.essential_type < b.essential_type) return -1;
                 return 0
+            });
+            Object.keys(obj).map((item: any) => {
+                // console.log(obj[item]);
+
+                let a = obj[item].sort((a: any, b: any) => {
+                    if (calc(content, a.lat, a.lng) < calc(content, b.lat, b.lng)) return 1;
+                    if (calc(content, a.lat, a.lng) > calc(content, b.lat, b.lng)) return -1;
+                });
+                return a
             });
 
 
@@ -88,7 +89,8 @@ const Areas = () => {
             console.log(error)
         }
     };
-    console.log(obj, "<<<");
+
+    console.log(obj, "+++++++++++++");
 
     if (loading) {
         return <Spinner />
@@ -116,7 +118,7 @@ const Areas = () => {
                 </Box>
 
 
-                {
+                {/* {
                     areas && areas.map((item: any, index: number) => {
                         return (
                             <div key={item.name}>
@@ -153,6 +155,65 @@ const Areas = () => {
                                         />
                                 }
                             </div>
+                        )
+                    })
+                } */}
+
+                {
+
+                    Object.keys(obj).map((item: any) => {
+                        // console.log(obj[item]);
+
+                        let a = obj[item].sort((a: any, b: any) => {
+                            if (calc(content, a.lat, a.lng) < calc(content, b.lat, b.lng)) return 1;
+                            if (calc(content, a.lat, a.lng) > calc(content, b.lat, b.lng)) return -1;
+                        });
+
+
+                        return (
+                            a.map((i: any, index: number) => {
+
+
+                                return (
+                                    <div key={i.name}>
+                                        {
+                                            width > 700 ?
+                                                <AreaCard
+                                                    // key={index}
+                                                    id={i.id}
+                                                    price={i.price}
+                                                    number={index}
+                                                    lat={i.lat}
+                                                    lng={i.lng}
+                                                    // location={item.google.formatted_address}
+                                                    name={i.name}
+                                                    tip={i.tip}
+                                                    google={i.google}
+                                                    tags={i.tags}
+                                                    attachments={i.attachments}
+                                                    areas={areas}
+                                                />
+                                                :
+                                                <MobileAreaCard
+                                                    // key={item.id}
+                                                    id={i.id}
+                                                    price={i.price}
+                                                    number={index}
+                                                    lat={i.lat}
+                                                    lng={i.lng}
+                                                    // location={item.google.formatted_address}
+                                                    name={i.name}
+                                                    tip={i.tip}
+                                                    google={i.google}
+                                                    tags={i.tags}
+                                                    areas={areas}
+                                                    attachments={i.attachments}
+
+                                                />
+                                        }
+                                    </div>
+                                )
+                            })
                         )
                     })
                 }

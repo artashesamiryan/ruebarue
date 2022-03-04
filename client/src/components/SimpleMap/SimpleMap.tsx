@@ -26,7 +26,7 @@ interface ILatLng {
     lng: any;
 }
 interface SompleMapProps {
-    center?: ILatLng;
+    center?: any;
     w?: string;
     h?: string;
     zoom: number,
@@ -36,11 +36,15 @@ interface SompleMapProps {
 }
 const SimpleMap = ({ link, home, center = { lat: 32.7865986, lng: -117.2541316 }, zoom = 11, w = "566px", h = "600px", locations }: SompleMapProps) => {
     const { content } = useAppSelector(state => state.content);
-
+    const location = window.location.pathname.split("/").filter((item: string) => item)[0];
     const defaultCenter = {
-        lat: Number(content.lat),
-        lng: Number(content.lng)
+        lat: location === "guestbook" ? Number(content?.rental.lat) : Number(content.lat),
+        lng: location === "guestbook" ? Number(content?.rental.lng) : Number(content.lng),
     };
+
+    console.log(content.lat, "<<<<>>>>>");
+    console.log(content.lng, "<<<<>>>>>");
+
     const [fixed, setFixed]: any = useState(false);
     useEffect(() => {
         window.addEventListener('scroll', () => {

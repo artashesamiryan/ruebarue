@@ -40,7 +40,6 @@ export default function LabTabs() {
                         value={"three"}
                         onChange={handleChange}
                         indicatorColor="primary"
-                        aria-label="secondary tabs example"
                         sx={{
                             borderBottom: '1px solid #CCCCCC',
                             maxHeight: "40px",

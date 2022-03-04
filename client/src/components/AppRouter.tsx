@@ -18,12 +18,13 @@ const AppRouter = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory();
     const location = window.location.pathname.split("/").filter((item: string) => item)[0];
+
+
     useEffect(() => {
         location === "guide" && history.push("/area-guide")
         getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
     const getData = async () => {
         setLoading(true)

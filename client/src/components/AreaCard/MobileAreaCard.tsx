@@ -11,9 +11,11 @@ import AreaPin from '../../assets/icons/day_1.png';
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { makeStyles } from '@mui/styles';
 import { useState } from "react";
-import { Checkbox, Rating } from "@mui/material";
+import { Checkbox, Rating, Typography } from "@mui/material";
 import Distance from "../Distance";
 import Modal from "../../UI/Modal";
+import { useDispatch } from "react-redux";
+import { bookmarksSlice } from "../../Redux/features/Bookmark/bookmarkSlice";
 
 const useStyles = makeStyles({
     actions: {
@@ -89,120 +91,140 @@ interface IResturanCardProps {
     lng?: any;
     areas: any;
     tags?: string[];
+    attachments: any;
 };
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-
-const MobileAreaCard = ({ id, price, name, location, tags, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
+const MobileAreaCard = ({ id, attachments, price, name, location, tags, google, number = 1, tip, lat, lng, areas }: IResturanCardProps) => {
 
     const classes = useStyles();
     const [more, setMore] = useState(false);
     const [open, setOpen] = useState(false);
+    const [less, setLess] = useState(true);
+    const dispatch = useDispatch();
 
+    const onCardClick = () => {
+        setOpen(true);
+    };
+    const { setBookmarksId } = bookmarksSlice.actions;
+    const onBook = (e: any) => {
+        dispatch(setBookmarksId([id]));
+    }
     return (
-        <Box
-            width="100%"
-            marginTop={"20px"}
-            height={more ? "0" : "180px"}
-            padding="10px"
-            overflow="hidden"
-            position="relative"
-            sx={{
-                backgroundColor: "#FFFFFF",
-            }
-            }>
-
-
+        <>
             <Modal
                 open={open}
                 setOpen={() => setOpen(!open)}
                 areas={areas} query={id}
             />
-
-
-            <Box
-                display="flex"
-                justifyContent="space-between"
-                style={{ display: "flex" }} onClick={() => setOpen(true)} >
-                <Box>
-                    {
-                        <div className={classes.AreaNumber}>
-                            <img src={AreaPin} alt="" />
-                            <span>{++number}</span>
-                        </div>
+            {
+                google &&
+                <Box
+                    width="100%"
+                    marginTop={"20px"}
+                    height={more ? "0" : "200px"}
+                    padding="10px"
+                    overflow="hidden"
+                    position="relative"
+                    sx={{
+                        backgroundColor: "#FFFFFF",
                     }
-                    <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
-                    <div>
-                        <img src={GoogleIcon} alt="" />
-                        <Rating sx={{ color: '#4791db', marginTop: '10px' }} size="small" name="read-only" value={google.rating} readOnly />
-                    </div>
-                </Box>
+                    }>
+
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        style={{ display: "flex" }} onClick={() => setOpen(true)} >
+                        <Box>
+                            {
+                                <div className={classes.AreaNumber}>
+                                    <img src={AreaPin} alt="" />
+                                    <span>{++number}</span>
+                                </div>
+                            }
+                            <img src={`https://d1l272ftssh5ud.cloudfront.net/google/images/${google.place_id}.jpg`} alt="" width="100px" height="66px" />
+                            <div>
+                                <img src={GoogleIcon} alt="" />
+                                <Rating sx={{ color: '#4791db', marginTop: '10px' }} size="small" name="read-only" value={google.rating} readOnly />
+                            </div>
+                        </Box>
 
 
 
 
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ fontSize: '18px' }}>{name}</span>
-                    <p style={{ fontSize: '14px' }}>{google.formatted_address}</p>
-                    {price !== 0 ? <p>{price} $$</p> : ""}
-                    {tags && tags.length > 0 &&
-                        <p>
-                            {tags.join(' ')}
-                        </p>}
-                    <p></p>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <span style={{ fontSize: '18px' }}>{name}</span>
+                            <p style={{ fontSize: '14px' }}>{google.formatted_address}</p>
+                            {price !== 0 ? <p>{price} $$</p> : ""}
+                            {tags && tags.length > 0 &&
+                                <p>
+                                    {tags.join(' ')}
+                                </p>}
+                            <p></p>
 
-                </div>
-                <Box>
-                    <Distance lat2={lat} lng2={lng} />
-                </Box>
-            </Box>
+                        </div>
+                        <Box>
+                            <Distance lat2={lat} lng2={lng} />
+                        </Box>
+                    </Box>
 
 
-            <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                marginTop="5px"
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        marginTop="5px"
 
-                sx={{
-                    backgroundColor: '#E9F0F6',
-                    mixBlendMode: 'normal',
-                    borderRadius: '2px',
-                }}>
-                <div className={classes.actions}>
-                    <img src={Network} alt="" />
-                    <img src={Phone} alt="" />
-                    <img src={LOCATION} alt="" />
-                    <img src={Ride} alt="" />
-                    <img src={More} alt="" />
-                </div>
+                        sx={{
+                            backgroundColor: '#E9F0F6',
+                            mixBlendMode: 'normal',
+                            borderRadius: '2px',
+                        }}>
+                        <div className={classes.actions}>
+                            <img src={Network} alt="" />
+                            <img src={Phone} alt="" />
+                            <img src={LOCATION} alt="" />
+                            <img src={Ride} alt="" />
+                            <img src={More} alt="" />
+                        </div>
 
-                <Checkbox
-                    {...label}
-                    icon={<BookmarkBorderIcon />}
-                    checkedIcon={<BookmarkIcon />}
-                />
-            </Box>
-            <Box className={classes.Host} marginTop="20px" padding="5px">
-                {
-                    tip &&
-                    <span>Your Host Says:</span>
-                }
-                {
-                    tip && <p>{tip}</p>
-                }
+                        <Checkbox
+                            {...label}
+                            icon={<BookmarkBorderIcon />}
+                            checkedIcon={<BookmarkIcon />}
+                        />
+                    </Box>
+                    <Box className={classes.Host} marginTop="20px" padding="5px">
+                        {tip &&
+                            <Box>
+                                <Typography color="#333333" fontWeight="bolder" variant="h6">Your Host Says</Typography>
+                                {tip.length > 300 && less ?
+                                    <Typography color="#333333" fontSize="14px">
+                                        {tip.slice(0, 100)}
+                                        <span>...</span>
+                                    </Typography>
+                                    :
+                                    <Typography color="#333333" fontSize="14px">
+                                        {tip}
+                                    </Typography>}
+                                {
+                                    tip.length > 300 && <button className={classes.ReadMore} onClick={() => setLess(!less)}>
+                                        Read
+                                        {
+                                            less ? " More" : " Less"
+                                        }
+                                    </button>
+                                }
+                            </Box>}
+                    </Box>
 
-                {
-                    tip && tip.length > 77 &&
-                    <button className={classes.ReadMore} >Read More</button>
-                }
-            </Box>
-
-            <Box display="flex" justifyContent="center" position="absolute" top="90%" left="0" right="0" >
-                <img src={ArrowDown} onClick={() => setMore(!more)} alt="" style={{ cursor: "pointer" }} />
-            </Box>
-        </Box >
+                    <Box display="flex" justifyContent="center" position="absolute" top="90%" left="0" right="0" >
+                        <img src={ArrowDown} onClick={() => setMore(!more)} alt="" style={{ cursor: "pointer" }} />
+                    </Box>
+                </Box >
+            }
+        </>
     )
 };
 
